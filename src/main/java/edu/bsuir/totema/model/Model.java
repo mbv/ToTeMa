@@ -1,6 +1,6 @@
-package by.totema.model;
+package edu.bsuir.totema.model;
 
-import by.totema.entity.Employee;
+import edu.bsuir.totema.entity.Employee;
 
 import java.sql.*;
 import java.util.ArrayList;

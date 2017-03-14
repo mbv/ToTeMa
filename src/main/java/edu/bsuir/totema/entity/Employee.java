@@ -1,4 +1,4 @@
-package by.totema.entity;
+package edu.bsuir.totema.entity;
 
 public class Employee {
 

@@ -1,8 +1,8 @@
-package by.totema.controller;
+package edu.bsuir.totema.controller;
 
-import by.totema.entity.Employee;
-import by.totema.model.Model;
-import by.totema.model.ModelException;
+import edu.bsuir.totema.entity.Employee;
+import edu.bsuir.totema.model.Model;
+import edu.bsuir.totema.model.ModelException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,17 +20,12 @@ public class Controller extends javax.servlet.http.HttpServlet {
     private static final String EMPLOYEES_ATTRIBUTE = "employees";
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        /*response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-
-        out.println("Hello Word");*/
         try {
             List<Employee> employees = Model.getInstance().selectAllUsers();
             request.setAttribute(EMPLOYEES_ATTRIBUTE, employees);
             request.getRequestDispatcher(EMPLOYEE_LIST_PAGE_PATH).forward(request, response);
         } catch (ModelException e) {
-            e.printStackTrace();
-            response.sendError(404);
+            throw new ServletException(e);
         }
     }
 }

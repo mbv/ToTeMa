@@ -1,4 +1,4 @@
-package by.totema.model;
+package edu.bsuir.totema.model;
 
 public class ModelException extends Exception {
     public ModelException() {
