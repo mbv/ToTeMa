@@ -48,12 +48,12 @@ public class Model {
     }
 
     private Properties getDatabaseProperties() {
-        Properties properties = new Properties();
-        properties.put(DatabaseManager.USER, DatabaseManager.getProperty(DatabaseManager.USER));
+     Properties properties = new Properties();
+        /*   properties.put(DatabaseManager.USER, DatabaseManager.getProperty(DatabaseManager.USER));
         properties.put(DatabaseManager.PASSWORD, DatabaseManager.getProperty(DatabaseManager.PASSWORD));
         properties.put(DatabaseManager.AUTORECONNECT, DatabaseManager.getProperty(DatabaseManager.AUTORECONNECT));
         properties.put(DatabaseManager.ENCODING, DatabaseManager.getProperty(DatabaseManager.ENCODING));
-        properties.put(DatabaseManager.USE_UNICODE, DatabaseManager.getProperty(DatabaseManager.USE_UNICODE));
+        properties.put(DatabaseManager.USE_UNICODE, DatabaseManager.getProperty(DatabaseManager.USE_UNICODE));*/
         return properties;
     }
 }

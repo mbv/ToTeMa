@@ -1,0 +1,33 @@
+<div class="container" ng-controller="PersonsListController as self">
+    <div class="col-xs-12">
+        <div class="panel panel-default" style="margin-top: 30px;">
+            <div class="panel-heading">
+                <span style="line-height: 34px;">People</span>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#user-modal" ng-click="self.addPerson()" style="float: right;">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <thead>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Title</th>
+                    <th>Actions</th>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="person in self.people">
+                        <td class="col-xs-1">{{person.id}}</td>
+                        <td class="col-xs-4">{{person.name}}</td>
+                        <td class="col-xs-4">{{person.title}}</td>
+                        <td class="col-xs-3">
+                            <button class="btn btn-xs btn-info" ng-click="self.editPerson(person)">Edit</button>
+                            <button class="btn btn-xs btn-danger" ng-click="self.deletePerson(person)">Delete</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

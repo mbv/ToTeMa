@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+
+    <script type="text/javascript" src="lib/angular.min.js"></script>
+    <script type="text/javascript" src="lib/angular-route.min.js"></script>
+    <script type="text/javascript" src="lib/angular-resource.min.js"></script>
+    <script type="text/javascript" src="lib/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="lib/bootstrap.min.js"></script>
+    <script type="text/javascript" src="lib/ui-bootstrap-tpls-2.5.0.min.js"></script>
+    <script type="text/javascript" src="app/application.js"></script>
+    <script type="text/javascript" src="app/routes.js"></script>
+    <script type="text/javascript" src="app/navigation.controller.js"></script>
+    <script type="text/javascript" src="app/personModal.controller.js"></script>
+    <script type="text/javascript" src="app/personsList.controller.js"></script>
+    <script type="text/javascript" src="app/person.service.js"></script>
+</head>
+<body ng-app="demo">
+    <header>
+        <nav class="navbar navbar-default navbar-fixed-top" ng-controller="NavigationController as self">
+            <div class="container-fluid">
+                <ul class="nav navbar-nav">
+                    <li ng-class="{ active: self.isActive('/') }"><a href='#!/'>Home</a></li>
+                    <li ng-class="{ active: self.isActive('/users') }"><a href="#!/users">Users</a></li>
+                    <li ng-class="{ active: self.isActive('/about') }"><a href="#!/about">About</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main style="margin-top: 70px;">
+        <div ng-view></div>
+    </main>
+</body>
+</html>

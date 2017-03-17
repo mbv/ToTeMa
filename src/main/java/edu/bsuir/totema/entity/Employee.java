@@ -1,19 +1,10 @@
 package edu.bsuir.totema.entity;
 
-public class Employee {
+public class Employee extends Entity {
 
-    private long id;
     private String name;
     private String title;
     private long yearSalary;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -46,7 +37,7 @@ public class Employee {
 
         Employee employee = (Employee) o;
 
-        if (id != employee.id) return false;
+        if (getId() != employee.getId()) return false;
         if (name != null ? !name.equals(employee.name) : employee.name != null) return false;
         if (title != null ? !title.equals(employee.title) : employee.title != null) return false;
         return yearSalary != employee.yearSalary;
@@ -54,7 +45,7 @@ public class Employee {
 
     @Override
     public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
+        int result = (int) (getId() ^ (getId() >>> 32));
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + (int) (yearSalary ^ (yearSalary >>> 32));
@@ -64,7 +55,7 @@ public class Employee {
     @Override
     public String toString() {
         return "Employee{" +
-                "id=" + id +
+                "id=" + getId() +
                 ", name='" + name + '\'' +
                 ", title='" + title + '\'' +
                 ", yearSalary='" + yearSalary + '\'' +
