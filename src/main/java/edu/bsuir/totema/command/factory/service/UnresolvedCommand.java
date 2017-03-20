@@ -22,6 +22,6 @@ public class UnresolvedCommand implements Command {
         request.setAttribute(ERROR_MESSAGE_ATTRIBUTE, ERROR_MESSAGE_UNRESOLVED);
         String pagePath = PathManager.getProperty(PathManager.ERROR);*/
         Command.dispatchRequest("", false, request, response);
-        return "";
+        return "{\"status\":\"error\"}";
     }
 }

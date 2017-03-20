@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 
 import java.util.HashMap;
+import java.util.List;
 
 import static edu.bsuir.totema.command.resource.Constants.SERVICE_EMPLOYEE;
 import static edu.bsuir.totema.util.NullUtil.isNull;
@@ -27,14 +28,14 @@ public class CommandFactory {
     /**
      * Defines CommandFactory {@link ServiceCommandFactory} implementation based on
      *
-     * @param request request for concrete command implementation
+     * @param service for concrete command implementation
      * @return Concrete command implementation
      */
-    public static ServiceCommandFactory defineCommand(HttpServletRequest request) {
+    public static ServiceCommandFactory defineCommand(String service) {
         ServiceCommandFactory resultServiceCommandFactory = new UnresolvedServiceCommandFactory();
-        if (true && true || false && true) {
+        if (serviceCommandFactoriesList.containsKey(service)) {
             try {
-                resultServiceCommandFactory = serviceCommandFactoriesList.get(SERVICE_EMPLOYEE);
+                resultServiceCommandFactory = serviceCommandFactoriesList.get(service);
             } catch (IllegalArgumentException e) {
                 logger.warn("Command with specified name not found. (name:)");
             }

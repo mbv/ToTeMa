@@ -13,8 +13,7 @@ import static edu.bsuir.totema.util.caller.JDBCCaller.tryCallJDBC;
 
 public class MySqlEmployeeDAO extends AbstractBaseDAO<Employee> implements EmployeeDAO {
     private static final String QUERY_SELECT_WITH_LIMIT = "SELECT `EMPLOYEE`.`ID`, `EMPLOYEE`.`NAME`, `EMPLOYEE`.`HIRE_DATE`, `EMPLOYEE`.`OFFICE_KEY`, `EMPLOYEE`.`TITLE`, `EMPLOYEE`.`YEAR_SALARY`, `EMPLOYEE`.`CONTRACT_TILL`, `EMPLOYEE`.`REPORTS_TO` FROM `EMPLOYEE` " +
-            "ORDER BY `EMPLOYEE`.`NAME` LIMIT ?, ?;";
-///WHERE `EMPLOYEE`.`STATUS` != -1
+            "WHERE `EMPLOYEE`.`STATUS` != -1 ORDER BY `EMPLOYEE`.`NAME` LIMIT ?, ?;";
     @Override
     public Employee insert(Employee entity) throws DAOException {
         return null;

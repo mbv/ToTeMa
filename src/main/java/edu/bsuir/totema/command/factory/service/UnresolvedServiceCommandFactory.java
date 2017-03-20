@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class UnresolvedServiceCommandFactory implements ServiceCommandFactory {
     @Override
-    public Command defineCommand(HttpServletRequest request) {
+    public Command defineCommand(String requestMethod, String commandType) {
         return null;
     }
 }

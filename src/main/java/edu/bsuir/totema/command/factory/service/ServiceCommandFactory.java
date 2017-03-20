@@ -5,5 +5,5 @@ import edu.bsuir.totema.command.Command;
 import javax.servlet.http.HttpServletRequest;
 
 public interface ServiceCommandFactory {
-    Command defineCommand(HttpServletRequest request);
+    Command defineCommand(String requestMethod, String commandType);
 }
