@@ -18,10 +18,6 @@ public class UnresolvedCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
         logger.debug("Unresolved command has been executed.");
-        /*request.setAttribute(ERROR_TITLE_ATTRIBUTE, ERROR_TITLE_UNRESOLVED);
-        request.setAttribute(ERROR_MESSAGE_ATTRIBUTE, ERROR_MESSAGE_UNRESOLVED);
-        String pagePath = PathManager.getProperty(PathManager.ERROR);*/
-        Command.dispatchRequest("", false, request, response);
         return "{\"status\":\"error\"}";
     }
 }

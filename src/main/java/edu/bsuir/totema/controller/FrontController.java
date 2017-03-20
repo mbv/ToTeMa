@@ -105,7 +105,7 @@ public class FrontController extends javax.servlet.http.HttpServlet {
                 return;
             }
 
-            throw new ServletException("Invalid URI");
+            //throw new ServletException("Invalid URI");
         }
 
         public String getService() {

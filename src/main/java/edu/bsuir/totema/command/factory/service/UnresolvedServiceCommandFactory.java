@@ -1,15 +1,15 @@
 package edu.bsuir.totema.command.factory.service;
 
 import edu.bsuir.totema.command.Command;
+import org.apache.log4j.Logger;
 
-import javax.servlet.http.HttpServletRequest;
-
-/**
- * Created by mbv on 3/16/17.
- */
 public class UnresolvedServiceCommandFactory implements ServiceCommandFactory {
+
+    private static final Logger logger = Logger.getLogger(UnresolvedCommand.class);
+
     @Override
     public Command defineCommand(String requestMethod, String commandType) {
-        return null;
+        logger.debug("Unresolved command has been executed.");
+        return new UnresolvedCommand();
     }
 }

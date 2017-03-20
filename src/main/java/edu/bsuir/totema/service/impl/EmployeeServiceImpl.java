@@ -20,4 +20,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     public List<Employee> getAll() throws ServiceException {
         return tryCallDAO(() -> getEmployeeDAO().selectWithLimit(0, 10));
     }
+
+    @Override
+    public Employee getById(long id) throws ServiceException {
+        return tryCallDAO(() -> getEmployeeDAO().selectById(id));
+    }
 }
