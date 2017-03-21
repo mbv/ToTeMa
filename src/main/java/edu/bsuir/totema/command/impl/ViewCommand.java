@@ -6,12 +6,14 @@ import edu.bsuir.totema.command.ResourceCommand;
 import edu.bsuir.totema.command.exception.CommandException;
 import edu.bsuir.totema.service.Service;
 import edu.bsuir.totema.service.exception.ServiceException;
+import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class ViewCommand implements ResourceCommand {
 
+    private static final Logger logger = Logger.getLogger(ViewAllCommand.class);
     private Service _service;
     private long _resource_id;
 
