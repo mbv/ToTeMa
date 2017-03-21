@@ -1,5 +1,7 @@
 package edu.bsuir.totema.entity;
 
+import com.google.gson.annotations.Expose;
+
 import java.io.Serializable;
 
 /**
@@ -7,6 +9,7 @@ import java.io.Serializable;
  */
 public abstract class Entity implements Cloneable, Serializable {
 
+    @Expose
     private long id;
 
     Entity() {

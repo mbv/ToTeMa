@@ -11,9 +11,9 @@ import java.util.List;
 import static edu.bsuir.totema.util.caller.JDBCCaller.tryCallJDBC;
 
 public class MySqlEmployeeDAO extends AbstractBaseDAO<Employee> implements EmployeeDAO {
-    private static final String QUERY_SELECT_BY_ID = "SELECT `EMPLOYEE`.`ID`, `EMPLOYEE`.`NAME`, `EMPLOYEE`.`HIRE_DATE`, `EMPLOYEE`.`OFFICE_KEY`, `EMPLOYEE`.`TITLE`, `EMPLOYEE`.`YEAR_SALARY`, `EMPLOYEE`.`CONTRACT_TILL`, `EMPLOYEE`.`REPORTS_TO` FROM `EMPLOYEE` " +
+    private static final String QUERY_SELECT_BY_ID = "SELECT `EMPLOYEE`.`ID`, `EMPLOYEE`.`USERNAME`, `EMPLOYEE`.`PASSWORD_HASH`, `EMPLOYEE`.`NAME`, `EMPLOYEE`.`HIRE_DATE`, `EMPLOYEE`.`OFFICE_KEY`, `EMPLOYEE`.`TITLE`, `EMPLOYEE`.`YEAR_SALARY`, `EMPLOYEE`.`CONTRACT_TILL`, `EMPLOYEE`.`REPORTS_TO`, `EMPLOYEE`.`STATUS` FROM `EMPLOYEE` " +
             "WHERE `EMPLOYEE`.`ID` = ?;";
-    private static final String QUERY_SELECT_WITH_LIMIT = "SELECT `EMPLOYEE`.`ID`, `EMPLOYEE`.`NAME`, `EMPLOYEE`.`HIRE_DATE`, `EMPLOYEE`.`OFFICE_KEY`, `EMPLOYEE`.`TITLE`, `EMPLOYEE`.`YEAR_SALARY`, `EMPLOYEE`.`CONTRACT_TILL`, `EMPLOYEE`.`REPORTS_TO` FROM `EMPLOYEE` " +
+    private static final String QUERY_SELECT_WITH_LIMIT = "SELECT `EMPLOYEE`.`ID`, `EMPLOYEE`.`USERNAME`, `EMPLOYEE`.`PASSWORD_HASH`, `EMPLOYEE`.`NAME`, `EMPLOYEE`.`HIRE_DATE`, `EMPLOYEE`.`OFFICE_KEY`, `EMPLOYEE`.`TITLE`, `EMPLOYEE`.`YEAR_SALARY`, `EMPLOYEE`.`CONTRACT_TILL`, `EMPLOYEE`.`REPORTS_TO`, `EMPLOYEE`.`STATUS` FROM `EMPLOYEE` " +
             "WHERE `EMPLOYEE`.`STATUS` != -1 ORDER BY `EMPLOYEE`.`NAME` LIMIT ?, ?;";
     @Override
     public Employee insert(Employee entity) throws DAOException {
@@ -63,8 +63,16 @@ public class MySqlEmployeeDAO extends AbstractBaseDAO<Employee> implements Emplo
     Employee parseResultSet(ResultSet resultSet) throws SQLException {
         Employee employee = new Employee();
         employee.setId(resultSet.getLong(1));
-        employee.setName(resultSet.getString(2));
-        employee.setTitle(resultSet.getString(5));
+        employee.setUsername(resultSet.getString(2));
+        employee.setPasswordHash(resultSet.getString(3));
+        employee.setName(resultSet.getString(4));
+        employee.setHireDate(resultSet.getDate(5));
+        employee.setOfficeKey(resultSet.getLong(6));
+        employee.setTitle(resultSet.getString(7));
+        employee.setYearSalary(resultSet.getLong(8));
+        employee.setContractTill(resultSet.getDate(9));
+        employee.setReportsTo(resultSet.getLong(10));
+        employee.setStatus(resultSet.getInt(11));
         return employee;
     }
 }
