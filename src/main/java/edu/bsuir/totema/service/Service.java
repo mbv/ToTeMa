@@ -13,4 +13,5 @@ public interface Service<T extends Entity> {
     ValidationResult validate(HashMap<String, String> attributes) throws ServiceException;
     T add(HashMap<String, String> attributes) throws ServiceException;
     T entitySetAttribute(T entity, HashMap<String, String> attributes);
+    boolean delete(long id) throws ServiceException;
 }

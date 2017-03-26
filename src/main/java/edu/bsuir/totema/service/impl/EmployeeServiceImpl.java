@@ -7,6 +7,7 @@ import edu.bsuir.totema.service.EmployeeService;
 import edu.bsuir.totema.service.exception.ServiceException;
 import edu.bsuir.totema.service.validation.ValidationResult;
 import edu.bsuir.totema.util.HashUtil;
+import edu.bsuir.totema.util.ValidationUtil;
 
 import java.sql.Date;
 import java.util.HashMap;
@@ -34,23 +35,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     public ValidationResult validate(HashMap<String, String> attributes) throws ServiceException {
         HashMap<String, String> errors = new HashMap<>();
 
-        if (!attributes.containsKey("name") || attributes.get("name").trim().isEmpty()) {
-            errors.put("name", "Attribute \"name\" is empty");
-        }
-        if (!attributes.containsKey("username") || attributes.get("name").trim().isEmpty()) {
-            errors.put("username", "Attribute \"username\" is empty");
-        }
-        if (!attributes.containsKey("officeKey")) {
-            errors.put("officeKey", "Attribute \"officeKey\" is empty");
-        } else {
-            try {
-                Long.parseLong(attributes.get("officeKey"));
-            } 
-            catch (NumberFormatException e) {
-                errors.put("officeKey", "Attribute \"officeKey\" is not valid long");
-            }
-        }
-
+        ValidationUtil.validateStringOnEmpty(attributes, "username", errors);
+        ValidationUtil.validateStringOnEmpty(attributes, "name", errors);
+        ValidationUtil.validateDate(attributes, "hireDate", errors);
+        ValidationUtil.validateLong(attributes, "officeKey", errors);
+        ValidationUtil.validateStringOnEmpty(attributes, "title", errors);
+        ValidationUtil.validateDate(attributes, "contractTill", errors);
+        ValidationUtil.validateLong(attributes, "reportsTo", errors);
+        //ValidationUtil.validateInt(attributes, "status", errors);
 
         if (!errors.isEmpty()) {
             ValidationResult validationResult = new ValidationResult();
@@ -62,10 +54,12 @@ public class EmployeeServiceImpl implements EmployeeService {
         return null;
     }
 
+
+
     @Override
     public Employee add(HashMap<String, String> attributes) throws ServiceException {
         Employee employee = entitySetAttribute(new Employee(), attributes);
-
+        employee.setStatus(Employee.STATUS_ACTIVE);
         return tryCallDAO(() -> getEmployeeDAO().insert(employee));
     }
 
@@ -104,5 +98,12 @@ public class EmployeeServiceImpl implements EmployeeService {
             employee.setStatus(Integer.parseInt(attributes.get("status")));
         }
         return employee;
+    }
+
+    @Override
+    public boolean delete(long id) throws ServiceException {
+
+        tryCallDAO(() -> getEmployeeDAO().delete(id));
+        return true;
     }
 }
