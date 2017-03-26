@@ -11,15 +11,27 @@
                 <table class="table table-striped">
                     <thead>
                     <th>#</th>
+                    <th>Username</th>
                     <th>Name</th>
+                    <th>Hire Date</th>
+                    <th>Office Key</th>
                     <th>Title</th>
+                    <th>Year Salary</th>
+                    <th>Contract Till</th>
+                    <th>Reports To</th>
                     <th>Actions</th>
                     </thead>
                     <tbody>
                     <tr ng-repeat="person in self.people">
                         <td class="col-xs-1">{{person.id}}</td>
-                        <td class="col-xs-4">{{person.name}}</td>
-                        <td class="col-xs-4">{{person.title}}</td>
+                        <td class="col-xs-1">{{person.username}}</td>
+                        <td class="col-xs-1">{{person.name}}</td>
+                        <td class="col-xs-1">{{person.hireDate}}</td>
+                        <td class="col-xs-1">{{person.officeKey}}</td>
+                        <td class="col-xs-1">{{person.title}}</td>
+                        <td class="col-xs-1">{{person.yearSalary}}</td>
+                        <td class="col-xs-1">{{person.contractTill}}</td>
+                        <td class="col-xs-1">{{person.reportsTo}}</td>
                         <td class="col-xs-3">
                             <button class="btn btn-xs btn-info" ng-click="self.editPerson(person)">Edit</button>
                             <button class="btn btn-xs btn-danger" ng-click="self.deletePerson(person)">Delete</button>

@@ -66,8 +66,8 @@ public class CommandFactory {
             result.append(")");
 
             serviceListString = result.toString();
-            regExAllPattern = Pattern.compile("/" + serviceListString);
-            regExIdPattern = Pattern.compile("/" + serviceListString + "/(\\d+)");
+            regExAllPattern = Pattern.compile("/" + serviceListString + "$");
+            regExIdPattern = Pattern.compile("/" + serviceListString + "/(\\d+)$");
         }
 
         RestRequestParser(String pathInfo) {

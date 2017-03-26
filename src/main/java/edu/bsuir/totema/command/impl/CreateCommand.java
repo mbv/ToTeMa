@@ -4,14 +4,15 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import edu.bsuir.totema.command.Command;
 import edu.bsuir.totema.command.exception.CommandException;
-import edu.bsuir.totema.entity.Employee;
 import edu.bsuir.totema.service.Service;
 import edu.bsuir.totema.service.exception.ServiceException;
+import edu.bsuir.totema.service.validation.ValidationResult;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
 
 public class CreateCommand implements Command {
 
@@ -25,20 +26,29 @@ public class CreateCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
         String result;
+        HashMap<String, String> attributes = new HashMap<>();
         try {
-            try {
-                Gson gson = new Gson();
-                Employee employee = gson.fromJson(request.getReader(), Employee.class);
-                logger.info(employee.getName());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            final Gson gson = new Gson();
 
+            attributes = gson.fromJson(request.getReader(), attributes.getClass());
+        } catch (IOException e) {
+            throw new CommandException(e);
+        }
+        if (attributes == null) {
+            attributes = new HashMap<>();
+        }
+        try {
             final GsonBuilder builder = new GsonBuilder();
             builder.excludeFieldsWithoutExposeAnnotation();
             final Gson gson = builder.create();
 
-            result = gson.toJson(_service.getById(1));
+            ValidationResult validationResult = _service.validate(attributes);
+            if (validationResult != null) {
+                result = gson.toJson(validationResult);
+            } else {
+                result = gson.toJson(_service.add(attributes));
+
+            }
         } catch (ServiceException e) {
             throw new CommandException(e);
         }
