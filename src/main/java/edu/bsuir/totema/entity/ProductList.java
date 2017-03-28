@@ -1,12 +1,41 @@
 package edu.bsuir.totema.entity;
+import com.google.gson.annotations.Expose;
+import static edu.bsuir.totema.util.NullUtil.nullableEquals;
+import static edu.bsuir.totema.util.NullUtil.nullableHashCode;
 
 
 public class ProductList extends Entity {
+    @Expose
+    private String username;
+    private String passwordHash;
+    @Expose
     private long quantity;
+    @Expose
     private long unitCost;
+    @Expose
     private long unitPrice;
+    @Expose
     private long grossMargin;
-    private Product product;
+    @Expose
+    private long productKey;
+    @Expose
+    private long orderKey;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
 
     public long getQuantity() {
         return quantity;
@@ -40,12 +69,20 @@ public class ProductList extends Entity {
         this.unitPrice = unitPrice;
     }
 
-    public Product getProduct() {
-        return product;
+    public long getProductKey() {
+        return productKey;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProductKey(long productKey) {
+        this.productKey = productKey;
+    }
+
+    public long getOrderKey() {
+        return orderKey;
+    }
+
+    public void setOrderKey(long orderKey) {
+        this.orderKey = orderKey;
     }
 
     @Override
@@ -59,7 +96,7 @@ public class ProductList extends Entity {
         if (unitPrice != productList.unitPrice)  return false;
         if (unitCost != productList.unitCost)  return false;
         if (quantity != productList.quantity)  return false;
-        if (product != null ? !product.equals(productList.product) : productList.product != null) return false;
+        if (productKey != productList.productKey) return false;
         return  (grossMargin != productList.grossMargin);
     }
 
@@ -76,7 +113,7 @@ public class ProductList extends Entity {
     public String toString() {
         return "Product type{" +
                 "id=" + getId() +
-                ", product='" + product.getName() + '\'' +
+                ", product key='" + productKey + '\'' +
                 ", quantity='" + quantity + '\'' +
                 ", unitPrice='" + unitPrice + '\'' +
                 ", unitCost='" + unitCost + '\'' +

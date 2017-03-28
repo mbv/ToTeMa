@@ -1,13 +1,42 @@
 package edu.bsuir.totema.entity;
+import com.google.gson.annotations.Expose;
+import static edu.bsuir.totema.util.NullUtil.nullableEquals;
+import static edu.bsuir.totema.util.NullUtil.nullableHashCode;
 
 public class Order extends Entity {
+    @Expose
+    private String username;
+    private String passwordHash;
+    @Expose
     private long quantity;
+    @Expose
     private long cost;
+    @Expose
     private long price;
+    @Expose
     private long grossMargin;
-    private Employee employee;
-    private Date date;
-    private Office office;
+    @Expose
+    private long employeeKey;
+    @Expose
+    private long dateKey;
+    @Expose
+    private long officeKey;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
 
     public long getQuantity() {
         return quantity;
@@ -41,28 +70,28 @@ public class Order extends Entity {
         this.price = price;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public long getEmployeeKey() {
+        return employeeKey;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setEmployeeKey(long employeeKey) {
+        this.employeeKey = employeeKey;
     }
 
-    public Date getDate() {
-        return date;
+    public long getDateKey() {
+        return dateKey;
     }
 
-    public void setDate(Date employee) {
-        this.date = date;
+    public void setDateKey(long employeeKey) {
+        this.dateKey = dateKey;
     }
 
-    public Office getOffice() {
-        return office;
+    public long getOfficeKey() {
+        return officeKey;
     }
 
-    public void setOffice(Office office) {
-        this.office = office;
+    public void setOfficeKey(long officeKey) {
+        this.officeKey = officeKey;
     }
     @Override
     public boolean equals(Object o) {
@@ -75,7 +104,9 @@ public class Order extends Entity {
         if (price != order.price)  return false;
         if (cost != order.cost)  return false;
         if (quantity != order.quantity)  return false;
-        if (employee != null ? !employee.equals(order.employee) : order.employee != null) return false;
+        if (employeeKey != order.employeeKey) return false;
+        if (dateKey != order.dateKey) return false;
+        if (officeKey != order.officeKey) return false;
         return  (grossMargin != order.grossMargin);
     }
 
@@ -92,7 +123,9 @@ public class Order extends Entity {
     public String toString() {
         return "Ordere{" +
                 "id=" + getId() +
-                ", employee='" + employee.getName() + '\'' +
+                ", employee key='" + employeeKey + '\'' +
+                ", office key='" + officeKey + '\'' +
+                ", date key='" + dateKey + '\'' +
                 ", quantity='" + quantity + '\'' +
                 ", price='" + price + '\'' +
                 ", cost='" + cost + '\'' +
