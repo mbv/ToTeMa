@@ -68,7 +68,7 @@ public class MySqlEmployeeDAO extends AbstractBaseDAO<Employee> implements Emplo
             statement.setLong(9, updatedEntity.getReportsTo());
             statement.setInt(10, updatedEntity.getStatus());
 
-            statement.setLong(8, updatedEntity.getId());
+            statement.setLong(11, updatedEntity.getId());
             statement.executeUpdate();
 
             /*Employee reselectedEntity = executeSelectById(connection, QUERY_SELECT_BY_ID, updatedEntity.getId());

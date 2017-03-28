@@ -12,5 +12,6 @@ public final class Constants {
 
     public static final String REQUEST_TYPE_GET = "GET";
     public static final String REQUEST_TYPE_POST = "POST";
+    public static final String REQUEST_TYPE_PUT = "PUT";
     public static final String REQUEST_TYPE_DELETE = "DELETE";
 }

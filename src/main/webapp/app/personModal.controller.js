@@ -9,7 +9,7 @@ function PersonModalController($uibModalInstance, Person, person) {
 
     self.savePerson = savePerson;
     self.cancel = cancel;
-    self.updateMode = !!self.person
+    self.updateMode = !!self.person;
 
     function savePerson() {
         if (self.updateMode){

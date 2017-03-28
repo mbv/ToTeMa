@@ -10,8 +10,9 @@ import java.util.List;
 public interface Service<T extends Entity> {
     List<T> getAll() throws ServiceException;
     T getById(long id) throws ServiceException;
-    ValidationResult validate(HashMap<String, String> attributes) throws ServiceException;
+    ValidationResult validate(HashMap<String, String> attributes);
     T add(HashMap<String, String> attributes) throws ServiceException;
+    T update(long id, HashMap<String, String> attributes) throws ServiceException;
     T entitySetAttribute(T entity, HashMap<String, String> attributes);
     boolean delete(long id) throws ServiceException;
 }

@@ -32,7 +32,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public ValidationResult validate(HashMap<String, String> attributes) throws ServiceException {
+    public ValidationResult validate(HashMap<String, String> attributes) {
         HashMap<String, String> errors = new HashMap<>();
 
         ValidationUtil.validateStringOnEmpty(attributes, "username", errors);
@@ -64,45 +64,53 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee entitySetAttribute(Employee entity, HashMap<String, String> attributes) {
-        Employee employee = new Employee();
-        if (attributes.containsKey("username")) {
-            employee.setUsername(attributes.get("username"));
-        }
-        if (attributes.containsKey("password")) {
-            String passwordHash = HashUtil.hashString(attributes.get("password"));
-            employee.setPasswordHash(passwordHash);
-        }
-        if (attributes.containsKey("name")) {
-            employee.setName(attributes.get("name"));
-        }
-        if (attributes.containsKey("hireDate")) {
-            employee.setHireDate(Date.valueOf(attributes.get("hireDate")));
-        }
-        if (attributes.containsKey("officeKey")) {
-            employee.setOfficeKey(Long.parseLong(attributes.get("officeKey")));
-        }
-        if (attributes.containsKey("title")) {
-            employee.setTitle(attributes.get("title"));
-        }
-        if (attributes.containsKey("yearSalary")) {
-            employee.setYearSalary(Long.parseLong(attributes.get("yearSalary")));
-        }
-        if (attributes.containsKey("contractTill")) {
-            employee.setContractTill(Date.valueOf(attributes.get("contractTill")));
-        }
-        if (attributes.containsKey("reportsTo")) {
-            employee.setReportsTo(Long.parseLong(attributes.get("reportsTo")));
-        }
-        if (attributes.containsKey("status")) {
-            employee.setStatus(Integer.parseInt(attributes.get("status")));
+    public Employee update(long id, HashMap<String, String> attributes) throws ServiceException {
+        Employee employee = getById(id);
+        if (employee != null) {
+            entitySetAttribute(employee, attributes);
+            tryCallDAO(() -> getEmployeeDAO().update(employee));
         }
         return employee;
     }
 
     @Override
-    public boolean delete(long id) throws ServiceException {
+    public Employee entitySetAttribute(Employee entity, HashMap<String, String> attributes) {
+        if (attributes.containsKey("username")) {
+            entity.setUsername(attributes.get("username"));
+        }
+        if (attributes.containsKey("password")) {
+            String passwordHash = HashUtil.hashString(attributes.get("password"));
+            entity.setPasswordHash(passwordHash);
+        }
+        if (attributes.containsKey("name")) {
+            entity.setName(attributes.get("name"));
+        }
+        if (attributes.containsKey("hireDate")) {
+            entity.setHireDate(Date.valueOf(attributes.get("hireDate")));
+        }
+        if (attributes.containsKey("officeKey")) {
+            entity.setOfficeKey(Long.parseLong(attributes.get("officeKey")));
+        }
+        if (attributes.containsKey("title")) {
+            entity.setTitle(attributes.get("title"));
+        }
+        if (attributes.containsKey("yearSalary")) {
+            entity.setYearSalary(Long.parseLong(attributes.get("yearSalary")));
+        }
+        if (attributes.containsKey("contractTill")) {
+            entity.setContractTill(Date.valueOf(attributes.get("contractTill")));
+        }
+        if (attributes.containsKey("reportsTo")) {
+            entity.setReportsTo(Long.parseLong(attributes.get("reportsTo")));
+        }
+        if (attributes.containsKey("status")) {
+            entity.setStatus(Integer.parseInt(attributes.get("status")));
+        }
+        return entity;
+    }
 
+    @Override
+    public boolean delete(long id) throws ServiceException {
         tryCallDAO(() -> getEmployeeDAO().delete(id));
         return true;
     }

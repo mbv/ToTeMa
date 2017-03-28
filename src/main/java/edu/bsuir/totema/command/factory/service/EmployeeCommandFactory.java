@@ -14,6 +14,7 @@ public class EmployeeCommandFactory extends ServiceCommandFactory {
         commands.put(Pair.of(COMMAND_TYPE_ALL, REQUEST_TYPE_POST), new CreateCommand(ServiceFactory.getInstance().getEmployeeService()));
 
         commandsResource.put(Pair.of(COMMAND_TYPE_RESOURCE, REQUEST_TYPE_GET), ViewCommand.class);
+        commandsResource.put(Pair.of(COMMAND_TYPE_RESOURCE, REQUEST_TYPE_PUT), UpdateCommand.class);
         commandsResource.put(Pair.of(COMMAND_TYPE_RESOURCE, REQUEST_TYPE_DELETE), DeleteCommand.class);
     }
 
