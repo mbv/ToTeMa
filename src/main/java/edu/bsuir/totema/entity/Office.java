@@ -1,13 +1,59 @@
 package edu.bsuir.totema.entity;
+import com.google.gson.annotations.Expose;
+import static edu.bsuir.totema.util.NullUtil.nullableEquals;
+import static edu.bsuir.totema.util.NullUtil.nullableHashCode;
 
 public class Office extends Entity {
+    /**
+     * Represents that this Employee entity has status Active.
+     * Default value
+     */
+    public static final int STATUS_ACTIVE = 1;
+    /**
+     * Represents that this Employee entity has status Banned.
+     * It means that this user cannot bet and create lots
+     */
+    public static final int STATUS_BANNED = 0;
+    /**
+     * Represents that this Employee entity is deleted.
+     * Setting this status equals to deleting this user from the app.
+     */
+    public static final int STATUS_DELETED = -1;
+    @Expose
+    private String username;
+    private String passwordHash;
+    @Expose
     private String address;
-    private String country;
+    @Expose
+    private long countryKey;
+    @Expose
     private String city;
+    @Expose
     private String fax;
+    @Expose
     private String phone;
+    @Expose
     private String postalCode;
+    @Expose
     private long yearSalary;
+    @Expose
+    private int status;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
 
     public String getAddress() {
         return address;
@@ -15,6 +61,22 @@ public class Office extends Entity {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public long getCountryKey() {
+        return countryKey;
+    }
+
+    public void setYearSalary(int yearSalary) {
+        this.yearSalary = yearSalary;
+    }
+
+    public long getYearSalary() {
+        return yearSalary;
+    }
+
+    public void setCountryKey(long countryKey) {
+        this.countryKey = countryKey;
     }
 
     public String getCity() {
@@ -47,6 +109,14 @@ public class Office extends Entity {
 
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     @Override

@@ -1,21 +1,50 @@
 package edu.bsuir.totema.entity;
+import com.google.gson.annotations.Expose;
+import static edu.bsuir.totema.util.NullUtil.nullableEquals;
+import static edu.bsuir.totema.util.NullUtil.nullableHashCode;
 
 import java.sql.Time;
 
 public class Date extends Entity {
+    @Expose
+    private String username;
+    private String passwordHash;
+    @Expose
     private Time time;
-    private int year;
-    private int quarter;
-    private int month;
-    private int week;
-    private int day;
+    @Expose
+    private long year;
+    @Expose
+    private long quarter;
+    @Expose
+    private long month;
+    @Expose
+    private long week;
+    @Expose
+    private long day;
+    @Expose
     private String monthName;
 
-    public int getWeek() {
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
+
+    public long getWeek() {
         return week;
     }
 
-    public void setWeek(int week) {
+    public void setWeek(long week) {
         this.week = week;
     }
 
@@ -23,7 +52,7 @@ public class Date extends Entity {
         return day;
     }
 
-    public void setDay(int day) {
+    public void setDay(long day) {
         this.day = day;
     }
 
@@ -36,27 +65,27 @@ public class Date extends Entity {
     }
 
 
-    public int getYear() {
+    public long getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(long year) {
         this.year = year;
     }
 
-    public int getMonth() {
+    public long getMonth() {
         return month;
     }
 
-    public void setMonth(int month) {
+    public void setMonth(long month) {
         this.month = month;
     }
 
-    public int getQuarter() {
+    public long getQuarter() {
         return quarter;
     }
 
-    public void setQuarter(int quarter) {
+    public void setQuarter(long quarter) {
         this.quarter = quarter;
     }
 
