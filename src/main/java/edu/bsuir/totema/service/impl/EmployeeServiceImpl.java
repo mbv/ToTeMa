@@ -10,6 +10,9 @@ import edu.bsuir.totema.util.HashUtil;
 import edu.bsuir.totema.util.ValidationUtil;
 
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 
@@ -74,7 +77,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee entitySetAttribute(Employee entity, HashMap<String, String> attributes) {
+    public Employee entitySetAttribute(Employee entity, HashMap<String, String> attributes) throws ServiceException {
+        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
         if (attributes.containsKey("username")) {
             entity.setUsername(attributes.get("username"));
         }
@@ -86,7 +90,11 @@ public class EmployeeServiceImpl implements EmployeeService {
             entity.setName(attributes.get("name"));
         }
         if (attributes.containsKey("hireDate")) {
-            entity.setHireDate(Date.valueOf(attributes.get("hireDate")));
+            try {
+                entity.setHireDate(new Date(dateFormat.parse(attributes.get("hireDate")).getTime()));
+            } catch (ParseException e) {
+                throw new ServiceException(e);
+            }
         }
         if (attributes.containsKey("officeKey")) {
             entity.setOfficeKey(Long.parseLong(attributes.get("officeKey")));
@@ -98,7 +106,11 @@ public class EmployeeServiceImpl implements EmployeeService {
             entity.setYearSalary(Long.parseLong(attributes.get("yearSalary")));
         }
         if (attributes.containsKey("contractTill")) {
-            entity.setContractTill(Date.valueOf(attributes.get("contractTill")));
+            try {
+                entity.setContractTill(new Date(dateFormat.parse(attributes.get("contractTill")).getTime()));
+            } catch (ParseException e) {
+                throw new ServiceException(e);
+            }
         }
         if (attributes.containsKey("reportsTo")) {
             entity.setReportsTo(Long.parseLong(attributes.get("reportsTo")));

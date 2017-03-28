@@ -1,11 +1,13 @@
 package edu.bsuir.totema.entity;
 
 import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.JsonAdapter;
+import edu.bsuir.totema.util.serialization.DateAdapter;
+
 import static edu.bsuir.totema.util.NullUtil.nullableEquals;
 import static edu.bsuir.totema.util.NullUtil.nullableHashCode;
 
 public class Employee extends Entity {
-
     /**
      * Represents that this Employee entity has status Active.
      * Default value
@@ -28,6 +30,7 @@ public class Employee extends Entity {
     @Expose
     private String name;
     @Expose
+    @JsonAdapter(DateAdapter.class)
     private java.sql.Date hireDate;
     @Expose
     private long officeKey;
@@ -36,6 +39,7 @@ public class Employee extends Entity {
     @Expose
     private long yearSalary;
     @Expose
+    @JsonAdapter(DateAdapter.class)
     private java.sql.Date contractTill;
     @Expose
     private long reportsTo;

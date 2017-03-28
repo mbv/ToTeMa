@@ -1,6 +1,8 @@
 package edu.bsuir.totema.util;
 
-import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
 public final class ValidationUtil {
@@ -46,9 +48,10 @@ public final class ValidationUtil {
             errors.put(fieldName, String.format(messageFieldIsEmpty, fieldName));
         } else {
             try {
-                Date.valueOf(attributes.get(fieldName));
+                DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+                dateFormat.parse(attributes.get(fieldName));
             }
-            catch (IllegalArgumentException e) {
+            catch (ParseException e) {
                 errors.put(fieldName, String.format(messageFieldIsNotValidDate, fieldName));
             }
         }

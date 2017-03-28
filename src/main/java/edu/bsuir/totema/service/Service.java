@@ -13,6 +13,6 @@ public interface Service<T extends Entity> {
     ValidationResult validate(HashMap<String, String> attributes);
     T add(HashMap<String, String> attributes) throws ServiceException;
     T update(long id, HashMap<String, String> attributes) throws ServiceException;
-    T entitySetAttribute(T entity, HashMap<String, String> attributes);
+    T entitySetAttribute(T entity, HashMap<String, String> attributes) throws ServiceException;
     boolean delete(long id) throws ServiceException;
 }
