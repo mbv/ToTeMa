@@ -1,6 +1,6 @@
 package edu.bsuir.totema.dao.factory;
 
-import edu.bsuir.totema.dao.EmployeeDAO;
+import edu.bsuir.totema.dao.*;
 import edu.bsuir.totema.dao.exception.DAOFactoryNotFoundException;
 import edu.bsuir.totema.dao.factory.impl.MySqlDAOFactory;
 import edu.bsuir.totema.dao.manager.DatabaseManager;
@@ -43,6 +43,14 @@ public abstract class DAOFactory {
      * @return concrete {@link EmployeeDAO}
      */
     public abstract EmployeeDAO getEmployeeDAO();
+    public abstract ConvertionRateDAO getConvertionRateDAO ();
+    public abstract CountryDAO getCountryDAO();
+    public abstract DateDAO getDateDAO();
+    public abstract OfficeDAO getOfficeDAO ();
+    public abstract OrderDAO getOrderDAO();
+    public abstract ProductDAO getProductDAO();
+    public abstract ProductListDAO getProductListDAO ();
+    public abstract ProductTypeDAO getProductTypeDAO();
 
 
 }
