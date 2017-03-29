@@ -2,12 +2,17 @@ angular
     .module('demo')
     .controller('EntityListController', EntityListController);
 
-function EntityListController($resource, $uibModal, resourceName, self) {
+function EntityListController($resource, $uibModal, resourceName, self, toaster) {
     self.resourceName = resourceName;
-    self.EntityService = $resource('api/' + self.resourceName +'/:id',
-        { id: '@id' }, 
-        { update: 
-            { method: 'PUT' } 
+    self.EntityService = $resource('api/' + self.resourceName + '/:id',
+        {
+            id: '@id'
+        },
+        {
+            update: {
+                method: 'PUT',
+            }
+
         });
 
     self.entities = [];
@@ -21,7 +26,14 @@ function EntityListController($resource, $uibModal, resourceName, self) {
 
     function refresh() {
         self.EntityService.query().$promise.then(function (result) {
+            console.log('An error success:');
             self.entities = result;
+        }, function(errorMsg) {
+            // if any of the previous promises gets rejected
+            // the success callback will never be executed
+            // the error callback will be called...
+            toaster.pop('error', "GOPA", "POLNAYA");
+            console.log('An error occurred: ', errorMsg);
         });
     }
 
@@ -33,7 +45,7 @@ function EntityListController($resource, $uibModal, resourceName, self) {
         self.EntityService.delete(entity, refresh);
     }
 
-    function editEntity (entity) {
+    function editEntity(entity) {
         openModal(entity);
     }
 

@@ -17,6 +17,11 @@
     <script type="text/javascript" src="app/entityModal.controller.js"></script>
     <script type="text/javascript" src="app/entityList.controller.js"></script>
     <script type="text/javascript" src="app/employeesList.controller.js"></script>
+
+    <link href="//cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/2.1.0/toaster.css" rel="stylesheet" />
+    <script src="http://code.angularjs.org/1.4.2/angular-animate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/2.1.0/toaster.js"></script>
+
 </head>
 <body ng-app="demo">
     <header>
@@ -31,6 +36,7 @@
         </nav>
     </header>
     <main style="margin-top: 70px;">
+        <toaster-container></toaster-container>
         <div ng-view></div>
     </main>
 </body>

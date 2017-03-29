@@ -1,2 +1,2 @@
 angular
-    .module('demo', ['ngRoute', 'ngResource', 'ui.bootstrap']);
+    .module('demo', ['ngRoute', 'ngResource', 'ui.bootstrap', 'toaster', 'ngAnimate']);
