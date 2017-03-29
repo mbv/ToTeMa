@@ -3,7 +3,7 @@ package edu.bsuir.totema.command.factory;
 import edu.bsuir.totema.command.Command;
 import edu.bsuir.totema.command.factory.service.EmployeeCommandFactory;
 import edu.bsuir.totema.command.factory.service.ServiceCommandFactory;
-import edu.bsuir.totema.command.factory.service.UnresolvedServiceCommandFactory;
+import edu.bsuir.totema.command.factory.service.UnresolvedCommand;
 import edu.bsuir.totema.service.factory.ServiceFactory;
 import org.apache.log4j.Logger;
 
@@ -33,14 +33,15 @@ public class CommandFactory {
      */
     public static Command defineCommand(String path, String method) {
         RestRequestParser resourceValues = new RestRequestParser(path);
-        ServiceCommandFactory resultServiceCommandFactory = new UnresolvedServiceCommandFactory();
+        Command resultCommand = new UnresolvedCommand();
         if (serviceCommandFactoriesList.containsKey(resourceValues.getService())) {
-            resultServiceCommandFactory = serviceCommandFactoriesList.get(resourceValues.getService());
+            ServiceCommandFactory serviceCommandFactory = serviceCommandFactoriesList.get(resourceValues.getService());
+            resultCommand = serviceCommandFactory.defineCommand(method, resourceValues.getType(), resourceValues.getId());
         } else {
             logger.warn("CommandFactory for specified service not found. (service: \"" + resourceValues.getService() + "\")");
         }
 
-        return resultServiceCommandFactory.defineCommand(method, resourceValues.getType(), resourceValues.getId());
+        return resultCommand;
     }
 
     private static class RestRequestParser {

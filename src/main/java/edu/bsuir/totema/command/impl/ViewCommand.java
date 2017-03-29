@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import edu.bsuir.totema.command.ResourceCommand;
 import edu.bsuir.totema.command.exception.CommandException;
+import edu.bsuir.totema.entity.Entity;
 import edu.bsuir.totema.service.Service;
 import edu.bsuir.totema.service.exception.ServiceException;
 import org.apache.log4j.Logger;
@@ -29,8 +30,14 @@ public class ViewCommand implements ResourceCommand {
             final GsonBuilder builder = new GsonBuilder();
             builder.excludeFieldsWithoutExposeAnnotation();
             final Gson gson = builder.create();
-
-            result = gson.toJson(_service.getById(_resource_id));
+            Entity entity = _service.getById(_resource_id);
+            if (entity != null) {
+                result = gson.toJson(entity);
+            } else {
+                logger.info("Getting non-existent entity with id:" + _resource_id);
+                response.setStatus(404);
+                result = "{\"error\":\"Entity not found\"}";
+            }
         } catch (ServiceException e) {
             throw new CommandException(e);
         }

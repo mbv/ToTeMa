@@ -18,6 +18,7 @@ public class UnresolvedCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
         logger.debug("Unresolved command has been executed.");
-        return "{\"status\":\"error\"}";
+        response.setStatus(404);
+        return "{\"error\":\"Unresolved command has been executed\"}";
     }
 }
