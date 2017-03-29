@@ -4,9 +4,7 @@ import static edu.bsuir.totema.util.NullUtil.nullableEquals;
 import static edu.bsuir.totema.util.NullUtil.nullableHashCode;
 
 public class Order extends Entity {
-    @Expose
-    private String username;
-    private String passwordHash;
+
     @Expose
     private long quantity;
     @Expose
@@ -21,22 +19,6 @@ public class Order extends Entity {
     private long dateKey;
     @Expose
     private long officeKey;
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPasswordHash() {
-        return passwordHash;
-    }
-
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
-    }
 
     public long getQuantity() {
         return quantity;

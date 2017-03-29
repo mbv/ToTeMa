@@ -21,9 +21,6 @@ public class ProductType extends Entity {
      */
     public static final int STATUS_DELETED = -1;
     @Expose
-    private String username;
-    private String passwordHash;
-    @Expose
     private String gender;
     @Expose
     private String age;
@@ -33,22 +30,6 @@ public class ProductType extends Entity {
     private String type;
     @Expose
     private int status;
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPasswordHash() {
-        return passwordHash;
-    }
-
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
-    }
 
     public String getGender() {
         return gender;

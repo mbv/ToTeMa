@@ -14,15 +14,15 @@ import static edu.bsuir.totema.util.caller.JDBCCaller.tryCallJDBC;
 public class MySqlProductListDAO extends AbstractBaseDAO<ProductList> implements ProductListDAO {
 
     private static final Logger logger = Logger.getLogger(MySqlProductListDAO.class);
-    private static final String QUERY_SELECT_BY_ID = "SELECT `PRODUCT_LIST`.`ID`, `PRODUCT_LIST`.`USERNAME`, `PRODUCT_LIST`.`PASSWORD_HASH`, " +
+    private static final String QUERY_SELECT_BY_ID = "SELECT `PRODUCT_LIST`.`ID`, " +
             "  `PRODUCT_LIST`.`ORDER_KEY`, `PRODUCT_LIST`.`PRODUCT_KEY`, `PRODUCT_LIST`.`QUANTITY`, `PRODUCT_LIST`.`UNIT_COST`, `PRODUCT_LIST`.`UNIT_PRICE`, `PRODUCT_LIST`.`GROSS_MARGIN` WHERE  `PRODUCT_LIST`.`ID` = ?;";
-    private static final String QUERY_SELECT_WITH_LIMIT = "SELECT `PRODUCT_LIST`.`ID`, `PRODUCT_LIST`.`USERNAME`, `PRODUCT_LIST`.`PASSWORD_HASH`, " +
+    private static final String QUERY_SELECT_WITH_LIMIT = "SELECT `PRODUCT_LIST`.`ID`,  " +
             "  `PRODUCT_LIST`.`ORDER_KEY`, `PRODUCT_LIST`.`PRODUCT_KEY`, `PRODUCT_LIST`.`QUANTITY`, `PRODUCT_LIST`.`UNIT_COST`, `PRODUCT_LIST`.`UNIT_PRICE`, `PRODUCT_LIST`.`GROSS_MARGIN`" +
             "  ORDER BY `PRODUCT_LIST`.`ID` LIMIT ?, ?;";
-    private static final String QUERY_INSERT = "INSERT INTO `PRODUCT_LIST` (`PRODUCT_LIST`.`USERNAME`, `PRODUCT_LIST`.`PASSWORD_HASH`, " +
+    private static final String QUERY_INSERT = "INSERT INTO `PRODUCT_LIST` (" +
             "  `PRODUCT_LIST`.`ORDER_KEY`, `PRODUCT_LIST`.`PRODUCT_KEY`, `PRODUCT_LIST`.`QUANTITY`, `PRODUCT_LIST`.`UNIT_COST`, `PRODUCT_LIST`.`UNIT_PRICE`, `PRODUCT_LIST`.`GROSS_MARGIN`)" +
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-    private static final String QUERY_UPDATE = "UPDATE `PRODUCT_LIST` SET `PRODUCT_LIST`.`USERNAME` = ?, `PRODUCT_LIST`.`PASSWORD_HASH` = ?, `PRODUCT_LIST`.`ORDER_KEY` = ?, " +
+            "VALUES (?, ?, ?, ?, ?, ?)";
+    private static final String QUERY_UPDATE = "UPDATE `PRODUCT_LIST` SET `PRODUCT_LIST`.`ORDER_KEY` = ?, " +
             "`PRODUCT_LIST`.`PRODUCT_KEY` = ?," +
             " `PRODUCT_LIST`.`QUANTITY` = ?, `PRODUCT_LIST`.`UNIT_COST` = ?, " +
             "`PRODUCT_LIST`.`UNIT_PRICE` = ?, `PRODUCT_LIST`.`GROSS_MARGIN`=?  WHERE (`PRODUCT_LIST`.`ID` = ?);";
@@ -32,14 +32,12 @@ public class MySqlProductListDAO extends AbstractBaseDAO<ProductList> implements
     @Override
     public ProductList insert(ProductList entity) throws DAOException {
         return tryCallJDBC(QUERY_INSERT, ((connection, statement) -> {
-            statement.setString(1, entity.getUsername());
-            statement.setString(2, entity.getPasswordHash());
-            statement.setLong(3, entity.getOrderKey());
-            statement.setLong(4, entity.getProductKey());
-            statement.setLong(5, entity.getQuantity());
-            statement.setLong(6, entity.getUnitCost());
-            statement.setLong(7, entity.getUnitPrice());
-            statement.setLong(8, entity.getGrossMargin());
+            statement.setLong(1, entity.getOrderKey());
+            statement.setLong(2, entity.getProductKey());
+            statement.setLong(3, entity.getQuantity());
+            statement.setLong(4, entity.getUnitCost());
+            statement.setLong(5, entity.getUnitPrice());
+            statement.setLong(6, entity.getGrossMargin());
             statement.executeUpdate();
 
             try (ResultSet keys = statement.getGeneratedKeys()) {
@@ -61,15 +59,13 @@ public class MySqlProductListDAO extends AbstractBaseDAO<ProductList> implements
     @Override
     public void update(ProductList entity) throws DAOException {
         tryCallJDBC(QUERY_UPDATE, ((connection, statement) -> {
-            statement.setString(1, entity.getUsername());
-            statement.setString(2, entity.getPasswordHash());
-            statement.setLong(3, entity.getOrderKey());
-            statement.setLong(4, entity.getProductKey());
-            statement.setLong(5, entity.getQuantity());
-            statement.setLong(6, entity.getUnitCost());
-            statement.setLong(7, entity.getUnitPrice());
-            statement.setLong(8, entity.getGrossMargin());
-            statement.setLong(8, entity.getId());
+            statement.setLong(1, entity.getOrderKey());
+            statement.setLong(2, entity.getProductKey());
+            statement.setLong(3, entity.getQuantity());
+            statement.setLong(4, entity.getUnitCost());
+            statement.setLong(5, entity.getUnitPrice());
+            statement.setLong(6, entity.getGrossMargin());
+            statement.setLong(7, entity.getId());
             statement.executeUpdate();
 
             /*Employee reselectedEntity = executeSelectById(connection, QUERY_SELECT_BY_ID, updatedEntity.getId());
@@ -119,14 +115,12 @@ public class MySqlProductListDAO extends AbstractBaseDAO<ProductList> implements
     ProductList parseResultSet(ResultSet resultSet) throws SQLException {
         ProductList productList = new ProductList();
         productList.setId(resultSet.getLong(1));
-        productList.setUsername(resultSet.getString(2));
-        productList.setPasswordHash(resultSet.getString(3));
-        productList.setOrderKey(resultSet.getLong(4));
-        productList.setProductKey(resultSet.getLong(5));
-        productList.setQuantity(resultSet.getLong(6));
-        productList.setUnitCost(resultSet.getLong(7));
-        productList.setUnitPrice(resultSet.getLong(8));
-        productList.setGrossMargin(resultSet.getLong(9));
+        productList.setOrderKey(resultSet.getLong(2));
+        productList.setProductKey(resultSet.getLong(3));
+        productList.setQuantity(resultSet.getLong(4));
+        productList.setUnitCost(resultSet.getLong(5));
+        productList.setUnitPrice(resultSet.getLong(6));
+        productList.setGrossMargin(resultSet.getLong(7));
         return productList;
     }
 }

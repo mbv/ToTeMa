@@ -14,15 +14,15 @@ import static edu.bsuir.totema.util.caller.JDBCCaller.tryCallJDBC;
 public class MySqlCountryDAO extends AbstractBaseDAO<Country> implements CountryDAO {
 
     private static final Logger logger = Logger.getLogger(MySqlCountryDAO.class);
-    private static final String QUERY_SELECT_BY_ID = "SELECT `COUTNRY`.`ID`, `COUTNRY`.`USERNAME`, `COUTNRY`.`PASSWORD_HASH`, " +
+    private static final String QUERY_SELECT_BY_ID = "SELECT `COUTNRY`.`ID`, " +
             "`COUTNRY`.`NAME`, `COUTNRY`.`ISO_THREE_LETTER_CODE`, `COUTNRY`.`ISO_TWO_LETTER_CODE`, `COUTNRY`.`ISO_THREE_DIGIT_CODE`, `COUTNRY`.`CURRENCY_NAME` FROM `COUNTRY` WHERE  `COUTNRY`.`ID` = ?;";
-    private static final String QUERY_SELECT_WITH_LIMIT = "SELECT `COUTNRY`.`ID`, `COUTNRY`.`USERNAME`, `COUTNRY`.`PASSWORD_HASH`, " +
+    private static final String QUERY_SELECT_WITH_LIMIT = "SELECT `COUTNRY`.`ID`, " +
             "`COUTNRY`.`NAME`, `COUTNRY`.`ISO_THREE_LETTER_CODE`, `COUTNRY`.`ISO_TWO_LETTER_CODE`, `COUTNRY`.`ISO_THREE_DIGIT_CODE`, `COUTNRY`.`CURRENCY_NAME` FROM `COUNTRY` " +
             " ORDER BY `COUTNRY`.`ID` LIMIT ?, ?;";
-    private static final String QUERY_INSERT = "INSERT INTO `COUTNRY` (`COUTNRY`.`USERNAME`, `COUTNRY`.`PASSWORD_HASH`, `COUTNRY`.`NAME`," +
+    private static final String QUERY_INSERT = "INSERT INTO `COUTNRY` (`COUTNRY`.`NAME`," +
             " `COUTNRY`.`ISO_THREE_LETTER_CODE`, `COUTNRY`.`ISO_TWO_LETTER_CODE`, `COUTNRY`.`ISO_THREE_DIGIT_CODE`, `COUTNRY`.`CURRENCY_NAME`)" +
-            "VALUES (?, ?, ?, ?, ?, ?, ?)";
-    private static final String QUERY_UPDATE = "UPDATE `COUTNRY` SET `COUTNRY`.`USERNAME` = ?, `COUTNRY`.`PASSWORD_HASH` = ?, `COUTNRY`.`NAME` = ?, `COUTNRY`.`ISO_THREE_LETTER_CODE` = ?," +
+            "VALUES (?, ?, ?, ?, ?)";
+    private static final String QUERY_UPDATE = "UPDATE `COUTNRY` SET `COUTNRY`.`NAME` = ?, `COUTNRY`.`ISO_THREE_LETTER_CODE` = ?," +
             " `COUTNRY`.`ISO_TWO_LETTER_CODE` = ?, `COUTNRY`.`ISO_THREE_DIGIT_CODE` = ?, `COUTNRY`.`CURRENCY_NAME` = ?" +
             " WHERE (`COUTNRY`.`ID` = ?);";
     private static final String QUERY_DELETE = "DELETE FROM `COUTNRY` WHERE (`COUTNRY`.`ID` = ?);";
@@ -31,13 +31,11 @@ public class MySqlCountryDAO extends AbstractBaseDAO<Country> implements Country
     @Override
     public Country insert(Country entity) throws DAOException {
         return tryCallJDBC(QUERY_INSERT, ((connection, statement) -> {
-            statement.setString(1, entity.getUsername());
-            statement.setString(2, entity.getPasswordHash());
-            statement.setString(3, entity.getName());
-            statement.setString(4, entity.getIso3());
-            statement.setString(5, entity.getIso2());
-            statement.setLong(6, entity.getIso3digit());
-            statement.setString(7, entity.getCurrency());
+            statement.setString(1, entity.getName());
+            statement.setString(2, entity.getIso3());
+            statement.setString(3, entity.getIso2());
+            statement.setLong(4, entity.getIso3digit());
+            statement.setString(5, entity.getCurrency());
             statement.executeUpdate();
 
             try (ResultSet keys = statement.getGeneratedKeys()) {
@@ -57,16 +55,14 @@ public class MySqlCountryDAO extends AbstractBaseDAO<Country> implements Country
     }
 
     @Override
-    public void update(Country updatedEntity) throws DAOException {
+    public void update(Country entity) throws DAOException {
         tryCallJDBC(QUERY_UPDATE, ((connection, statement) -> {
-            statement.setString(1, updatedEntity.getUsername());
-            statement.setString(2, updatedEntity.getPasswordHash());
-            statement.setString(3, updatedEntity.getName());
-            statement.setString(4, updatedEntity.getIso3());
-            statement.setString(5, updatedEntity.getIso2());
-            statement.setLong(6, updatedEntity.getIso3digit());
-            statement.setString(7, updatedEntity.getCurrency());
-            statement.setLong(8, updatedEntity.getId());
+            statement.setString(1, entity.getName());
+            statement.setString(2, entity.getIso3());
+            statement.setString(3, entity.getIso2());
+            statement.setLong(4, entity.getIso3digit());
+            statement.setString(5, entity.getCurrency());
+            statement.setLong(7, entity.getId());
             statement.executeUpdate();
 
             /*Employee reselectedEntity = executeSelectById(connection, QUERY_SELECT_BY_ID, updatedEntity.getId());
@@ -116,13 +112,11 @@ public class MySqlCountryDAO extends AbstractBaseDAO<Country> implements Country
     Country parseResultSet(ResultSet resultSet) throws SQLException {
         Country country = new Country();
         country.setId(resultSet.getLong(1));
-        country.setUsername(resultSet.getString(2));
-        country.setPasswordHash(resultSet.getString(3));
-        country.setName(resultSet.getString(4));
-        country.setIso3(resultSet.getString(5));
-        country.setIso2(resultSet.getString(6));
-        country.setIso3digit(resultSet.getLong(7));
-        country.setCurrency(resultSet.getString(8));
+        country.setName(resultSet.getString(2));
+        country.setIso3(resultSet.getString(3));
+        country.setIso2(resultSet.getString(4));
+        country.setIso3digit(resultSet.getLong(5));
+        country.setCurrency(resultSet.getString(6));
         return country;
     }
 }

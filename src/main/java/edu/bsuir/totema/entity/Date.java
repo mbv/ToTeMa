@@ -6,9 +6,7 @@ import static edu.bsuir.totema.util.NullUtil.nullableHashCode;
 import java.sql.Time;
 
 public class Date extends Entity {
-    @Expose
-    private String username;
-    private String passwordHash;
+
     @Expose
     private Time time;
     @Expose
@@ -23,22 +21,6 @@ public class Date extends Entity {
     private long day;
     @Expose
     private String monthName;
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPasswordHash() {
-        return passwordHash;
-    }
-
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
-    }
 
     public long getWeek() {
         return week;

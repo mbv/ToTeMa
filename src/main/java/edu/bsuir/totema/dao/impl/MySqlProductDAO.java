@@ -14,15 +14,15 @@ import static edu.bsuir.totema.util.caller.JDBCCaller.tryCallJDBC;
 public class MySqlProductDAO extends AbstractBaseDAO<Product> implements ProductDAO {
 
     private static final Logger logger = Logger.getLogger(MySqlProductDAO.class);
-    private static final String QUERY_SELECT_BY_ID = "SELECT `PRODUCT`.`ID`, `PRODUCT`.`USERNAME`, `PRODUCT`.`PASSWORD_HASH`, " +
+    private static final String QUERY_SELECT_BY_ID = "SELECT `PRODUCT`.`ID`, " +
             " `PRODUCT`.`CODE`, `PRODUCT`.`TYPE_KEY`, `PRODUCT`.`NAME`, `PRODUCT`.`SIZE`, `PRODUCT`.`COLOR`, `PRODUCT`.`STATUS` FROM `PRODUCT` WHERE  `PRODUCT`.`ID` = ?;";
-    private static final String QUERY_SELECT_WITH_LIMIT = "SELECT `PRODUCT`.`ID`, `PRODUCT`.`USERNAME`, `PRODUCT`.`PASSWORD_HASH`, " +
+    private static final String QUERY_SELECT_WITH_LIMIT = "SELECT `PRODUCT`.`ID`, " +
             " `PRODUCT`.`CODE`, `PRODUCT`.`TYPE_KEY`, `PRODUCT`.`NAME`, `PRODUCT`.`SIZE`, `PRODUCT`.`COLOR`, `PRODUCT`.`STATUS` FROM `PRODUCT` WHERE  " +
             " `PRODUCT`.`STATUS` != -1 ORDER BY `PRODUCT`.`ID` LIMIT ?, ?;";
-    private static final String QUERY_INSERT = "INSERT INTO `PRODUCT` (`PRODUCT`.`USERNAME`, `PRODUCT`.`PASSWORD_HASH`, " +
+    private static final String QUERY_INSERT = "INSERT INTO `PRODUCT` (" +
             " `PRODUCT`.`CODE`, `PRODUCT`.`TYPE_KEY`, `PRODUCT`.`NAME`, `PRODUCT`.`SIZE`, `PRODUCT`.`COLOR`, `PRODUCT`.`STATUS`)" +
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-    private static final String QUERY_UPDATE = "UPDATE `PRODUCT` SET `PRODUCT`.`USERNAME` = ?, `PRODUCT`.`PASSWORD_HASH` = ?, `PRODUCT`.`CODE` = ?, " +
+            "VALUES (?, ?, ?, ?, ?, ?)";
+    private static final String QUERY_UPDATE = "UPDATE `PRODUCT` SET `PRODUCT`.`CODE` = ?, " +
             "`PRODUCT`.`TYPE_KEY` = ?," +
             " `PRODUCT`.`NAME` = ?, `PRODUCT`.`SIZE` = ?, " +
             "`PRODUCT`.`COLOR` = ? ,`PRODUCT`.`STATUS` = ? WHERE (`PRODUCT`.`ID` = ?) AND (`PRODUCT`.`STATUS` != -1);";
@@ -32,14 +32,12 @@ public class MySqlProductDAO extends AbstractBaseDAO<Product> implements Product
     @Override
     public Product insert(Product entity) throws DAOException {
         return tryCallJDBC(QUERY_INSERT, ((connection, statement) -> {
-            statement.setString(1, entity.getUsername());
-            statement.setString(2, entity.getPasswordHash());
-            statement.setLong(3, entity.getCode());
-            statement.setLong(4, entity.getTypeKey());
-            statement.setString(5, entity.getName());
-            statement.setString(6, entity.getSize());
-            statement.setString(7, entity.getColor());
-            statement.setLong(8, entity.getStatus());
+            statement.setLong(1, entity.getCode());
+            statement.setLong(2, entity.getTypeKey());
+            statement.setString(3, entity.getName());
+            statement.setString(4, entity.getSize());
+            statement.setString(5, entity.getColor());
+            statement.setLong(6, entity.getStatus());
             statement.executeUpdate();
 
             try (ResultSet keys = statement.getGeneratedKeys()) {
@@ -61,15 +59,13 @@ public class MySqlProductDAO extends AbstractBaseDAO<Product> implements Product
     @Override
     public void update(Product entity) throws DAOException {
         tryCallJDBC(QUERY_UPDATE, ((connection, statement) -> {
-            statement.setString(1, entity.getUsername());
-            statement.setString(2, entity.getPasswordHash());
-            statement.setLong(3, entity.getCode());
-            statement.setLong(4, entity.getTypeKey());
-            statement.setString(5, entity.getName());
-            statement.setString(6, entity.getSize());
-            statement.setString(7, entity.getColor());
-            statement.setLong(8, entity.getStatus());
-            statement.setLong(9, entity.getId());
+            statement.setLong(1, entity.getCode());
+            statement.setLong(2, entity.getTypeKey());
+            statement.setString(3, entity.getName());
+            statement.setString(4, entity.getSize());
+            statement.setString(5, entity.getColor());
+            statement.setLong(6, entity.getStatus());
+            statement.setLong(7, entity.getId());
             statement.executeUpdate();
 
             /*Employee reselectedEntity = executeSelectById(connection, QUERY_SELECT_BY_ID, updatedEntity.getId());
@@ -119,14 +115,12 @@ public class MySqlProductDAO extends AbstractBaseDAO<Product> implements Product
     Product parseResultSet(ResultSet resultSet) throws SQLException {
         Product product = new Product();
         product.setId(resultSet.getLong(1));
-        product.setUsername(resultSet.getString(2));
-        product.setPasswordHash(resultSet.getString(3));
-        product.setCode(resultSet.getLong(4));
-        product.setTypeKey(resultSet.getLong(5));
-        product.setName(resultSet.getString(6));
-        product.setSize(resultSet.getString(7));
-        product.setColor(resultSet.getString(8));
-        product.setStatus(resultSet.getInt(9));
+        product.setCode(resultSet.getLong(2));
+        product.setTypeKey(resultSet.getLong(3));
+        product.setName(resultSet.getString(4));
+        product.setSize(resultSet.getString(5));
+        product.setColor(resultSet.getString(6));
+        product.setStatus(resultSet.getInt(7));
         return product;
     }
 }
