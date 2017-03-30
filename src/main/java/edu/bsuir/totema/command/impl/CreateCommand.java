@@ -2,7 +2,7 @@ package edu.bsuir.totema.command.impl;
 
 import edu.bsuir.totema.command.Command;
 import edu.bsuir.totema.command.exception.CommandException;
-import edu.bsuir.totema.response.ResponseErrorInfo;
+import edu.bsuir.totema.service.validation.ValidationResult;
 import edu.bsuir.totema.service.Service;
 import edu.bsuir.totema.service.exception.ServiceException;
 import edu.bsuir.totema.util.serialization.GsonProvider;
@@ -26,10 +26,10 @@ public class CreateCommand implements Command {
         String result;
         HashMap<String, String> attributes = Command.getAttributesFromRequest(request);
         try {
-            ResponseErrorInfo responseErrorInfo = _service.validate(attributes);
-            if (responseErrorInfo != null) {
+            ValidationResult validationResult = _service.validate(attributes);
+            if (validationResult != null) {
                 response.setStatus(400);
-                result = GsonProvider.getGson().toJson(responseErrorInfo);
+                result = GsonProvider.getGson().toJson(validationResult);
             } else {
                 result = GsonProvider.getGson().toJson(_service.add(attributes));
 
