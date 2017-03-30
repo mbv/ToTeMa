@@ -10,7 +10,7 @@ function EntityListController($resource, $uibModal, resourceName, self, toaster)
         },
         {
             update: {
-                method: 'PUT',
+                method: 'PUT'
             }
 
         });
@@ -22,19 +22,18 @@ function EntityListController($resource, $uibModal, resourceName, self, toaster)
     self.deleteEntity = deleteEntity;
     self.editEntity = editEntity;
 
+    self.toaster = toaster;
+    self.promiseErrorHandler = function (errorResponse) {
+        self.toaster.pop('error', "Error", errorResponse.data.error);
+    };
+
     refresh();
 
     function refresh() {
         self.EntityService.query().$promise.then(function (result) {
-            console.log('An error success:');
+            console.log('An success:');
             self.entities = result;
-        }, function(errorMsg) {
-            // if any of the previous promises gets rejected
-            // the success callback will never be executed
-            // the error callback will be called...
-            toaster.pop('error', "GOPA", "POLNAYA");
-            console.log('An error occurred: ', errorMsg);
-        });
+        }, self.promiseErrorHandler);
     }
 
     function addEntity() {
@@ -42,7 +41,7 @@ function EntityListController($resource, $uibModal, resourceName, self, toaster)
     }
 
     function deleteEntity(entity) {
-        self.EntityService.delete(entity, refresh);
+        self.EntityService.delete(entity, refresh).$promise.then(null, self.promiseErrorHandler);
     }
 
     function editEntity(entity) {

@@ -1,0 +1,25 @@
+{
+  "name": "toTeMa",
+  "homepage": "https://github.com/mbv/ToTeMa",
+  "authors": [
+    "mbv <terehovk@ya.ru>"
+  ],
+  "license": "MIT",
+  "directory": "lib/",
+  "dependencies": {
+    "jquery": "*",
+    "angular": "*",
+    "angular-route": "*",
+    "angular-resource": "*",
+    "angularjs-toaster": "*",
+    "angular-bootstrap": "*",
+    "bootstrap": "*"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
