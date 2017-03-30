@@ -2,6 +2,7 @@ package edu.bsuir.totema.command.factory.service;
 
 import edu.bsuir.totema.command.Command;
 import edu.bsuir.totema.command.ResourceCommand;
+import edu.bsuir.totema.command.factory.UnresolvedCommand;
 import edu.bsuir.totema.service.Service;
 import edu.bsuir.totema.util.Pair;
 import org.apache.log4j.Logger;

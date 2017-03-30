@@ -1,11 +1,10 @@
 package edu.bsuir.totema.command.impl;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import edu.bsuir.totema.command.Command;
 import edu.bsuir.totema.command.exception.CommandException;
 import edu.bsuir.totema.service.Service;
 import edu.bsuir.totema.service.exception.ServiceException;
+import edu.bsuir.totema.util.serialization.GsonProvider;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,11 +23,7 @@ public class ViewAllCommand implements Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
         String result;
         try {
-            final GsonBuilder builder = new GsonBuilder();
-            builder.excludeFieldsWithoutExposeAnnotation();
-            final Gson gson = builder.create();
-
-            result = gson.toJson(_service.getAll());
+            result = GsonProvider.getGson().toJson(_service.getAll());
         } catch (ServiceException e) {
             throw new CommandException(e);
         }

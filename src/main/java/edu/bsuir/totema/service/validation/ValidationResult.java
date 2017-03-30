@@ -5,6 +5,13 @@ import com.google.gson.annotations.Expose;
 import java.util.HashMap;
 
 public class ValidationResult {
+
+    public ValidationResult() {
+
+    }
+    public ValidationResult(String error) {
+        this.error = error;
+    }
     @Expose
     private String error;
     @Expose
