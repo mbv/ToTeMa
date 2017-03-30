@@ -1,20 +1,13 @@
 package edu.bsuir.totema.service.impl;
 
 import edu.bsuir.totema.dao.DateDAO;
-import edu.bsuir.totema.dao.EmployeeDAO;
 import edu.bsuir.totema.dao.factory.DAOFactory;
 import edu.bsuir.totema.entity.Date;
 import edu.bsuir.totema.service.DateService;
-import edu.bsuir.totema.service.EmployeeService;
 import edu.bsuir.totema.service.exception.ServiceException;
 import edu.bsuir.totema.service.validation.ValidationResult;
-import edu.bsuir.totema.util.HashUtil;
 import edu.bsuir.totema.util.ValidationUtil;
 
-
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 
@@ -49,14 +42,7 @@ public class DateServiceImpl implements DateService {
         ValidationUtil.validateStringOnEmpty(attributes, "monthName", errors);
         //ValidationUtil.validateInt(attributes, "status", errors);
 
-        if (!errors.isEmpty()) {
-            ValidationResult validationResult = new ValidationResult();
-            validationResult.setStatus("error");
-            validationResult.setErrors(errors);
-
-            return validationResult;
-        }
-        return null;
+        return ValidationUtil.getValidationResult(errors);
     }
 
 

@@ -1,5 +1,7 @@
 package edu.bsuir.totema.util;
 
+import edu.bsuir.totema.service.validation.ValidationResult;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,6 +12,10 @@ public final class ValidationUtil {
     private final static String messageFieldIsNotValidLong = "Attribute \"%s\" is not valid long";
     private final static String messageFieldIsNotValidInt = "Attribute \"%s\" is not valid integer";
     private final static String messageFieldIsNotValidDate = "Attribute \"%s\" is not valid date";
+
+    private ValidationUtil() {
+
+    }
 
     public static void validateStringOnEmpty(HashMap<String, String> attributes, String fieldName, HashMap<String, String> errors) {
         if (!attributes.containsKey(fieldName) || attributes.get(fieldName).trim().isEmpty()) {
@@ -55,5 +61,15 @@ public final class ValidationUtil {
                 errors.put(fieldName, String.format(messageFieldIsNotValidDate, fieldName));
             }
         }
+    }
+
+    public static ValidationResult getValidationResult(HashMap<String, String> errors) {
+        ValidationResult validationResult = null;
+        if (!errors.isEmpty()) {
+            validationResult = new ValidationResult();
+            validationResult.setError("Validation Error");
+            validationResult.setErrors(errors);
+        }
+        return validationResult;
     }
 }

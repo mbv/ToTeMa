@@ -6,12 +6,9 @@ import edu.bsuir.totema.entity.Product;
 import edu.bsuir.totema.service.ProductService;
 import edu.bsuir.totema.service.exception.ServiceException;
 import edu.bsuir.totema.service.validation.ValidationResult;
-import edu.bsuir.totema.util.HashUtil;
 import edu.bsuir.totema.util.ValidationUtil;
 
-import java.sql.Date;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
@@ -45,14 +42,8 @@ public class ProductServiceImpl implements ProductService {
         ValidationUtil.validateLong(attributes, "code", errors);
         //ValidationUtil.validateInt(attributes, "status", errors);
 
-        if (!errors.isEmpty()) {
-            ValidationResult validationResult = new ValidationResult();
-            validationResult.setStatus("error");
-            validationResult.setErrors(errors);
 
-            return validationResult;
-        }
-        return null;
+        return ValidationUtil.getValidationResult(errors);
     }
 
 

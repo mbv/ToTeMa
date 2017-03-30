@@ -41,15 +41,7 @@ public class ProductTypeServiceImpl implements ProductTypeService {
         ValidationUtil.validateStringOnEmpty(attributes, "type", errors);
 
 
-
-        if (!errors.isEmpty()) {
-            ValidationResult validationResult = new ValidationResult();
-            validationResult.setStatus("error");
-            validationResult.setErrors(errors);
-
-            return validationResult;
-        }
-        return null;
+        return ValidationUtil.getValidationResult(errors);
     }
 
 

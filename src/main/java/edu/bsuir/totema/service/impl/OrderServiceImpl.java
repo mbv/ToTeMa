@@ -42,14 +42,7 @@ public class OrderServiceImpl implements OrderService {
         ValidationUtil.validateLong(attributes, "grossMargin", errors);
 
 
-        if (!errors.isEmpty()) {
-            ValidationResult validationResult = new ValidationResult();
-            validationResult.setStatus("error");
-            validationResult.setErrors(errors);
-
-            return validationResult;
-        }
-        return null;
+        return ValidationUtil.getValidationResult(errors);
     }
 
 

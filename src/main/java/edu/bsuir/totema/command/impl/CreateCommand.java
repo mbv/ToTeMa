@@ -44,6 +44,7 @@ public class CreateCommand implements Command {
 
             ValidationResult validationResult = _service.validate(attributes);
             if (validationResult != null) {
+                response.setStatus(400);
                 result = gson.toJson(validationResult);
             } else {
                 result = gson.toJson(_service.add(attributes));

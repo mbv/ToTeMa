@@ -47,14 +47,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         ValidationUtil.validateLong(attributes, "reportsTo", errors);
         //ValidationUtil.validateInt(attributes, "status", errors);
 
-        if (!errors.isEmpty()) {
-            ValidationResult validationResult = new ValidationResult();
-            validationResult.setStatus("error");
-            validationResult.setErrors(errors);
-
-            return validationResult;
-        }
-        return null;
+        return ValidationUtil.getValidationResult(errors);
     }
 
 

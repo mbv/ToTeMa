@@ -43,14 +43,7 @@ public class OfficeServiceImpl implements OfficeService {
         ValidationUtil.validateStringOnEmpty(attributes, "postalCode", errors);
 
 
-        if (!errors.isEmpty()) {
-            ValidationResult validationResult = new ValidationResult();
-            validationResult.setStatus("error");
-            validationResult.setErrors(errors);
-
-            return validationResult;
-        }
-        return null;
+        return ValidationUtil.getValidationResult(errors);
     }
 
 
