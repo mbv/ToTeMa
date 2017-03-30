@@ -10,6 +10,24 @@ function DemoConfig($routeProvider, $locationProvider) {
         .when('/users', {
             templateUrl : 'users.html'
         })
+        .when('/conversations', {
+            templateUrl : 'conversations.html'
+        })
+        .when('/countries', {
+            templateUrl : 'countries.html'
+        })
+        .when('/offices', {
+            templateUrl : 'offices.html'
+        })
+        .when('/orders', {
+            templateUrl : 'orders.html'
+        })
+        .when('/products', {
+            templateUrl : 'products.html'
+        })
+        .when('/types', {
+            templateUrl : 'productsTypes.html'
+        })
         .when("/about", {
             templateUrl : 'about.html'
         })

@@ -1,0 +1,39 @@
+<div>
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="self.cancel()"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" ng-if="self.updateMode">Update Office</h4>
+            <h4 class="modal-title" ng-if="!self.updateMode">Create Office</h4>
+        </div>
+        <div class="modal-body">
+            <div class="input-group" style="margin-bottom: 20px;">
+                <span class="input-group-addon">City</span>
+                <input type="text" class="form-control" ng-model="self.entity.city">
+            </div>
+            <div class="input-group" style="margin-bottom: 20px;">
+                <span class="input-group-addon">Address</span>
+                <input type="text" class="form-control" ng-model="self.entity.address">
+            </div>
+            <div class="input-group" style="margin-bottom: 20px;">
+                <span class="input-group-addon">Fax</span>
+                <input type="text" class="form-control" ng-model="self.entity.fax">
+            </div>
+            <div class="input-group" style="margin-bottom: 20px;">
+                <span class="input-group-addon">Phone</span>
+                <input type="text" class="form-control" ng-model="self.entity.phone">
+            </div>
+            <div class="input-group" style="margin-bottom: 20px;">
+                <span class="input-group-addon">Country Key</span>
+                <input type="number" class="form-control" ng-model="self.entity.countryKey">
+            </div>
+            <div class="input-group" style="margin-bottom: 20px;">
+                <span class="input-group-addon">Postal Code</span>
+                <input type="text" class="form-control" ng-model="self.entity.postalCode">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="self.saveEntity()">Save</button>
+            <button class="btn btn-default" type="button" ng-click="self.cancel()">Cancel</button>
+        </div>
+    </div>
+</div>

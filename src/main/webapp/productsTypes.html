@@ -1,0 +1,36 @@
+<div class="container" ng-controller="ProductsTypesListController as self">
+    <div class="col-xs-12">
+        <div class="panel panel-default" style="margin-top: 30px;">
+            <div class="panel-heading">
+                <span style="line-height: 34px;">Product Types</span>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#productTypes-modal" ng-click="self.addEntity()" style="float: right;">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <thead>
+                    <th>#</th>
+                    <th>Gender</th>
+                    <th>Age</th>
+                    <th>Season</th>
+                    <th>Type</th>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="productType in self.entities">
+                        <td class="col-xs-1">{{productType.id}}</td>
+                        <td class="col-xs-1">{{productType.gender}}</td>
+                        <td class="col-xs-1">{{productType.age}}</td>
+                        <td class="col-xs-1">{{productType.season}}</td>
+                        <td class="col-xs-1">{{productType.type}}</td>
+                        <td class="col-xs-3">
+                            <button class="btn btn-xs btn-info" ng-click="self.editEntity(productType)">Edit</button>
+                            <button class="btn btn-xs btn-danger" ng-click="self.deleteEntity(productType)">Delete</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
