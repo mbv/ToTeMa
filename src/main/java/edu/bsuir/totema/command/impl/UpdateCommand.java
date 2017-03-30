@@ -1,19 +1,16 @@
 package edu.bsuir.totema.command.impl;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
+import edu.bsuir.totema.command.Command;
 import edu.bsuir.totema.command.ResourceCommand;
 import edu.bsuir.totema.command.exception.CommandException;
+import edu.bsuir.totema.response.ResponseErrorInfo;
 import edu.bsuir.totema.service.Service;
 import edu.bsuir.totema.service.exception.ServiceException;
-import edu.bsuir.totema.service.validation.ValidationResult;
+import edu.bsuir.totema.util.serialization.GsonProvider;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.HashMap;
 
 public class UpdateCommand implements ResourceCommand {
@@ -29,28 +26,15 @@ public class UpdateCommand implements ResourceCommand {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
         String result;
-        HashMap<String, String> attributes;
-        try {
-            final Gson gson = new Gson();
-            Type type = new TypeToken<HashMap<String, String>>(){}.getType();
-            attributes = gson.fromJson(request.getReader(), type);
-        } catch (IOException e) {
-            throw new CommandException(e);
-        }
-        if (attributes == null) {
-            attributes = new HashMap<>();
-        }
-        try {
-            final GsonBuilder builder = new GsonBuilder();
-            builder.excludeFieldsWithoutExposeAnnotation();
-            final Gson gson = builder.create();
+        HashMap<String, String> attributes = Command.getAttributesFromRequest(request);
 
-            ValidationResult validationResult = _service.validate(attributes);
-            if (validationResult != null) {
+        try {
+            ResponseErrorInfo responseErrorInfo = _service.validate(attributes);
+            if (responseErrorInfo != null) {
                 response.setStatus(400);
-                result = gson.toJson(validationResult);
+                result = GsonProvider.getGson().toJson(responseErrorInfo);
             } else {
-                result = gson.toJson(_service.update(_resource_id, attributes));
+                result = GsonProvider.getGson().toJson(_service.update(_resource_id, attributes));
 
             }
         } catch (ServiceException e) {

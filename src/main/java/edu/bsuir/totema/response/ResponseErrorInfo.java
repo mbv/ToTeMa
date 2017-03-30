@@ -1,10 +1,17 @@
-package edu.bsuir.totema.service.validation;
+package edu.bsuir.totema.response;
 
 import com.google.gson.annotations.Expose;
 
 import java.util.HashMap;
 
-public class ValidationResult {
+public class ResponseErrorInfo {
+
+    public ResponseErrorInfo() {
+
+    }
+    public ResponseErrorInfo(String error) {
+        this.error = error;
+    }
     @Expose
     private String error;
     @Expose

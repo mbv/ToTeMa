@@ -5,7 +5,7 @@ import edu.bsuir.totema.dao.factory.DAOFactory;
 import edu.bsuir.totema.entity.Employee;
 import edu.bsuir.totema.service.EmployeeService;
 import edu.bsuir.totema.service.exception.ServiceException;
-import edu.bsuir.totema.service.validation.ValidationResult;
+import edu.bsuir.totema.response.ResponseErrorInfo;
 import edu.bsuir.totema.util.HashUtil;
 import edu.bsuir.totema.util.ValidationUtil;
 
@@ -35,7 +35,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public ValidationResult validate(HashMap<String, String> attributes) {
+    public ResponseErrorInfo validate(HashMap<String, String> attributes) {
         HashMap<String, String> errors = new HashMap<>();
 
         ValidationUtil.validateStringOnEmpty(attributes, "username", errors);

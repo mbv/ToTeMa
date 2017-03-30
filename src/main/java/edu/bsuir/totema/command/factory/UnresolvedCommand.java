@@ -1,8 +1,7 @@
-package edu.bsuir.totema.command.factory.service;
+package edu.bsuir.totema.command.factory;
 
 import edu.bsuir.totema.command.Command;
 import edu.bsuir.totema.command.exception.CommandException;
-import edu.bsuir.totema.command.factory.CommandFactory;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +17,7 @@ public class UnresolvedCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
         logger.debug("Unresolved command has been executed.");
-        response.setStatus(404);
+        response.setStatus(HttpServletResponse.SC_NOT_FOUND);
         return "{\"error\":\"Unresolved command has been executed\"}";
     }
 }

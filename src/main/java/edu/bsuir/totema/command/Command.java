@@ -1,11 +1,15 @@
 package edu.bsuir.totema.command;
 
+import com.google.gson.reflect.TypeToken;
 import edu.bsuir.totema.command.exception.CommandException;
+import edu.bsuir.totema.util.serialization.GsonProvider;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.HashMap;
 
 /**
  * Main interface of Command pattern which used to delegate
@@ -48,6 +52,19 @@ public interface Command {
         } catch (IOException e) {
             throw new CommandException("IOException exception occurs. ", e, false);
         }
+    }
+    static HashMap<String, String> getAttributesFromRequest(HttpServletRequest request) throws CommandException {
+        HashMap<String, String> attributes;
+        try {
+            Type type = new TypeToken<HashMap<String, String>>(){}.getType();
+            attributes = GsonProvider.getGson().fromJson(request.getReader(), type);
+        } catch (IOException e) {
+            throw new CommandException(e);
+        }
+        if (attributes == null) {
+            attributes = new HashMap<>();
+        }
+        return attributes;
     }
 
     /**

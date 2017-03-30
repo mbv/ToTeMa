@@ -5,7 +5,7 @@ import edu.bsuir.totema.dao.factory.DAOFactory;
 import edu.bsuir.totema.entity.ConvertionRate;
 import edu.bsuir.totema.service.ConvertionRateService;
 import edu.bsuir.totema.service.exception.ServiceException;
-import edu.bsuir.totema.service.validation.ValidationResult;
+import edu.bsuir.totema.response.ResponseErrorInfo;
 import edu.bsuir.totema.util.ValidationUtil;
 
 import java.text.DateFormat;
@@ -32,7 +32,7 @@ public class ConvertionRateServiceImpl implements ConvertionRateService {
     }
 
     @Override
-    public ValidationResult validate(HashMap<String, String> attributes) {
+    public ResponseErrorInfo validate(HashMap<String, String> attributes) {
         HashMap<String, String> errors = new HashMap<>();
 
         ValidationUtil.validateLong(attributes, "countryKey", errors);

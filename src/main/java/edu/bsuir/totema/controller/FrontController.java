@@ -4,6 +4,8 @@ import edu.bsuir.totema.command.Command;
 import edu.bsuir.totema.command.exception.CommandException;
 import edu.bsuir.totema.command.factory.CommandFactory;
 import edu.bsuir.totema.dao.pool.ConnectionPool;
+import edu.bsuir.totema.response.ResponseErrorInfo;
+import edu.bsuir.totema.util.serialization.GsonProvider;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -45,18 +47,20 @@ public class FrontController extends javax.servlet.http.HttpServlet {
     private void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Command command = CommandFactory.defineCommand(request.getPathInfo(), request.getMethod());
+        PrintWriter out = new PrintWriter(new OutputStreamWriter(response.getOutputStream(), "UTF-8"), true);
+        String result;
         try {
-            logger.info(request.getMethod());
             response.setContentType("text/json; charset=UTF-8");
-            PrintWriter out = new PrintWriter(new OutputStreamWriter(response.getOutputStream(), "UTF-8"), true);
 
-            String result = command.execute(request, response);
-
-            out.print(result);
-            out.close();
+            result = command.execute(request, response);
         } catch (CommandException e) {
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             logger.error("Cannot execute command.\n", e);
+
+            result = GsonProvider.getGson().toJson(new ResponseErrorInfo("Internal Server Error"));
         }
+        out.print(result);
+        out.close();
     }
 
 }

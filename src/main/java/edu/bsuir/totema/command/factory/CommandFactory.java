@@ -1,9 +1,9 @@
 package edu.bsuir.totema.command.factory;
 
 import edu.bsuir.totema.command.Command;
+import edu.bsuir.totema.command.factory.service.ConvertionRateCommandFactory;
 import edu.bsuir.totema.command.factory.service.EmployeeCommandFactory;
 import edu.bsuir.totema.command.factory.service.ServiceCommandFactory;
-import edu.bsuir.totema.command.factory.service.UnresolvedCommand;
 import edu.bsuir.totema.service.factory.ServiceFactory;
 import org.apache.log4j.Logger;
 
@@ -21,6 +21,7 @@ public class CommandFactory {
 
     static {
 
+        serviceCommandFactoriesList.put(SERVICE_CONVERTION_RATE, new ConvertionRateCommandFactory());
         serviceCommandFactoriesList.put(SERVICE_EMPLOYEE, new EmployeeCommandFactory());
     }
 

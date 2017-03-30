@@ -5,7 +5,7 @@ import edu.bsuir.totema.dao.factory.DAOFactory;
 import edu.bsuir.totema.entity.ProductList;
 import edu.bsuir.totema.service.ProductListService;
 import edu.bsuir.totema.service.exception.ServiceException;
-import edu.bsuir.totema.service.validation.ValidationResult;
+import edu.bsuir.totema.response.ResponseErrorInfo;
 import edu.bsuir.totema.util.ValidationUtil;
 
 import java.util.HashMap;
@@ -30,7 +30,7 @@ public class ProductListServiceImpl implements ProductListService {
     }
 
     @Override
-    public ValidationResult validate(HashMap<String, String> attributes) {
+    public ResponseErrorInfo validate(HashMap<String, String> attributes) {
         HashMap<String, String> errors = new HashMap<>();
 
 

@@ -5,7 +5,7 @@ import edu.bsuir.totema.dao.factory.DAOFactory;
 import edu.bsuir.totema.entity.Country;
 import edu.bsuir.totema.service.CountryService;
 import edu.bsuir.totema.service.exception.ServiceException;
-import edu.bsuir.totema.service.validation.ValidationResult;
+import edu.bsuir.totema.response.ResponseErrorInfo;
 import edu.bsuir.totema.util.ValidationUtil;
 
 import java.text.DateFormat;
@@ -32,7 +32,7 @@ public class CountryServiceImpl implements CountryService {
     }
 
     @Override
-    public ValidationResult validate(HashMap<String, String> attributes) {
+    public ResponseErrorInfo validate(HashMap<String, String> attributes) {
         HashMap<String, String> errors = new HashMap<>();
 
         ValidationUtil.validateStringOnEmpty(attributes, "name", errors);

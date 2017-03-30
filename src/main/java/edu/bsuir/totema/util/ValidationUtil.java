@@ -1,6 +1,6 @@
 package edu.bsuir.totema.util;
 
-import edu.bsuir.totema.service.validation.ValidationResult;
+import edu.bsuir.totema.response.ResponseErrorInfo;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -63,13 +63,13 @@ public final class ValidationUtil {
         }
     }
 
-    public static ValidationResult getValidationResult(HashMap<String, String> errors) {
-        ValidationResult validationResult = null;
+    public static ResponseErrorInfo getValidationResult(HashMap<String, String> errors) {
+        ResponseErrorInfo responseErrorInfo = null;
         if (!errors.isEmpty()) {
-            validationResult = new ValidationResult();
-            validationResult.setError("Validation Error");
-            validationResult.setErrors(errors);
+            responseErrorInfo = new ResponseErrorInfo();
+            responseErrorInfo.setError("Validation Error");
+            responseErrorInfo.setErrors(errors);
         }
-        return validationResult;
+        return responseErrorInfo;
     }
 }

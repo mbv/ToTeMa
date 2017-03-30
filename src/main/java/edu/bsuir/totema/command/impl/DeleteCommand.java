@@ -1,11 +1,10 @@
 package edu.bsuir.totema.command.impl;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import edu.bsuir.totema.command.ResourceCommand;
 import edu.bsuir.totema.command.exception.CommandException;
 import edu.bsuir.totema.service.Service;
 import edu.bsuir.totema.service.exception.ServiceException;
+import edu.bsuir.totema.util.serialization.GsonProvider;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,10 +25,6 @@ public class DeleteCommand implements ResourceCommand {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
         String result;
         try {
-            final GsonBuilder builder = new GsonBuilder();
-            builder.excludeFieldsWithoutExposeAnnotation();
-            final Gson gson = builder.create();
-
             HashMap<String,String> resultMap = new HashMap<>();
             if (_service.delete(_resource_id)) {
                 resultMap.put("status", "good");
@@ -37,7 +32,7 @@ public class DeleteCommand implements ResourceCommand {
                 resultMap.put("status", "error");
             }
 
-            result = gson.toJson(resultMap);
+            result = GsonProvider.getGson().toJson(resultMap);
         } catch (ServiceException e) {
             throw new CommandException(e);
         }
