@@ -14,8 +14,8 @@ import java.util.HashMap;
 public abstract class ServiceCommandFactory {
     private static final Logger logger = Logger.getLogger(ServiceCommandFactory.class);
 
-    final static HashMap<Pair<String, String>, Command> commands = new HashMap<>();
-    final static HashMap<Pair<String, String>, Class<? extends ResourceCommand>> commandsResource = new HashMap<>();
+    HashMap<Pair<String, String>, Command> commands = new HashMap<>();
+    HashMap<Pair<String, String>, Class<? extends ResourceCommand>> commandsResource = new HashMap<>();
 
     public Command defineCommand(String requestMethod, String commandType, Integer resourceId) {
         Pair<String, String> commandId = Pair.of(commandType, requestMethod);

@@ -10,7 +10,7 @@ import static edu.bsuir.totema.command.resource.Constants.COMMAND_TYPE_RESOURCE;
 import static edu.bsuir.totema.command.resource.Constants.REQUEST_TYPE_DELETE;
 
 public class ConvertionRateCommandFactory extends ServiceCommandFactory {
-    static {
+    {
         commands.put(Pair.of(COMMAND_TYPE_ALL, REQUEST_TYPE_GET), new ViewAllCommand(ServiceFactory.getInstance().getConvertionRate()));
         commands.put(Pair.of(COMMAND_TYPE_ALL, REQUEST_TYPE_POST), new CreateCommand(ServiceFactory.getInstance().getConvertionRate()));
 
