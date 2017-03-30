@@ -4,5 +4,5 @@ angular
 
 function ConversationsRateListController($controller) {
     var self = this;
-    $controller('ConversationsRateListController', {resourceName: 'conversationsRates', self: self});
+    $controller('EntityListController', {resourceName: 'convertion-rates', self: self});
 }

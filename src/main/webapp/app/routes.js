@@ -10,8 +10,8 @@ function DemoConfig($routeProvider, $locationProvider) {
         .when('/users', {
             templateUrl : 'users.html'
         })
-        .when('/conversations', {
-            templateUrl : 'conversations.html'
+        .when('/convertion-rates', {
+            templateUrl : 'convertion-rates.html'
         })
         .when('/countries', {
             templateUrl : 'countries.html'
