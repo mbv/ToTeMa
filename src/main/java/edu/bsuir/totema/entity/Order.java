@@ -1,7 +1,5 @@
 package edu.bsuir.totema.entity;
 import com.google.gson.annotations.Expose;
-import static edu.bsuir.totema.util.NullUtil.nullableEquals;
-import static edu.bsuir.totema.util.NullUtil.nullableHashCode;
 
 public class Order extends Entity {
 
@@ -64,7 +62,7 @@ public class Order extends Entity {
         return dateKey;
     }
 
-    public void setDateKey(long employeeKey) {
+    public void setDateKey(long dateKey) {
         this.dateKey = dateKey;
     }
 

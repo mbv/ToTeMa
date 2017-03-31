@@ -1,7 +1,5 @@
 package edu.bsuir.totema.entity;
 import com.google.gson.annotations.Expose;
-import static edu.bsuir.totema.util.NullUtil.nullableEquals;
-import static edu.bsuir.totema.util.NullUtil.nullableHashCode;
 
 import java.sql.Time;
 
@@ -75,7 +73,7 @@ public class Date extends Entity {
         return monthName;
     }
 
-    public void setMonthName(String name) {
+    public void setMonthName(String monthName) {
         this.monthName = monthName;
     }
 
