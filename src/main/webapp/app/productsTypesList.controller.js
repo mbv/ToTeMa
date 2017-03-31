@@ -4,5 +4,5 @@ angular
 
 function ProductsTypesListController($controller) {
     var self = this;
-    $controller('EntityListController', {resourceName: 'products-types', self: self});
+    $controller('EntityListController', {resourceName: 'product-types', self: self});
 }
