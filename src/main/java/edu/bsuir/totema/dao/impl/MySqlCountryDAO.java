@@ -14,19 +14,19 @@ import static edu.bsuir.totema.util.caller.JDBCCaller.tryCallJDBC;
 public class MySqlCountryDAO extends AbstractBaseDAO<Country> implements CountryDAO {
 
     private static final Logger logger = Logger.getLogger(MySqlCountryDAO.class);
-    private static final String QUERY_SELECT_BY_ID = "SELECT `COUTNRY`.`ID`, " +
-            "`COUTNRY`.`NAME`, `COUTNRY`.`ISO_THREE_LETTER_CODE`, `COUTNRY`.`ISO_TWO_LETTER_CODE`, `COUTNRY`.`ISO_THREE_DIGIT_CODE`, `COUTNRY`.`CURRENCY_NAME` FROM `COUNTRY` WHERE  `COUTNRY`.`ID` = ?;";
-    private static final String QUERY_SELECT_WITH_LIMIT = "SELECT `COUTNRY`.`ID`, " +
-            "`COUTNRY`.`NAME`, `COUTNRY`.`ISO_THREE_LETTER_CODE`, `COUTNRY`.`ISO_TWO_LETTER_CODE`, `COUTNRY`.`ISO_THREE_DIGIT_CODE`, `COUTNRY`.`CURRENCY_NAME` FROM `COUNTRY` " +
-            " ORDER BY `COUTNRY`.`ID` LIMIT ?, ?;";
-    private static final String QUERY_INSERT = "INSERT INTO `COUTNRY` (`COUTNRY`.`NAME`," +
-            " `COUTNRY`.`ISO_THREE_LETTER_CODE`, `COUTNRY`.`ISO_TWO_LETTER_CODE`, `COUTNRY`.`ISO_THREE_DIGIT_CODE`, `COUTNRY`.`CURRENCY_NAME`)" +
+    private static final String QUERY_SELECT_BY_ID = "SELECT `COUNTRY`.`ID`, " +
+            "`COUNTRY`.`NAME`, `COUNTRY`.`ISO_THREE_LETTER_CODE`, `COUNTRY`.`ISO_TWO_LETTER_CODE`, `COUNTRY`.`ISO_THREE_DIGIT_CODE`, `COUNTRY`.`CURRENCY_NAME` FROM `COUNTRY` WHERE  `COUNTRY`.`ID` = ?;";
+    private static final String QUERY_SELECT_WITH_LIMIT = "SELECT `COUNTRY`.`ID`, " +
+            "`COUNTRY`.`NAME`, `COUNTRY`.`ISO_THREE_LETTER_CODE`, `COUNTRY`.`ISO_TWO_LETTER_CODE`, `COUNTRY`.`ISO_THREE_DIGIT_CODE`, `COUNTRY`.`CURRENCY_NAME` FROM `COUNTRY` " +
+            " ORDER BY `COUNTRY`.`ID` LIMIT ?, ?;";
+    private static final String QUERY_INSERT = "INSERT INTO `COUNTRY` (`COUNTRY`.`NAME`," +
+            " `COUNTRY`.`ISO_THREE_LETTER_CODE`, `COUNTRY`.`ISO_TWO_LETTER_CODE`, `COUNTRY`.`ISO_THREE_DIGIT_CODE`, `COUNTRY`.`CURRENCY_NAME`)" +
             "VALUES (?, ?, ?, ?, ?)";
-    private static final String QUERY_UPDATE = "UPDATE `COUTNRY` SET `COUTNRY`.`NAME` = ?, `COUTNRY`.`ISO_THREE_LETTER_CODE` = ?," +
-            " `COUTNRY`.`ISO_TWO_LETTER_CODE` = ?, `COUTNRY`.`ISO_THREE_DIGIT_CODE` = ?, `COUTNRY`.`CURRENCY_NAME` = ?" +
-            " WHERE (`COUTNRY`.`ID` = ?);";
-    private static final String QUERY_DELETE = "DELETE FROM `COUTNRY` WHERE (`COUTNRY`.`ID` = ?);";
-    private static final String QUERY_SELECT_COUNT = "SELECT COUNT(`COUTNRY`.`ID`) FROM `COUTNRY` ;";
+    private static final String QUERY_UPDATE = "UPDATE `COUNTRY` SET `COUNTRY`.`NAME` = ?, `COUNTRY`.`ISO_THREE_LETTER_CODE` = ?," +
+            " `COUNTRY`.`ISO_TWO_LETTER_CODE` = ?, `COUNTRY`.`ISO_THREE_DIGIT_CODE` = ?, `COUNTRY`.`CURRENCY_NAME` = ?" +
+            " WHERE (`COUNTRY`.`ID` = ?);";
+    private static final String QUERY_DELETE = "DELETE FROM `COUNTRY` WHERE (`COUNTRY`.`ID` = ?);";
+    private static final String QUERY_SELECT_COUNT = "SELECT COUNT(`COUNTRY`.`ID`) FROM `COUNTRY` ;";
 
     @Override
     public Country insert(Country entity) throws DAOException {

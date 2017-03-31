@@ -17,7 +17,7 @@ public class MySqlOrderDAO extends AbstractBaseDAO<Order> implements OrderDAO {
     private static final String QUERY_SELECT_BY_ID = "SELECT `ORDER`.`ID`,  " +
             "`ORDER`.`DATE_KEY`, `ORDER`.`EMPLOYEE_KEY`, `ORDER`.`OFFICE_KEY`, `ORDER`.`QUANTITY`, `ORDER`.`PRICE`, ``ORDER`.COST`, `ORDER`.`GROSS_MARGIN` FROM `ORDER` WHERE  `ORDER`.`ID` = ?;";
     private static final String QUERY_SELECT_WITH_LIMIT = "SELECT `ORDER`.`ID`, " +
-            "`ORDER`.`DATE_KEY`, `ORDER`.`EMPLOYEE_KEY`, `ORDER`.`OFFICE_KEY`, `ORDER`.`QUANTITY`, `ORDER`.`PRICE`, ``ORDER`.COST`, `ORDER`.`GROSS_MARGIN` FROM `ORDER` " +
+            "`ORDER`.`DATE_KEY`, `ORDER`.`EMPLOYEE_KEY`, `ORDER`.`OFFICE_KEY`, `ORDER`.`QUANTITY`, `ORDER`.`PRICE`, `ORDER`.`COST`, `ORDER`.`GROSS_MARGIN` FROM `ORDER` " +
             " ORDER BY `ORDER`.`ID` LIMIT ?, ?;";
     private static final String QUERY_INSERT = "INSERT INTO `ORDER` (`ORDER`.`DATE_KEY`," +
             " `ORDER`.`EMPLOYEE_KEY`, `ORDER`.`OFFICE_KEY`, `ORDER`.`QUANTITY`, `ORDER`.`PRICE`, `ORDER`.`COST`, `ORDER`.`GROSS_MARGIN`)" +
