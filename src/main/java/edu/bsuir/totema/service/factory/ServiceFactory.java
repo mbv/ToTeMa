@@ -1,9 +1,7 @@
 package edu.bsuir.totema.service.factory;
 
-import edu.bsuir.totema.service.ConvertionRateService;
-import edu.bsuir.totema.service.EmployeeService;
-import edu.bsuir.totema.service.impl.ConvertionRateServiceImpl;
-import edu.bsuir.totema.service.impl.EmployeeServiceImpl;
+import edu.bsuir.totema.service.*;
+import edu.bsuir.totema.service.impl.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,25 +26,30 @@ public class ServiceFactory {
         services.add(SERVICE_PRODUCT_LIST);
         services.add(SERVICE_PRODUCT_TYPE);
     }
-    private ConvertionRateService convertionRate;
+    private ConvertionRateService convertionRateService;
+    private CountryService countryService;
+    private DateService dateService;
     private EmployeeService employeeService;
+    private OfficeService officeService;
+    private OrderService orderService;
+    private ProductService productService;
+    private ProductListService productListService;
+    private ProductTypeService productTypeService;
 
     private ServiceFactory() {
-        convertionRate = new ConvertionRateServiceImpl();
+        convertionRateService = new ConvertionRateServiceImpl();
+        countryService = new CountryServiceImpl();
+        dateService = new DateServiceImpl();
         employeeService = new EmployeeServiceImpl();
+        officeService = new OfficeServiceImpl();
+        orderService = new OrderServiceImpl();
+        productService = new ProductServiceImpl();
+        productListService = new ProductListServiceImpl();
+        productTypeService = new ProductTypeServiceImpl();
     }
 
     public static ServiceFactory getInstance() {
         return instance;
-    }
-
-
-    public ConvertionRateService getConvertionRate() {
-        return convertionRate;
-    }
-
-    public void setConvertionRate(ConvertionRateService convertionRate) {
-        this.convertionRate = convertionRate;
     }
 
     public static List<String> getServices() {
@@ -55,5 +58,73 @@ public class ServiceFactory {
 
     public EmployeeService getEmployeeService() {
         return employeeService;
+    }
+
+    public void setEmployeeService(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
+
+    public ConvertionRateService getConvertionRateService() {
+        return convertionRateService;
+    }
+
+    public void setConvertionRateService(ConvertionRateService convertionRateService) {
+        this.convertionRateService = convertionRateService;
+    }
+
+    public CountryService getCountryService() {
+        return countryService;
+    }
+
+    public void setCountryService(CountryService countryService) {
+        this.countryService = countryService;
+    }
+
+    public DateService getDateService() {
+        return dateService;
+    }
+
+    public void setDateService(DateService dateService) {
+        this.dateService = dateService;
+    }
+
+    public OfficeService getOfficeService() {
+        return officeService;
+    }
+
+    public void setOfficeService(OfficeService officeService) {
+        this.officeService = officeService;
+    }
+
+    public OrderService getOrderService() {
+        return orderService;
+    }
+
+    public void setOrderService(OrderService orderService) {
+        this.orderService = orderService;
+    }
+
+    public ProductService getProductService() {
+        return productService;
+    }
+
+    public void setProductService(ProductService productService) {
+        this.productService = productService;
+    }
+
+    public ProductListService getProductListService() {
+        return productListService;
+    }
+
+    public void setProductListService(ProductListService productListService) {
+        this.productListService = productListService;
+    }
+
+    public ProductTypeService getProductTypeService() {
+        return productTypeService;
+    }
+
+    public void setProductTypeService(ProductTypeService productTypeService) {
+        this.productTypeService = productTypeService;
     }
 }

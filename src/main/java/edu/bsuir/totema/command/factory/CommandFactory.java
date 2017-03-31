@@ -1,9 +1,7 @@
 package edu.bsuir.totema.command.factory;
 
 import edu.bsuir.totema.command.Command;
-import edu.bsuir.totema.command.factory.service.ConvertionRateCommandFactory;
-import edu.bsuir.totema.command.factory.service.EmployeeCommandFactory;
-import edu.bsuir.totema.command.factory.service.ServiceCommandFactory;
+import edu.bsuir.totema.command.factory.service.*;
 import edu.bsuir.totema.service.factory.ServiceFactory;
 import org.apache.log4j.Logger;
 
@@ -20,9 +18,15 @@ public class CommandFactory {
     private static final HashMap<String, ServiceCommandFactory> serviceCommandFactoriesList = new HashMap<>();
 
     static {
-
         serviceCommandFactoriesList.put(SERVICE_CONVERTION_RATE, new ConvertionRateCommandFactory());
+        serviceCommandFactoriesList.put(SERVICE_COUNTRY, new CountryCommandFactory());
+        serviceCommandFactoriesList.put(SERVICE_DATE, new DateCommandFactory());
         serviceCommandFactoriesList.put(SERVICE_EMPLOYEE, new EmployeeCommandFactory());
+        serviceCommandFactoriesList.put(SERVICE_OFFICE, new OfficeCommandFactory());
+        serviceCommandFactoriesList.put(SERVICE_ORDER, new OrderCommandFactory());
+        serviceCommandFactoriesList.put(SERVICE_PRODUCT, new ProductCommandFactory());
+        serviceCommandFactoriesList.put(SERVICE_PRODUCT_LIST, new ProductListCommandFactory());
+        serviceCommandFactoriesList.put(SERVICE_PRODUCT_TYPE, new ProductTypeCommandFactory());
     }
 
     /**
