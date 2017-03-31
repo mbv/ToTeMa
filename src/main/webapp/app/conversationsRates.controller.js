@@ -1,8 +1,8 @@
 angular
     .module('demo')
-    .controller('ConversationsRateListController', ConversationsRateListController);
+    .controller('ConvertionsRateListController', ConvertionsRatesListController);
 
-function ConversationsRateListController($controller) {
+function ConvertionsRatesListController($controller) {
     var self = this;
     $controller('EntityListController', {resourceName: 'convertion-rates', self: self});
 }

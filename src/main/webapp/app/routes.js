@@ -26,7 +26,7 @@ function DemoConfig($routeProvider, $locationProvider) {
             templateUrl : 'products.html'
         })
         .when('/types', {
-            templateUrl : 'productsTypes.html'
+            templateUrl : 'products-types.html'
         })
         .when("/about", {
             templateUrl : 'about.html'

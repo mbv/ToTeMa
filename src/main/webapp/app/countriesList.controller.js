@@ -4,5 +4,5 @@ angular
 
 function CountriesListController($controller) {
     var self = this;
-    $controller('CountriesListController', {resourceName: 'countries', self: self});
+    $controller('EntityListController', {resourceName: 'countries', self: self});
 }
