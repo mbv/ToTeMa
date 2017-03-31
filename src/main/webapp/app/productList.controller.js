@@ -1,8 +1,8 @@
 angular
     .module('demo')
-    .controller('ProductsListController', ProductsListController);
+    .controller('ProductListController', ProductListController);
 
-function ProductsListController($controller) {
+function ProductListController($controller) {
     var self = this;
     $controller('EntityListController', {resourceName: 'products', self: self});
 }
