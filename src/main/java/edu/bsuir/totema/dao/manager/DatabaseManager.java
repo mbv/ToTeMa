@@ -28,16 +28,6 @@ public class DatabaseManager {
     public static final String PASSWORD = "password";
 
     /**
-     * Represents maximum amount of connection which are created and used in web app
-     */
-    public static final String POOL_SIZE = "poolSize";
-
-    /**
-     * Represents maximum time in milliseconds which provides to user to take connection
-     */
-    public static final String POLL_TIMEOUT = "pollTimeout";
-
-    /**
      * Represents connection url to database
      */
     public static final String URL = "url";

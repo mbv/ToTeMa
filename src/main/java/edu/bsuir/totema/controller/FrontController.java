@@ -3,7 +3,6 @@ package edu.bsuir.totema.controller;
 import edu.bsuir.totema.command.Command;
 import edu.bsuir.totema.command.exception.CommandException;
 import edu.bsuir.totema.command.factory.CommandFactory;
-import edu.bsuir.totema.dao.pool.ConnectionPool;
 import edu.bsuir.totema.response.ResponseErrorInfo;
 import edu.bsuir.totema.util.serialization.GsonProvider;
 import org.apache.log4j.Logger;
@@ -37,11 +36,6 @@ public class FrontController extends javax.servlet.http.HttpServlet {
     @Override
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
-    }
-
-    @Override
-    public void destroy() {
-        ConnectionPool.getInstance().releasePool();
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response)
