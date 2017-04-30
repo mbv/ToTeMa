@@ -1,0 +1,25 @@
+<div class="container" ng-controller="SignInController as self">
+    <form id="login-form">
+        <div class="form-group required">
+            <label class="control-label" for="loginform-username">Username</label>
+            <input type="text" id="loginform-username" class="form-control" ng-model="self.username">
+        </div>
+        <div class="form-group required">
+            <label class="control-label" for="loginform-password">Password</label>
+            <input type="password" id="loginform-password" class="form-control" ng-model="self.password">
+        </div>
+        <div class="form-group field-loginform-rememberme">
+            <div class="checkbox">
+                <label for="loginform-rememberme">
+                    <input type="checkbox" id="loginform-rememberme" ng-model="self.needToRemember">
+                    Remember me
+                </label>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary" ng-click="self.signIn()">Войти</button>
+        </div>
+    </form>
+</div>

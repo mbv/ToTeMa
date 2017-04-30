@@ -1,6 +1,5 @@
 package by.totema.recourse.configuration.security;
 
-import by.totema.recourse.entity.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -42,10 +41,10 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
         http
                 .authorizeRequests()
 
-                .antMatchers(HttpMethod.GET, "/api/employees/**").authenticated()
-                .antMatchers(HttpMethod.PUT, "/api/employees/**").authenticated()
+                .antMatchers(HttpMethod.GET, "/api/employees/**").permitAll()
+                .antMatchers(HttpMethod.PUT, "/api/employees/**").permitAll()
                 .antMatchers("/api/employees/logout", "/api/employees/password/change").authenticated()
-                .antMatchers( "/api/employees/**").hasAuthority(Employee.Role.ADMIN.name())
+                .antMatchers( "/api/employees/**").permitAll()
 
 
                 .antMatchers("/api/**").authenticated()

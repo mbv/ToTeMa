@@ -1,2 +1,12 @@
 angular
-    .module('demo', ['ngRoute', 'ngResource', 'ui.bootstrap', 'toaster', 'ngAnimate', '720kb.datepicker']);
+    .module('app', [
+        'ngResource',
+        'ngAnimate',
+        'ui.router',
+        'ui.router.redirect',
+        'ngCookies',
+        'permission',
+        'ui.bootstrap',
+        'toaster',
+        '720kb.datepicker',
+        'ui.date']);

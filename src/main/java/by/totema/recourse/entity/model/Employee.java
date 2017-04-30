@@ -5,7 +5,7 @@ import org.hibernate.validator.constraints.SafeHtml;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
-import java.security.Timestamp;
+import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
@@ -69,6 +69,7 @@ public class Employee extends BaseEntity<Integer> {
         contractTill = employee.contractTill;
         reportsTo = employee.reportsTo;
         role = employee.role;
+        setId(employee.getId());
     }
 
 

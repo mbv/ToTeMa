@@ -9,14 +9,18 @@
   "dependencies": {
     "jquery": "*",
     "angular": "*",
-    "angular-route": "*",
+    "angular-cookies": "*",
+    "angular-ui-router": "*",
+    "angular-ui-router.redirect": "*",
     "angular-resource": "*",
     "angularjs-toaster": "*",
     "angular-bootstrap": "*",
+    "angular-permission": "*",
     "angularjs-datepicker": "*",
     "angular-ui-select2": "*",
     "bootstrap": "*",
-    "bootstrap-material-design": "*"
+    "bootstrap-material-design": "~0.2.2",
+    "angular-ui-date": "*"
   },
   "ignore": [
     "**/.*",

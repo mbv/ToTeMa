@@ -26,11 +26,11 @@
                         <td class="col-xs-1">{{person.id}}</td>
                         <td class="col-xs-1">{{person.username}}</td>
                         <td class="col-xs-1">{{person.name}}</td>
-                        <td class="col-xs-1">{{person.hireDate}}</td>
+                        <td class="col-xs-1">{{(person.hireDate | date : 'MM/dd/yyyy') || 'N/A' }}</td>
                         <td class="col-xs-1">{{person.officeKey}}</td>
                         <td class="col-xs-1">{{person.title}}</td>
                         <td class="col-xs-1">{{person.yearSalary}}</td>
-                        <td class="col-xs-1">{{person.contractTill}}</td>
+                        <td class="col-xs-1">{{(person.contractTill | date : 'MM/dd/yyyy') || 'N/A' }}</td>
                         <td class="col-xs-1">{{person.reportsTo}}</td>
                         <td class="col-xs-3">
                             <button class="btn btn-xs btn-info" ng-click="self.editEntity(person)">Edit</button>
