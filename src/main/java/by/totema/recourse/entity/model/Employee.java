@@ -3,13 +3,13 @@ package by.totema.recourse.entity.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.SafeHtml;
 
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.security.Timestamp;
 import java.util.Objects;
 
+@Entity
+@Table(name = "employee")
 public class Employee extends BaseEntity<Integer> {
     @NotNull
     @SafeHtml
@@ -32,7 +32,7 @@ public class Employee extends BaseEntity<Integer> {
     private Timestamp hireDate;
 
     @NotNull
-    private long officeKey;
+    private int officeKey;
 
     @NotNull
     @SafeHtml
@@ -41,13 +41,13 @@ public class Employee extends BaseEntity<Integer> {
     private String title;
 
     @NotNull
-    private long yearSalary;
+    private int yearSalary;
 
     @Column(columnDefinition = "DATE")
     private Timestamp contractTill;
 
     @NotNull
-    private long reportsTo;
+    private int reportsTo;
 
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -104,11 +104,11 @@ public class Employee extends BaseEntity<Integer> {
         this.hireDate = hireDate;
     }
 
-    public long getOfficeKey() {
+    public int getOfficeKey() {
         return officeKey;
     }
 
-    public void setOfficeKey(long officeKey) {
+    public void setOfficeKey(int officeKey) {
         this.officeKey = officeKey;
     }
 
@@ -128,19 +128,19 @@ public class Employee extends BaseEntity<Integer> {
         this.title = title;
     }
 
-    public long getYearSalary() {
+    public int getYearSalary() {
         return yearSalary;
     }
 
-    public void setYearSalary(long yearSalary) {
+    public void setYearSalary(int yearSalary) {
         this.yearSalary = yearSalary;
     }
 
-    public long getReportsTo() {
+    public int getReportsTo() {
         return reportsTo;
     }
 
-    public void setReportsTo(long reportsTo) {
+    public void setReportsTo(int reportsTo) {
         this.reportsTo = reportsTo;
     }
 
