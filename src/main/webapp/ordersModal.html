@@ -1,0 +1,43 @@
+<div>
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="self.cancel()"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" ng-if="self.updateMode">Update Order</h4>
+            <h4 class="modal-title" ng-if="!self.updateMode">Create Order</h4>
+        </div>
+        <div class="modal-body">
+            <div class="input-group" style="margin-bottom: 20px;">
+                <span class="input-group-addon">Office Key</span>
+                <input type="text" class="form-control" ng-model="self.entity.officeKey">
+            </div>
+            <div class="input-group" style="margin-bottom: 20px;">
+                <span class="input-group-addon">Employee Key</span>
+                <input type="text" class="form-control" ng-model="self.entity.employeeKey">
+            </div>
+            <div class="input-group" style="margin-bottom: 20px;">
+                <span class="input-group-addon">Date Key</span>
+                <input type="text" class="form-control" ng-model="self.entity.dateKey">
+            </div>
+            <div class="input-group" style="margin-bottom: 20px;">
+                <span class="input-group-addon">Quantity</span>
+                <input type="text" class="form-control" ng-model="self.entity.quantity">
+            </div>
+            <div class="input-group" style="margin-bottom: 20px;">
+                <span class="input-group-addon">Cost</span>
+                <input type="number" class="form-control" ng-model="self.entity.cost">
+            </div>
+            <div class="input-group" style="margin-bottom: 20px;">
+                <span class="input-group-addon">Price</span>
+                <input type="text" class="form-control" ng-model="self.entity.price">
+            </div>
+            <div class="input-group" style="margin-bottom: 20px;">
+                <span class="input-group-addon">Gross Margin</span>
+                <input type="text" class="form-control" ng-model="self.entity.grossMargin">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="self.saveEntity()">Save</button>
+            <button class="btn btn-default" type="button" ng-click="self.cancel()">Cancel</button>
+        </div>
+    </div>
+</div>

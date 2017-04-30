@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+    <!-- Material Design fonts -->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons">
+    <link type="text/css" rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Bootstrap Material Design -->
+    <link rel="stylesheet" type="text/css" href="lib/bootstrap-material-design/dist/bootstrap-material-design.min.css">
+    <link rel="stylesheet" type="text/css" href="lib/css/ripples.min.css">
+    <link type="text/css" rel="stylesheet" href="lib/angularjs-toaster/toaster.min.css">
+    <link type="text/css" rel="stylesheet" href="lib/angularjs-datepicker/dist/angular-datepicker.css">
+    <link rel="stylesheet" href="lib/select2/select2.css">
+
+    <script type="text/javascript" src="lib/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="lib/angular/angular.min.js"></script>
+    <script type="text/javascript" src="lib/angular-animate/angular-animate.min.js"></script>
+    <script type="text/javascript" src="lib/angular-route/angular-route.min.js"></script>
+    <script type="text/javascript" src="lib/angular-resource/angular-resource.min.js"></script>
+    <script type="text/javascript" src="lib/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script type="text/javascript" src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="lib/angularjs-datepicker/dist/angular-datepicker.min.js"></script>
+    <script type="text/javascript" src="lib/angularjs-toaster/toaster.min.js"></script>
+    <script type="text/javascript" src="lib/select2/select2.js"></script>
+    <script type="text/javascript" src="lib/angular-ui-select2/src/select2.js"></script>
+    <script type="text/javascript" src="app/application.js"></script>
+    <script type="text/javascript" src="app/routes.js"></script>
+    <script type="text/javascript" src="app/navigation.controller.js"></script>
+    <script type="text/javascript" src="app/entityModal.controller.js"></script>
+    <script type="text/javascript" src="app/entityList.controller.js"></script>
+    <script type="text/javascript" src="app/employeesList.controller.js"></script>
+    <script type="text/javascript" src="app/conversationsRates.controller.js"></script>
+    <script type="text/javascript" src="app/countriesList.controller.js"></script>
+    <script type="text/javascript" src="app/officesList.controller.js"></script>
+    <script type="text/javascript" src="app/ordersList.controller.js"></script>
+    <script type="text/javascript" src="app/productList.controller.js"></script>
+    <script type="text/javascript" src="app/productTypesList.controller.js"></script>
+</head>
+<body ng-app="demo">
+    <header>
+        <nav class="navbar navbar-default navbar-fixed-top" ng-controller="NavigationController as self">
+            <div class="container-fluid">
+                <ul class="nav navbar-nav">
+                    <li ng-class="{ active: self.isActive('/') }"><a href='#!/'>Home</a></li>
+                    <li ng-class="{ active: self.isActive('/users') }"><a href="#!/users">Users</a></li>
+                    <li ng-class="{ active: self.isActive('/convertion-rates') }"><a href="#!/convertion-rates">Convertion Rates</a></li>
+                    <li ng-class="{ active: self.isActive('/countries') }"><a href='#!/countries'>Countries</a></li>
+                    <li ng-class="{ active: self.isActive('/offices') }"><a href='#!/offices'>Offices</a></li>
+                    <li ng-class="{ active: self.isActive('/orders') }"><a href='#!/orders'>Orders</a></li>
+                    <li ng-class="{ active: self.isActive('/products') }"><a href='#!/products'>Products</a></li>
+                    <li ng-class="{ active: self.isActive('/types') }"><a href='#!/types'>Products Types</a></li>
+                    <li ng-class="{ active: self.isActive('/about') }"><a href="#!/about">About</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main style="margin-top: 70px;">
+        <toaster-container></toaster-container>
+        <div ng-view></div>
+    </main>
+</body>
+</html>

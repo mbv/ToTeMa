@@ -1,0 +1,35 @@
+<div>
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="self.cancel()"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" ng-if="self.updateMode">Update Product</h4>
+            <h4 class="modal-title" ng-if="!self.updateMode">Create Product</h4>
+        </div>
+        <div class="modal-body">
+            <div class="input-group" style="margin-bottom: 20px;">
+                <span class="input-group-addon">Name</span>
+                <input type="text" class="form-control" ng-model="self.entity.name">
+            </div>
+            <div class="input-group" style="margin-bottom: 20px;">
+                <span class="input-group-addon">Size</span>
+                <input type="text" class="form-control" ng-model="self.entity.size">
+            </div>
+            <div class="input-group" style="margin-bottom: 20px;">
+                <span class="input-group-addon">Type Key</span>
+                <input type="text" class="form-control" ng-model="self.entity.typeKey">
+            </div>
+            <div class="input-group" style="margin-bottom: 20px;">
+                <span class="input-group-addon">Color</span>
+                <input type="text" class="form-control" ng-model="self.entity.color">
+            </div>
+            <div class="input-group" style="margin-bottom: 20px;">
+                <span class="input-group-addon">Code</span>
+                <input type="text" class="form-control" ng-model="self.entity.code">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="self.saveEntity()">Save</button>
+            <button class="btn btn-default" type="button" ng-click="self.cancel()">Cancel</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+<div class="container" ng-controller="OrdersListController as self">
+    <div class="col-xs-12">
+        <div class="panel panel-default" style="margin-top: 30px;">
+            <div class="panel-heading">
+                <span style="line-height: 34px;">Orders</span>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#order-modal" ng-click="self.addEntity()" style="float: right;">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <thead>
+                    <th>#</th>
+                    <th>Office Key</th>
+                    <th>Employee Key</th>
+                    <th>Date Key</th>
+                    <th>Quantity</th>
+                    <th>Cost</th>
+                    <th>Price</th>
+                    <th>Gross Margin</th>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="order in self.entities">
+                        <td class="col-xs-1">{{order.id}}</td>
+                        <td class="col-xs-1">{{order.officeKey}}</td>
+                        <td class="col-xs-1">{{order.employeeKey}}</td>
+                        <td class="col-xs-1">{{order.dateKey}}</td>
+                        <td class="col-xs-1">{{order.quantity}}</td>
+                        <td class="col-xs-1">{{order.cost}}</td>
+                        <td class="col-xs-1">{{order.price}}</td>
+                        <td class="col-xs-1">{{order.grossMatgin}}</td>
+                        <td class="col-xs-3">
+                            <button class="btn btn-xs btn-info" ng-click="self.editEntity(order)">Edit</button>
+                            <button class="btn btn-xs btn-danger" ng-click="self.deleteEntity(order)">Delete</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

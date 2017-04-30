@@ -1,0 +1,45 @@
+<div class="container" ng-controller="EmployeesListController as self">
+    <div class="col-xs-12">
+        <div class="panel panel-default" style="margin-top: 30px;">
+            <div class="panel-heading">
+                <span style="line-height: 34px;">People</span>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#user-modal" ng-click="self.addEntity()" style="float: right;">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <thead>
+                    <th>#</th>
+                    <th>Username</th>
+                    <th>Name</th>
+                    <th>Hire Date</th>
+                    <th>Office Key</th>
+                    <th>Title</th>
+                    <th>Year Salary</th>
+                    <th>Contract Till</th>
+                    <th>Reports To</th>
+                    <th>Actions</th>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="person in self.entities">
+                        <td class="col-xs-1">{{person.id}}</td>
+                        <td class="col-xs-1">{{person.username}}</td>
+                        <td class="col-xs-1">{{person.name}}</td>
+                        <td class="col-xs-1">{{person.hireDate}}</td>
+                        <td class="col-xs-1">{{person.officeKey}}</td>
+                        <td class="col-xs-1">{{person.title}}</td>
+                        <td class="col-xs-1">{{person.yearSalary}}</td>
+                        <td class="col-xs-1">{{person.contractTill}}</td>
+                        <td class="col-xs-1">{{person.reportsTo}}</td>
+                        <td class="col-xs-3">
+                            <button class="btn btn-xs btn-info" ng-click="self.editEntity(person)">Edit</button>
+                            <button class="btn btn-xs btn-danger" ng-click="self.deleteEntity(person)">Delete</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
