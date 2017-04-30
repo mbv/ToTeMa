@@ -16,5 +16,10 @@ public class ControllerConfiguration {
         return new EmployeeControllerImpl(employeeService, defaultTokenServices);
     }
 
+    @Bean
+    public CountryController countryController(CountryService countryService) {
+        return new CountryControllerImpl(countryService);
+    }
+
 }
 

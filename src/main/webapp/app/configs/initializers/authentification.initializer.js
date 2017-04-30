@@ -6,7 +6,7 @@ function InitAuthenticationService(AuthService, $rootScope, $state) {
     AuthService.tryAuthorize();
     $rootScope.$on('$stateChangeStart', function(event, toState) {
         if (!AuthService.isAuthorized) {
-            if (toState.name !== 'signIn' && toState.name !== 'signUp') {
+            if (toState.name !== 'signIn') {
                 event.preventDefault();
                 $state.go('signIn');
             }

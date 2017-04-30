@@ -8,27 +8,27 @@
         <div class="modal-body">
             <div class="input-group" style="margin-bottom: 20px;">
                 <span class="input-group-addon">Name</span>
-                <input type="text" class="form-control" ng-model="self.entity.name">
+                <input type="text" class="form-control" ng-model="self.country.name">
             </div>
             <div class="input-group" style="margin-bottom: 20px;">
                 <span class="input-group-addon">ISO3</span>
-                <input type="text" class="form-control" ng-model="self.entity.size">
+                <input type="text" class="form-control" ng-model="self.country.isoThreeLetterCode">
             </div>
             <div class="input-group" style="margin-bottom: 20px;">
                 <span class="input-group-addon">ISO2</span>
-                <input type="text" class="form-control" ng-model="self.entity.typeKey">
+                <input type="text" class="form-control" ng-model="self.country.isoTwoLetterCode">
             </div>
             <div class="input-group" style="margin-bottom: 20px;">
                 <span class="input-group-addon">ISO3 digit</span>
-                <input type="text" class="form-control" ng-model="self.entity.color">
+                <input type="text" class="form-control" ng-model="self.country.isoThreeDigitCode">
             </div>
             <div class="input-group" style="margin-bottom: 20px;">
                 <span class="input-group-addon">Currency</span>
-                <input type="text" class="form-control" ng-model="self.entity.code">
+                <input type="text" class="form-control" ng-model="self.country.currencyName">
             </div>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary" type="button" ng-click="self.saveEntity()">Save</button>
+            <button class="btn btn-primary" type="button" ng-click="self.saveCountry()">Save</button>
             <button class="btn btn-default" type="button" ng-click="self.cancel()">Cancel</button>
         </div>
     </div>

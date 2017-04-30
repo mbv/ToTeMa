@@ -33,13 +33,13 @@ import static org.slf4j.LoggerFactory.getLogger;
 public class EmployeeControllerImpl extends AbstractCrudController<Employee, Integer> implements EmployeeController {
 
     private static final Logger logger = getLogger(EmployeeControllerImpl.class);
-    private EmployeeService userService;
+    private EmployeeService employeeService;
     private DefaultTokenServices defaultTokenServices;
 
     @Autowired
     public EmployeeControllerImpl(EmployeeService employeeService, DefaultTokenServices defaultTokenServices) {
         super(employeeService, logger);
-        this.userService = employeeService;
+        this.employeeService = employeeService;
         this.defaultTokenServices = defaultTokenServices;
     }
 
@@ -58,7 +58,7 @@ public class EmployeeControllerImpl extends AbstractCrudController<Employee, Int
     public Employee update(@Valid @RequestBody Employee entity, @PathVariable("id") Integer id, @Auth EmployeeAuthDetails authDetails) {
         checkAuthority(entity, authDetails, this::hasAuthorityToRead);
         return wrapServiceCall(logger, () -> {
-            Optional<Employee> callResult = userService.update(entity, id, authDetails);
+            Optional<Employee> callResult = employeeService.update(entity, id, authDetails);
             return callResult.orElseThrow(NotFoundException::new);
         });
     }
@@ -68,7 +68,7 @@ public class EmployeeControllerImpl extends AbstractCrudController<Employee, Int
         if (!authDetails.isAdmin()) {
             throw new AccessDeniedException();
         }
-        return wrapServiceCall(logger, () -> userService.findByRole(role, pageable));
+        return wrapServiceCall(logger, () -> employeeService.findByRole(role, pageable));
     }
 
     @Override
@@ -85,13 +85,13 @@ public class EmployeeControllerImpl extends AbstractCrudController<Employee, Int
 
     @Override
     public void changePassword(@RequestBody PasswordChanging passwordChanging, @Auth EmployeeAuthDetails userAuthDetails) throws ControllerException {
-        wrapServiceCall(logger, () -> userService.changePassword(userAuthDetails.getId(), passwordChanging));
+        wrapServiceCall(logger, () -> employeeService.changePassword(userAuthDetails.getId(), passwordChanging));
     }
 
     @Override
     public Employee getMyInfo(@Auth EmployeeAuthDetails authDetails) {
         return wrapServiceCall(logger, () -> {
-                    Optional<Employee> callResult = userService.findById(authDetails.getId());
+                    Optional<Employee> callResult = employeeService.findById(authDetails.getId());
                     return callResult.orElseThrow(NotFoundException::new);
                 }
         );

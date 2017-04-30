@@ -162,8 +162,7 @@ public class Employee extends BaseEntity<Integer> {
 
         Employee employee = (Employee) o;
 
-        return super.equals(o) &&
-                officeKey == employee.officeKey &&
+        return officeKey == employee.officeKey &&
                 yearSalary == employee.yearSalary &&
                 reportsTo == employee.reportsTo &&
                 role == employee.role &&

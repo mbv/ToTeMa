@@ -17,7 +17,7 @@
                     <li ng-class="{ active: self.isActive('/') }"><a href='#!/'>Home</a></li>
                     <li ng-class="{ active: self.isActive('/users') }"><a href="#!/users">Users</a></li>
                     <li ng-class="{ active: self.isActive('/convertion-rates') }"><a href="#!/convertion-rates">Convertion Rates</a></li>
-                    <li ng-class="{ active: self.isActive('/countries') }"><a href='#!/countries'>Countries</a></li>
+                    <li ng-class="{ active: self.isActive('/countries') }"><a ui-sref="countries">Countries</a></li>
                     <li ng-class="{ active: self.isActive('/offices') }"><a href='#!/offices'>Offices</a></li>
                     <li ng-class="{ active: self.isActive('/orders') }"><a href='#!/orders'>Orders</a></li>
                     <li ng-class="{ active: self.isActive('/products') }"><a href='#!/products'>Products</a></li>
@@ -64,7 +64,11 @@
     <script type="text/javascript" src="app/services/auth.service.js"></script>
 
     <script type="text/javascript" src="app/factories/user.factory.js"></script>
+    <script type="text/javascript" src="app/factories/country.factory.js"></script>
 
+
+    <script type="text/javascript" src="app/controllers/countries/countryList.controller.js"></script>
+    <script type="text/javascript" src="app/controllers/countries/countryModal.controller.js"></script>
 
     <script type="text/javascript" src="app/controllers/navigation.controller.js"></script>
     <script type="text/javascript" src="app/controllers/signIn.controller.js"></script>

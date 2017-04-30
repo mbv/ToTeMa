@@ -1,9 +1,9 @@
-<div class="container" ng-controller="CountriesListController as self">
+<div class="container" ng-controller="CountryListController as self">
     <div class="col-xs-12">
         <div class="panel panel-default" style="margin-top: 30px;">
             <div class="panel-heading">
                 <span style="line-height: 34px;">Countries</span>
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#country-modal" ng-click="self.addEntity()" style="float: right;">
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#country-modal" ng-click="self.addCountry()" style="float: right;">
                     <span class="glyphicon glyphicon-plus"></span>
                 </button>
             </div>
@@ -15,19 +15,19 @@
                     <th>ISO3</th>
                     <th>ISO2</th>
                     <th>ISO3 Digit</th>
-                    <th>Currency</th>
+                    <th>Currency Name</th>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="country in self.entities">
+                    <tr ng-repeat="country in self.countries">
                         <td class="col-xs-1">{{country.id}}</td>
                         <td class="col-xs-1">{{country.name}}</td>
-                        <td class="col-xs-1">{{country.iso3}}</td>
-                        <td class="col-xs-1">{{country.iso2}}</td>
-                        <td class="col-xs-1">{{country.iso3digit}}</td>
-                        <td class="col-xs-1">{{country.currency}}</td>
+                        <td class="col-xs-1">{{country.isoThreeLetterCode}}</td>
+                        <td class="col-xs-1">{{country.isoTwoLetterCode}}</td>
+                        <td class="col-xs-1">{{country.isoThreeDigitCode}}</td>
+                        <td class="col-xs-1">{{country.currencyName}}</td>
                         <td class="col-xs-3">
-                            <button class="btn btn-xs btn-info" ng-click="self.editEntity(country)">Edit</button>
-                            <button class="btn btn-xs btn-danger" ng-click="self.deleteEntity(country)">Delete</button>
+                            <button class="btn btn-xs btn-info" ng-click="self.editCountry(country)">Edit</button>
+                            <button class="btn btn-xs btn-danger" ng-click="self.deleteCountry(country)">Delete</button>
                         </td>
                     </tr>
                     </tbody>

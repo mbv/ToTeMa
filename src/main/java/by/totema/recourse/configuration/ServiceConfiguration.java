@@ -29,5 +29,10 @@ public class ServiceConfiguration {
                 passwordChangingValidator);
     }
 
+    @Bean
+    public CountryService countryService(CountryRepository countryRepository) {
+        return new CountryServiceImpl(countryRepository);
+    }
+
 
 }

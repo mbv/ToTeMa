@@ -209,7 +209,7 @@ public class EmployeeServiceImpl extends AbstractCrudService<Employee, Integer> 
 
     @Override
     protected String getEntityName() {
-        return "user";
+        return "employee";
     }
 
     @Override

@@ -14,16 +14,16 @@ function AppStates($stateProvider, $urlRouterProvider) {
             templateUrl: 'templates/sign_in.html'
         },
         {
-            name: 'crud',
-            url: '/crud',
-            templateUrl: 'templates/crud/index.html',
-            redirectTo: 'crud.employees'
-        },
-        {
-            name: 'crud.employees',
+            name: 'employees',
             url: '/employees',
             controller: 'EmployeeListController as self',
             templateUrl: 'templates/crud/employees/index.html'
+        },
+        {
+            name: 'countries',
+            url: '/countries',
+            controller: 'CountryListController as self',
+            templateUrl: 'templates/crud/countries/index.html'
         },
         { name: 'otherwise', url: '/otherwise', template: '<h1>404</h1>' }
     ].forEach(function(state) { $stateProvider.state(state) });
