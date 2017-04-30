@@ -19,7 +19,6 @@
     "angularjs-datepicker": "*",
     "angular-ui-select2": "*",
     "bootstrap": "*",
-    "bootstrap-material-design": "~0.2.2",
     "angular-ui-date": "*"
   },
   "ignore": [
