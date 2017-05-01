@@ -1,5 +1,6 @@
 package by.totema.recourse.util;
 
+import by.totema.recourse.entity.dto.ErrorMessage;
 import by.totema.recourse.service.exception.ServiceConstraintViolationException;
 import by.totema.recourse.service.exception.ServiceException;
 import by.totema.recourse.util.WrapperFunctions.WrapperFunction;
@@ -36,7 +37,7 @@ public class RepositoryCallWrapper {
             } catch (EmptyResultDataAccessException e) {
                 result = Optional.empty();
             } catch (DataIntegrityViolationException e) {
-                throw new ServiceConstraintViolationException(e);
+                throw new ServiceConstraintViolationException(new ErrorMessage("Invalid entity", "Invalid entity references"));
             }
             return result;
         });
@@ -50,7 +51,7 @@ public class RepositoryCallWrapper {
             } catch (EmptyResultDataAccessException e) {
                 result = Optional.empty();
             } catch (DataIntegrityViolationException e) {
-                throw new ServiceConstraintViolationException(e);
+                throw new ServiceConstraintViolationException(new ErrorMessage("Invalid entity", "Invalid entity references"));
             }
             return result;
         });

@@ -14,6 +14,7 @@ import by.totema.recourse.service.EmployeeService;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
@@ -50,8 +51,13 @@ public class EmployeeControllerImpl extends AbstractCrudController<Employee, Int
     }
 
     @Override
+    public <S extends Employee> S create(@Valid @RequestBody S entity, @Auth EmployeeAuthDetails authDetails) {
+        throw new MethodNotAllowedException(HttpMethod.POST);
+    }
+
+    @Override
     public void delete(Integer integer, @Auth EmployeeAuthDetails authDetails) {
-        throw new MethodNotAllowedException();
+        throw new MethodNotAllowedException(HttpMethod.DELETE);
     }
 
     @Override
