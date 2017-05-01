@@ -99,6 +99,5 @@ public class Country extends BaseEntity<Integer> {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), name, isoTwoLetterCode, name, isoThreeLetterCode, currencyName, isoThreeDigitCode);
-
     }
 }

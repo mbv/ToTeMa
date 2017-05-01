@@ -3,28 +3,15 @@ package by.totema.recourse.entity.model;
 import org.hibernate.validator.constraints.SafeHtml;
 
 import javax.persistence.Column;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Objects;
 
+@Entity
+@Table(name = "product_type")
 public class ProductType extends  BaseEntity<Integer>  {
-
-    /**
-     * Represents that this Employee entity has status Active.
-     * Default value
-     */
-    public static final int STATUS_ACTIVE = 1;
-    /**
-     * Represents that this Employee entity has status Banned.
-     * It means that this user cannot bet and create lots
-     */
-    public static final int STATUS_BANNED = 0;
-    /**
-     * Represents that this Employee entity is deleted.
-     * Setting this status equals to deleting this user from the app.
-     */
-    public static final int STATUS_DELETED = -1;
 
     @NotNull
     @SafeHtml
@@ -49,10 +36,7 @@ public class ProductType extends  BaseEntity<Integer>  {
     @Size(min = 1, max = 45)
     @Column(length = 45, nullable = false)
     private String type;
-    @NotNull
-    @Min(-1)
-    @Max(1)
-    private int status;
+
 
     public String getGender() {
         return gender;
@@ -86,43 +70,22 @@ public class ProductType extends  BaseEntity<Integer>  {
         this.type = type;
     }
 
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof ProductType)) return false;
+        if (!super.equals(o)) return false;
 
         ProductType productType = (ProductType) o;
 
-        if (getId() != productType.getId()) return false;
-        if (age != null ? !age.equals(productType.age) : productType.age != null) return false;
-        if (season != null ? !season.equals(productType.season) : productType.season != null) return false;
-        return gender != null ? !gender.equals(productType.gender) : productType.gender != null;
+        return Objects.equals(gender, productType.gender) &&
+                Objects.equals(age, productType.age) &&
+                Objects.equals(season, productType.season) &&
+                Objects.equals(type, productType.type);
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (getId() ^ (getId() >>> 32));
-        result = 31 * result + (age != null ? age.hashCode() : 0);
-        result = 31 * result + (season != null ? season.hashCode() : 0);
-        result = 31 * result + (gender != null ? gender.hashCode() : 0);
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Product type{" +
-                "id=" + getId() +
-                ", age='" + age + '\'' +
-                ", gender='" + gender + '\'' +
-                ", season='" + season + '\'' +
-                '}';
+        return Objects.hash(super.hashCode(), gender, age, season, type);
     }
 }

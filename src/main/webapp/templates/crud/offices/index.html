@@ -1,9 +1,9 @@
-<div class="container" ng-controller="OfficesListController as self">
+<div class="container" ng-controller="OfficeListController as self">
     <div class="col-xs-12">
         <div class="panel panel-default" style="margin-top: 30px;">
             <div class="panel-heading">
                 <span style="line-height: 34px;">Offices</span>
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#office-modal" ng-click="self.addEntity()" style="float: right;">
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#office-modal" ng-click="self.addOffice()" style="float: right;">
                     <span class="glyphicon glyphicon-plus"></span>
                 </button>
             </div>
@@ -19,17 +19,17 @@
                     <th>Postal Code</th>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="office in self.entities">
+                    <tr ng-repeat="office in self.offices">
                         <td class="col-xs-1">{{office.id}}</td>
                         <td class="col-xs-1">{{office.city}}</td>
                         <td class="col-xs-1">{{office.address}}</td>
                         <td class="col-xs-1">{{office.fax}}</td>
                         <td class="col-xs-1">{{office.phone}}</td>
-                        <td class="col-xs-1">{{office.contryKey}}</td>
+                        <td class="col-xs-1">{{office.countryKey}}</td>
                         <td class="col-xs-1">{{office.postalCode}}</td>
                         <td class="col-xs-3">
-                            <button class="btn btn-xs btn-info" ng-click="self.editEntity(office)">Edit</button>
-                            <button class="btn btn-xs btn-danger" ng-click="self.deleteEntity(office)">Delete</button>
+                            <button class="btn btn-xs btn-info" ng-click="self.editOffice(office)">Edit</button>
+                            <button class="btn btn-xs btn-danger" ng-click="self.deleteOffice(office)">Delete</button>
                         </td>
                     </tr>
                     </tbody>

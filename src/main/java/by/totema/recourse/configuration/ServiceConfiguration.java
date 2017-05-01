@@ -15,6 +15,11 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 public class ServiceConfiguration {
 
     @Bean
+    public CountryService countryService(CountryRepository countryRepository) {
+        return new CountryServiceImpl(countryRepository);
+    }
+
+    @Bean
     public EmployeeService userService(
             EmployeeRepository employeeRepository,
             PasswordEncoder passwordEncoder,
@@ -30,9 +35,15 @@ public class ServiceConfiguration {
     }
 
     @Bean
-    public CountryService countryService(CountryRepository countryRepository) {
-        return new CountryServiceImpl(countryRepository);
+    public OfficeService officeService(OfficeRepository officeRepository) {
+        return new OfficeServiceImpl(officeRepository);
     }
+
+    @Bean
+    public ProductTypeService productTypeService(ProductTypeRepository productTypeRepository){
+        return new ProductTypeServiceImpl(productTypeRepository);
+    }
+
 
 
 }

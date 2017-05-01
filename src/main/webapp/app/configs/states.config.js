@@ -25,6 +25,18 @@ function AppStates($stateProvider, $urlRouterProvider) {
             controller: 'CountryListController as self',
             templateUrl: 'templates/crud/countries/index.html'
         },
+        {
+            name: 'offices',
+            url: '/offices',
+            controller: 'OfficeListController as self',
+            templateUrl: 'templates/crud/offices/index.html'
+        },
+        {
+            name: 'productTypes',
+            url: '/product-types',
+            controller: 'ProductTypeListController as self',
+            templateUrl: 'templates/crud/productTypes/index.html'
+        },
         { name: 'otherwise', url: '/otherwise', template: '<h1>404</h1>' }
     ].forEach(function(state) { $stateProvider.state(state) });
 

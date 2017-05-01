@@ -18,7 +18,7 @@ public class ProductTypeServiceImpl extends AbstractCrudService<ProductType, Int
 
     @Override
     protected String getEntityName() {
-        return "productTypes";
+        return "productType";
     }
 
     @Override

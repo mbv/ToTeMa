@@ -3,28 +3,15 @@ package by.totema.recourse.entity.model;
 import org.hibernate.validator.constraints.SafeHtml;
 
 import javax.persistence.Column;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Objects;
 
-public class Office extends  BaseEntity<Integer>  {
-    /**
-     * Represents that this Employee entity has status Active.
-     * Default value
-     */
-    public static final int STATUS_ACTIVE = 1;
-    /**
-     * Represents that this Employee entity has status Banned.
-     * It means that this user cannot bet and create lots
-     */
-    public static final int STATUS_BANNED = 0;
-    /**
-     * Represents that this Employee entity is deleted.
-     * Setting this status equals to deleting this user from the app.
-     */
-    public static final int STATUS_DELETED = -1;
-
+@Entity
+@Table(name = "office")
+public class Office extends BaseEntity<Integer> {
     @NotNull
     @SafeHtml
     @Size(min = 1, max = 200)
@@ -32,7 +19,7 @@ public class Office extends  BaseEntity<Integer>  {
     private String address;
 
     @NotNull
-    private long countryKey;
+    private int countryKey;
 
     @NotNull
     @SafeHtml
@@ -58,14 +45,6 @@ public class Office extends  BaseEntity<Integer>  {
     @Column(length = 45, nullable = false)
     private String postalCode;
 
-    @NotNull
-    private long yearSalary;
-
-    @NotNull
-    @Min(-1)
-    @Max(1)
-    private int status;
-
     public String getAddress() {
         return address;
     }
@@ -74,19 +53,11 @@ public class Office extends  BaseEntity<Integer>  {
         this.address = address;
     }
 
-    public long getCountryKey() {
+    public int getCountryKey() {
         return countryKey;
     }
 
-    public void setYearSalary(int yearSalary) {
-        this.yearSalary = yearSalary;
-    }
-
-    public long getYearSalary() {
-        return yearSalary;
-    }
-
-    public void setCountryKey(long countryKey) {
+    public void setCountryKey(int countryKey) {
         this.countryKey = countryKey;
     }
 
@@ -122,50 +93,25 @@ public class Office extends  BaseEntity<Integer>  {
         this.postalCode = postalCode;
     }
 
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Office)) return false;
+        if (!super.equals(o)) return false;
 
         Office office = (Office) o;
 
-        if (getId() != office.getId()) return false;
-        if (address != null ? !address.equals(office.address) : office.address != null) return false;
-        if (city != null ? !city.equals(office.city) : office.city != null) return false;
-        if (fax != null ? !fax.equals(office.fax) : office.fax != null) return false;
-        if (phone != null ? !phone.equals(office.phone) : office.phone != null) return false;
-        return  (postalCode != null ? !postalCode.equals(office.postalCode) : office.postalCode != null);
-
+        return Objects.equals(address, office.address) &&
+                Objects.equals(city, office.city) &&
+                Objects.equals(fax, office.fax) &&
+                Objects.equals(phone, office.phone) &&
+                Objects.equals(postalCode, office.postalCode) &&
+                (countryKey == office.countryKey);
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (getId() ^ (getId() >>> 32));
-        result = 31 * result + (address != null ? address.hashCode() : 0);
-        result = 31 * result + (city != null ? city.hashCode() : 0);
-        result = 31 * result + (city != null ? fax.hashCode() : 0);
-        result = 31 * result + (city != null ? phone.hashCode() : 0);
-        result = 31 * result + (city != null ? postalCode.hashCode() : 0);
-        return result;
+        return Objects.hash(super.hashCode(), address, city, fax, phone, postalCode);
     }
 
-    @Override
-    public String toString() {
-        return "Office{" +
-                "id=" + getId() +
-                ", city='" + city + '\'' +
-                ", address='" + address + '\'' +
-                ", phone='" + phone + '\'' +
-                ", fax='" + fax + '\'' +
-                ", postal code='" + postalCode + '\'' +
-                '}';
-    }
 }

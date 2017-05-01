@@ -18,10 +18,10 @@
                     <li ng-class="{ active: self.isActive('/users') }"><a href="#!/users">Users</a></li>
                     <li ng-class="{ active: self.isActive('/convertion-rates') }"><a href="#!/convertion-rates">Convertion Rates</a></li>
                     <li ng-class="{ active: self.isActive('/countries') }"><a ui-sref="countries">Countries</a></li>
-                    <li ng-class="{ active: self.isActive('/offices') }"><a href='#!/offices'>Offices</a></li>
+                    <li ng-class="{ active: self.isActive('/offices') }"><a ui-sref="offices">Offices</a></li>
                     <li ng-class="{ active: self.isActive('/orders') }"><a href='#!/orders'>Orders</a></li>
                     <li ng-class="{ active: self.isActive('/products') }"><a href='#!/products'>Products</a></li>
-                    <li ng-class="{ active: self.isActive('/types') }"><a href='#!/types'>Products Types</a></li>
+                    <li ng-class="{ active: self.isActive('/types') }"><a ui-sref="productTypes">Products Types</a></li>
                     <li ng-class="{ active: self.isActive('/about') }"><a href="#!/about">About</a></li>
                 </ul>
             </div>
@@ -65,10 +65,18 @@
 
     <script type="text/javascript" src="app/factories/user.factory.js"></script>
     <script type="text/javascript" src="app/factories/country.factory.js"></script>
+    <script type="text/javascript" src="app/factories/office.factory.js"></script>
+    <script type="text/javascript" src="app/factories/productType.factory.js"></script>
 
 
     <script type="text/javascript" src="app/controllers/countries/countryList.controller.js"></script>
     <script type="text/javascript" src="app/controllers/countries/countryModal.controller.js"></script>
+
+    <script type="text/javascript" src="app/controllers/offices/officeList.controller.js"></script>
+    <script type="text/javascript" src="app/controllers/offices/officeModal.controller.js"></script>
+
+    <script type="text/javascript" src="app/controllers/productTypes/productTypeList.controller.js"></script>
+    <script type="text/javascript" src="app/controllers/productTypes/productTypeModal.controller.js"></script>
 
     <script type="text/javascript" src="app/controllers/navigation.controller.js"></script>
     <script type="text/javascript" src="app/controllers/signIn.controller.js"></script>

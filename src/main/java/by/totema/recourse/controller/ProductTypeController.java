@@ -6,6 +6,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 
-@RequestMapping("api/roductTypes")
+@RequestMapping("api/product-types")
 public interface ProductTypeController extends CrudController<ProductType, Integer> {
 }
