@@ -2,7 +2,7 @@ angular
     .module('app')
     .controller('OfficeModalController', OfficeModalController);
 
-function OfficeModalController($uibModalInstance, OfficeFactory, office, toaster) {
+function OfficeModalController($scope, $uibModalInstance, OfficeFactory, CountryFactory, office, toaster) {
     var self = this;
 
     self.office = office;
@@ -10,6 +10,20 @@ function OfficeModalController($uibModalInstance, OfficeFactory, office, toaster
     self.cancel = cancel;
     self.updateMode = !!self.office;
     self.toaster = toaster;
+
+    CountryFactory.query().$promise.then(function (result) {
+        self.countries = result;
+        self.temporaryCountry = self.office.country.id;
+        $scope.$watch('temporaryCountry', function (newValue, oldValue) {
+            if (newValue) {
+                angular.forEach(self.countries, function (country) {
+                    if (country.id == newValue) {
+                        self.office.country = country;
+                    }
+                });
+            }
+        });
+    });
 
     self.promiseErrorHandler = function (errorResponse) {
         console.log(errorResponse);

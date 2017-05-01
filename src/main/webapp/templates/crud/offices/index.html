@@ -15,7 +15,7 @@
                     <th>Address</th>
                     <th>Fax</th>
                     <th>Phone</th>
-                    <th>Country Key</th>
+                    <th>Country</th>
                     <th>Postal Code</th>
                     </thead>
                     <tbody>
@@ -25,7 +25,7 @@
                         <td class="col-xs-1">{{office.address}}</td>
                         <td class="col-xs-1">{{office.fax}}</td>
                         <td class="col-xs-1">{{office.phone}}</td>
-                        <td class="col-xs-1">{{office.countryKey}}</td>
+                        <td class="col-xs-1">{{office.country.name}}</td>
                         <td class="col-xs-1">{{office.postalCode}}</td>
                         <td class="col-xs-3">
                             <button class="btn btn-xs btn-info" ng-click="self.editOffice(office)">Edit</button>

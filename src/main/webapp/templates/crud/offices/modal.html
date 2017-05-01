@@ -23,8 +23,10 @@
                 <input type="text" class="form-control" ng-model="self.office.phone">
             </div>
             <div class="input-group" style="margin-bottom: 20px;">
-                <span class="input-group-addon">Country Key</span>
-                <input type="number" class="form-control" ng-model="self.office.countryKey">
+                <span class="input-group-addon">Country</span>
+                <select ui-select2 ng-model="temporaryCountry" data-placeholder="Pick a Country">
+                    <option ng-repeat="country in self.countries" value="{{country.id}}">{{country.name}}</option>
+                </select>
             </div>
             <div class="input-group" style="margin-bottom: 20px;">
                 <span class="input-group-addon">Postal Code</span>

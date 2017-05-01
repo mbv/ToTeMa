@@ -9,4 +9,5 @@ angular
         'ui.bootstrap',
         'toaster',
         '720kb.datepicker',
-        'ui.date']);
+        'ui.date',
+        'ui.select2']);

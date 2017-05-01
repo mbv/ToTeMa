@@ -2,9 +2,7 @@ package by.totema.recourse.entity.model;
 
 import org.hibernate.validator.constraints.SafeHtml;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Objects;
@@ -19,7 +17,9 @@ public class Office extends BaseEntity<Integer> {
     private String address;
 
     @NotNull
-    private int countryKey;
+    @ManyToOne(targetEntity = Country.class)
+    @JoinColumn(name = "countryKey")
+    private Country country;
 
     @NotNull
     @SafeHtml
@@ -53,12 +53,12 @@ public class Office extends BaseEntity<Integer> {
         this.address = address;
     }
 
-    public int getCountryKey() {
-        return countryKey;
+    public Country getCountry() {
+        return country;
     }
 
-    public void setCountryKey(int countryKey) {
-        this.countryKey = countryKey;
+    public void setCountry(Country country) {
+        this.country = country;
     }
 
     public String getCity() {
@@ -106,12 +106,11 @@ public class Office extends BaseEntity<Integer> {
                 Objects.equals(fax, office.fax) &&
                 Objects.equals(phone, office.phone) &&
                 Objects.equals(postalCode, office.postalCode) &&
-                (countryKey == office.countryKey);
+                Objects.equals(country, office.country);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), address, city, fax, phone, postalCode);
+        return Objects.hash(super.hashCode(), address, city, fax, phone, postalCode, country);
     }
-
 }
