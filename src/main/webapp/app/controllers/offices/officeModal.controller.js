@@ -6,6 +6,7 @@ function OfficeModalController($scope, $uibModalInstance, OfficeFactory, Country
     var self = this;
 
     self.office = office;
+    $scope.temporaryCountry = self.office.country.id;
     self.saveOffice = saveOffice;
     self.cancel = cancel;
     self.updateMode = !!self.office;
@@ -13,7 +14,6 @@ function OfficeModalController($scope, $uibModalInstance, OfficeFactory, Country
 
     CountryFactory.query().$promise.then(function (result) {
         self.countries = result;
-        self.temporaryCountry = self.office.country.id;
         $scope.$watch('temporaryCountry', function (newValue, oldValue) {
             if (newValue) {
                 angular.forEach(self.countries, function (country) {
