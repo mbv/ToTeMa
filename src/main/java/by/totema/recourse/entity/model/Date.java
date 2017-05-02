@@ -3,9 +3,13 @@ package by.totema.recourse.entity.model;
 import org.hibernate.validator.constraints.SafeHtml;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.*;
 import java.sql.Time;
 
+@Entity
+@Table(name = "date")
 public class Date extends  BaseEntity<Integer>  {
 
     @Past

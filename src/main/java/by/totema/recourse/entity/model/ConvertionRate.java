@@ -3,15 +3,22 @@ package by.totema.recourse.entity.model;
 
 import org.springframework.data.annotation.Id;
 
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+@Entity
+@Table(name = "convertion_rate")
 public class ConvertionRate extends BaseEntity<Integer> {
 
     @NotNull
     @Id
+    @ManyToOne(targetEntity = Country.class)
     private long countryKey;
     @Id
     @NotNull
+    @ManyToOne(targetEntity = Date.class)
     private long periodKey;
     @NotNull
     private long convertion;

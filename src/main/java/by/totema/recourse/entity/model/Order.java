@@ -1,7 +1,12 @@
 package by.totema.recourse.entity.model;
 
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+@Entity
+@Table(name = "order")
 public class Order extends  BaseEntity<Integer>  {
 
     @NotNull
@@ -17,12 +22,15 @@ public class Order extends  BaseEntity<Integer>  {
     private long grossMargin;
 
     @NotNull
+    @ManyToOne(targetEntity = Employee.class)
     private long employeeKey;
 
     @NotNull
+    @ManyToOne(targetEntity = Date.class)
     private long dateKey;
 
     @NotNull
+    @ManyToOne(targetEntity = Office.class)
     private long officeKey;
 
     public long getQuantity() {

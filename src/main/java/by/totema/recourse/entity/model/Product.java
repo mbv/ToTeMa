@@ -3,11 +3,16 @@ package by.totema.recourse.entity.model;
 import org.hibernate.validator.constraints.SafeHtml;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+@Entity
+@Table(name = "product")
 public class Product extends  BaseEntity<Integer>  {
 
     /**
@@ -30,6 +35,7 @@ public class Product extends  BaseEntity<Integer>  {
     private long code;
 
     @NotNull
+    @ManyToOne(targetEntity = ProductType.class)
     private long typeKey;
 
     @NotNull
