@@ -1,7 +1,10 @@
 package by.totema.recourse.entity.model;
 
 
+import org.aspectj.weaver.ast.Or;
+
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -23,11 +26,13 @@ public class ProductList extends  BaseEntity<Integer>  {
 
     @NotNull
     @ManyToOne(targetEntity = Product.class)
-    private long productKey;
+    @JoinColumn(name = "productKey")
+    private Product product;
 
     @NotNull
     @ManyToOne(targetEntity = Order.class)
-    private long orderKey;
+    @JoinColumn(name = "orderKey")
+    private Order order;
 
     public long getQuantity() {
         return quantity;
@@ -61,20 +66,20 @@ public class ProductList extends  BaseEntity<Integer>  {
         this.unitPrice = unitPrice;
     }
 
-    public long getProductKey() {
-        return productKey;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProductKey(long productKey) {
-        this.productKey = productKey;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
-    public long getOrderKey() {
-        return orderKey;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setOrderKey(long orderKey) {
-        this.orderKey = orderKey;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     @Override
@@ -88,7 +93,7 @@ public class ProductList extends  BaseEntity<Integer>  {
         if (unitPrice != productList.unitPrice)  return false;
         if (unitCost != productList.unitCost)  return false;
         if (quantity != productList.quantity)  return false;
-        if (productKey != productList.productKey) return false;
+        if (!product.equals(productList.getProduct())) return false;
         return  (grossMargin != productList.grossMargin);
     }
 
@@ -105,7 +110,7 @@ public class ProductList extends  BaseEntity<Integer>  {
     public String toString() {
         return "Product type{" +
                 "id=" + getId() +
-                ", product key='" + productKey + '\'' +
+                ", product='" + product.getName() + '\'' +
                 ", quantity='" + quantity + '\'' +
                 ", unitPrice='" + unitPrice + '\'' +
                 ", unitCost='" + unitCost + '\'' +

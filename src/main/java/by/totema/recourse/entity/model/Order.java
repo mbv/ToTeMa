@@ -1,6 +1,7 @@
 package by.totema.recourse.entity.model;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -23,15 +24,18 @@ public class Order extends  BaseEntity<Integer>  {
 
     @NotNull
     @ManyToOne(targetEntity = Employee.class)
-    private long employeeKey;
+    @JoinColumn(name = "countryKey")
+    private Employee employee;
 
     @NotNull
     @ManyToOne(targetEntity = Date.class)
-    private long dateKey;
+    @JoinColumn(name = "dateKey")
+    private Date date;
 
     @NotNull
     @ManyToOne(targetEntity = Office.class)
-    private long officeKey;
+    @JoinColumn(name = "officeKey")
+    private Office office;
 
     public long getQuantity() {
         return quantity;
@@ -65,29 +69,30 @@ public class Order extends  BaseEntity<Integer>  {
         this.price = price;
     }
 
-    public long getEmployeeKey() {
-        return employeeKey;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setEmployeeKey(long employeeKey) {
-        this.employeeKey = employeeKey;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
-    public long getDateKey() {
-        return dateKey;
+    public Date getDate() {
+        return date;
     }
 
-    public void setDateKey(long dateKey) {
-        this.dateKey = dateKey;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public long getOfficeKey() {
-        return officeKey;
+    public Office getOffice() {
+        return office;
     }
 
-    public void setOfficeKey(long officeKey) {
-        this.officeKey = officeKey;
+    public void setOffice(Office office) {
+        this.office = office;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -99,9 +104,9 @@ public class Order extends  BaseEntity<Integer>  {
         if (price != order.price)  return false;
         if (cost != order.cost)  return false;
         if (quantity != order.quantity)  return false;
-        if (employeeKey != order.employeeKey) return false;
-        if (dateKey != order.dateKey) return false;
-        if (officeKey != order.officeKey) return false;
+        if (!employee.equals(order.getEmployee())) return false;
+        if (!date.equals(order.getDate())) return false;
+        if (!office.equals(order.getOffice())) return false;
         return  (grossMargin != order.grossMargin);
     }
 
@@ -118,9 +123,9 @@ public class Order extends  BaseEntity<Integer>  {
     public String toString() {
         return "Ordere{" +
                 "id=" + getId() +
-                ", employee key='" + employeeKey + '\'' +
-                ", office key='" + officeKey + '\'' +
-                ", date key='" + dateKey + '\'' +
+                ", employee='" + employee.getName() + '\'' +
+                ", office key='" + office.getId() + '\'' +
+                ", date key='" + date.getId() + '\'' +
                 ", quantity='" + quantity + '\'' +
                 ", price='" + price + '\'' +
                 ", cost='" + cost + '\'' +

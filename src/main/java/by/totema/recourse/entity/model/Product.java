@@ -2,10 +2,7 @@ package by.totema.recourse.entity.model;
 
 import org.hibernate.validator.constraints.SafeHtml;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -36,7 +33,8 @@ public class Product extends  BaseEntity<Integer>  {
 
     @NotNull
     @ManyToOne(targetEntity = ProductType.class)
-    private long typeKey;
+    @JoinColumn(name = "typeKey")
+    private ProductType type;
 
     @NotNull
     @SafeHtml
@@ -68,12 +66,12 @@ public class Product extends  BaseEntity<Integer>  {
         this.code = code;
     }
 
-    public long getTypeKey() {
-        return typeKey;
+    public ProductType getType() {
+        return type;
     }
 
-    public void setTypeKey(long typeKey) {
-        this.typeKey = typeKey;
+    public void setType(ProductType type) {
+        this.type = type;
     }
 
     public String getName() {
