@@ -10,8 +10,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "convertion_rate")
-public class ConvertionRate extends BaseEntity<Integer> {
+@Table(name = "conversion_rate")
+public class ConversionRate extends BaseEntity<Integer> {
 
     @NotNull
     @Id
@@ -24,7 +24,7 @@ public class ConvertionRate extends BaseEntity<Integer> {
     @JoinColumn(name = "periodKey")
     private Date period;
     @NotNull
-    private long convertion;
+    private int conversionToLocal;
 
     public Country getCountry() {
         return country;
@@ -42,27 +42,27 @@ public class ConvertionRate extends BaseEntity<Integer> {
         this.period = period;
     }
 
-    public long getConvertion() {
-        return convertion;
+    public int getConversionToLocal() {
+        return conversionToLocal;
     }
 
-    public void setConvertion(long convertion) {
-        this.convertion = convertion;
+    public void setConversionToLocal(int conversionToLocal) {
+        this.conversionToLocal = conversionToLocal;
     }
 
-    public ConvertionRate(){}
+    public ConversionRate(){}
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof ConvertionRate)) return false;
+        if (!(o instanceof ConversionRate)) return false;
 
-        ConvertionRate convertionRate = (ConvertionRate) o;
+        ConversionRate conversionRate = (ConversionRate) o;
 
-        if (getId() != convertionRate.getId()) return false;
-        if (!country.equals(convertionRate.getCountry())) return false;
-        if (!period.equals(convertionRate.getPeriod())) return false;
-        return  (convertion == convertionRate.convertion);
+        if (getId() != conversionRate.getId()) return false;
+        if (!country.equals(conversionRate.getCountry())) return false;
+        if (!period.equals(conversionRate.getPeriod())) return false;
+        return  (conversionToLocal == conversionRate.conversionToLocal);
 
     }
 
@@ -71,7 +71,7 @@ public class ConvertionRate extends BaseEntity<Integer> {
         int result = (int) (getId() ^ (getId() >>> 32));
         result = 31 * result + (int) (country.getId() ^ (country.getId() >>> 32));
         result = 31 * result + (int) (period.getId() ^ (period.getId() >>> 32));
-        result = 31 * result + (int) (convertion ^ (convertion >>> 32));
+        result = 31 * result + (int) (conversionToLocal ^ (conversionToLocal >>> 32));
         return result;
     }
 
@@ -81,7 +81,7 @@ public class ConvertionRate extends BaseEntity<Integer> {
                 "id=" + getId() +
                 ", Country='" + country.getName() + '\'' +
                 ", Period key='" + period.getId() + '\'' +
-                ", Convertion ='" + convertion + '\'' +
+                ", Convertion ='" + conversionToLocal + '\'' +
                 '}';
     }
 }

@@ -3,8 +3,6 @@ package by.totema.recourse.entity.model;
 import org.hibernate.validator.constraints.SafeHtml;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -12,24 +10,8 @@ import javax.validation.constraints.Size;
 @Table(name = "product")
 public class Product extends  BaseEntity<Integer>  {
 
-    /**
-     * Represents that this Employee entity has status Active.
-     * Default value
-     */
-    public static final int STATUS_ACTIVE = 1;
-    /**
-     * Represents that this Employee entity has status Banned.
-     * It means that this user cannot bet and create lots
-     */
-    public static final int STATUS_BANNED = 0;
-    /**
-     * Represents that this Employee entity is deleted.
-     * Setting this status equals to deleting this user from the app.
-     */
-    public static final int STATUS_DELETED = -1;
-
     @NotNull
-    private long code;
+    private int code;
 
     @NotNull
     @ManyToOne(targetEntity = ProductType.class)
@@ -53,16 +35,12 @@ public class Product extends  BaseEntity<Integer>  {
     @Size(min = 1, max = 45)
     @Column(length = 45, nullable = false)
     private String color;
-    @NotNull
-    @Min(-1)
-    @Max(1)
-    private int status;
 
-    public long getCode() {
+    public int getCode() {
         return code;
     }
 
-    public void setCode(long code) {
+    public void setCode(int code) {
         this.code = code;
     }
 
@@ -96,14 +74,6 @@ public class Product extends  BaseEntity<Integer>  {
 
     public void setSize(String size) {
         this.size = size;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
     }
 
     @Override

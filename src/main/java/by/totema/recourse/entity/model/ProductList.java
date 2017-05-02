@@ -1,8 +1,6 @@
 package by.totema.recourse.entity.model;
 
 
-import org.aspectj.weaver.ast.Or;
-
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -13,16 +11,16 @@ import javax.validation.constraints.NotNull;
 public class ProductList extends  BaseEntity<Integer>  {
 
     @NotNull
-    private long quantity;
+    private int quantity;
 
     @NotNull
-    private long unitCost;
+    private int unitCost;
 
     @NotNull
-    private long unitPrice;
+    private int unitPrice;
 
     @NotNull
-    private long grossMargin;
+    private int grossMargin;
 
     @NotNull
     @ManyToOne(targetEntity = Product.class)
@@ -34,35 +32,35 @@ public class ProductList extends  BaseEntity<Integer>  {
     @JoinColumn(name = "orderKey")
     private Order order;
 
-    public long getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(long quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
-    public long getUnitCost() {
+    public int getUnitCost() {
         return unitCost;
     }
 
-    public void setUnitCost(long unitCost) {
+    public void setUnitCost(int unitCost) {
         this.unitCost = unitCost;
     }
 
-    public long getGrossMargin() {
+    public int getGrossMargin() {
         return grossMargin;
     }
 
-    public void setGrossMargin(long grossMargin) {
+    public void setGrossMargin(int grossMargin) {
         this.grossMargin = grossMargin;
     }
 
-    public long getUnitPrice() {
+    public int getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(long unitPrice) {
+    public void setUnitPrice(int unitPrice) {
         this.unitPrice = unitPrice;
     }
 

@@ -11,20 +11,20 @@ import javax.validation.constraints.NotNull;
 public class Order extends  BaseEntity<Integer>  {
 
     @NotNull
-    private long quantity;
+    private int quantity;
 
     @NotNull
-    private long cost;
+    private int cost;
 
     @NotNull
-    private long price;
+    private int price;
 
     @NotNull
-    private long grossMargin;
+    private int grossMargin;
 
     @NotNull
     @ManyToOne(targetEntity = Employee.class)
-    @JoinColumn(name = "countryKey")
+    @JoinColumn(name = "employeeKey")
     private Employee employee;
 
     @NotNull
@@ -37,35 +37,35 @@ public class Order extends  BaseEntity<Integer>  {
     @JoinColumn(name = "officeKey")
     private Office office;
 
-    public long getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(long quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
-    public long getCost() {
+    public int getCost() {
         return cost;
     }
 
-    public void setCost(long cost) {
+    public void setCost(int cost) {
         this.cost = cost;
     }
 
-    public long getGrossMargin() {
+    public int getGrossMargin() {
         return grossMargin;
     }
 
-    public void setGrossMargin(long grossMargin) {
+    public void setGrossMargin(int grossMargin) {
         this.grossMargin = grossMargin;
     }
 
-    public long getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(long price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 

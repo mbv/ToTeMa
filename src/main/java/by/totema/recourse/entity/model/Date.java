@@ -6,7 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.*;
-import java.sql.Time;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "date")
@@ -14,30 +14,30 @@ public class Date extends  BaseEntity<Integer>  {
 
     @Past
     @Column(columnDefinition = "TIMESTAMP")
-    private Time time;
+    private Timestamp timeStamp;
 
     @NotNull
-    private long year;
+    private int year;
 
     @NotNull
     @Min(1)
     @Max(4)
-    private long quarter;
+    private int quarter;
 
     @NotNull
     @Min(1)
     @Max(12)
-    private long month;
+    private int monthInt;
 
     @NotNull
     @Min(1)
     @Max(53)
-    private long week;
+    private int week;
 
     @NotNull
     @Min(1)
     @Max(31)
-    private long day;
+    private int day;
 
     @NotNull
     @SafeHtml
@@ -45,52 +45,52 @@ public class Date extends  BaseEntity<Integer>  {
     @Column(length = 45, nullable = false)
     private String monthName;
 
-    public long getWeek() {
+    public int getWeek() {
         return week;
     }
 
-    public void setWeek(long week) {
+    public void setWeek(int week) {
         this.week = week;
     }
 
-    public long getDay() {
+    public int getDay() {
         return day;
     }
 
-    public void setDay(long day) {
+    public void setDay(int day) {
         this.day = day;
     }
 
-    public Time getTime() {
-        return time;
+    public Timestamp getTimeStamp() {
+        return timeStamp;
     }
 
-    public void setTime(Time time) {
-        this.time = time;
+    public void setTimeStamp(Timestamp timeStamp) {
+        this.timeStamp = timeStamp;
     }
 
 
-    public long getYear() {
+    public int getYear() {
         return year;
     }
 
-    public void setYear(long year) {
+    public void setYear(int year) {
         this.year = year;
     }
 
-    public long getMonth() {
-        return month;
+    public int getMonthInt() {
+        return monthInt;
     }
 
-    public void setMonth(long month) {
-        this.month = month;
+    public void setMonthInt(int monthInt) {
+        this.monthInt = monthInt;
     }
 
-    public long getQuarter() {
+    public int getQuarter() {
         return quarter;
     }
 
-    public void setQuarter(long quarter) {
+    public void setQuarter(int quarter) {
         this.quarter = quarter;
     }
 
@@ -123,7 +123,7 @@ public class Date extends  BaseEntity<Integer>  {
                 "id=" + getId() +
                 ", year='" + year + '\'' +
                 ", quarter='" + quarter + '\'' +
-                ", month='" + month + '\'' +
+                ", monthInt='" + monthInt + '\'' +
                 ", week='" + week + '\'' +
                 ", day='" + day + '\'' +
                 '}';
