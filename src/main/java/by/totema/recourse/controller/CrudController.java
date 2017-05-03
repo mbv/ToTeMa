@@ -4,6 +4,7 @@ import by.totema.recourse.configuration.security.Auth;
 import by.totema.recourse.configuration.security.EmployeeAuthDetails;
 import by.totema.recourse.controller.exception.ControllerException;
 import by.totema.recourse.entity.model.BaseEntity;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,7 +14,7 @@ public interface CrudController<E extends BaseEntity<ID>, ID> {
     E getById(@PathVariable("id") ID id, @Auth EmployeeAuthDetails authDetails) throws ControllerException;
 
     @GetMapping
-    Iterable<E> getAll(@Auth EmployeeAuthDetails authDetails) throws ControllerException;
+    Iterable<E> getAll(Pageable pageable, @Auth EmployeeAuthDetails authDetails) throws ControllerException;
 
     @PostMapping
     <S extends E> S create(@RequestBody S entity, @Auth EmployeeAuthDetails authDetails) throws ControllerException;

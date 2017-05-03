@@ -2,22 +2,23 @@ angular
     .module('app')
     .controller('OfficeModalController', OfficeModalController);
 
-function OfficeModalController($scope, $uibModalInstance, OfficeFactory, CountryFactory, office, toaster) {
+function OfficeModalController($scope, $uibModalInstance, OfficeFactory, CountryFactory, office) {
     var self = this;
 
     self.office = office;
-    $scope.temporaryCountry = self.office.country.id;
+    if (!!office) {
+        $scope.temporaryCountry = self.office.country.id;
+    }
     self.saveOffice = saveOffice;
     self.cancel = cancel;
     self.updateMode = !!self.office;
-    self.toaster = toaster;
 
     CountryFactory.query().$promise.then(function (result) {
         self.countries = result;
         $scope.$watch('temporaryCountry', function (newValue, oldValue) {
             if (newValue) {
                 angular.forEach(self.countries, function (country) {
-                    if (country.id == newValue) {
+                    if (country.id == newValue && !!self.office) {
                         self.office.country = country;
                     }
                 });
@@ -25,23 +26,11 @@ function OfficeModalController($scope, $uibModalInstance, OfficeFactory, Country
         });
     });
 
-    self.promiseErrorHandler = function (errorResponse) {
-        console.log(errorResponse);
-        /*if (!!errorResponse.data.errors) {
-            for (var fieldName in errorResponse.data.errors) {
-                if (errorResponse.data.errors.hasOwnProperty(fieldName)) {
-                    self.toaster.pop('error', "Attribute \"" + fieldName + "\"", errorResponse.data.errors[fieldName]);
-                }
-            }
-        }*/
-        self.toaster.pop('error', "Error", "hh");
-    };
-
     function saveOffice() {
-        if (self.updateMode){
-            OfficeFactory.update(self.office, $uibModalInstance.close, self.promiseErrorHandler);
+        if (self.updateMode) {
+            OfficeFactory.update(self.office, $uibModalInstance.close);
         } else {
-            OfficeFactory.save(self.office, $uibModalInstance.close, self.promiseErrorHandler);
+            OfficeFactory.save(self.office, $uibModalInstance.close);
         }
     }
 

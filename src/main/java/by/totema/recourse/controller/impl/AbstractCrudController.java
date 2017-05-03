@@ -9,6 +9,7 @@ import by.totema.recourse.controller.exception.NotFoundException;
 import by.totema.recourse.entity.model.BaseEntity;
 import by.totema.recourse.service.CrudService;
 import org.slf4j.Logger;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -53,8 +54,8 @@ public abstract class AbstractCrudController<E extends BaseEntity<ID>, ID> imple
         });
     }
 
-    public Iterable<E> getAll(@Auth EmployeeAuthDetails authDetails) {
-        return wrapServiceCall(logger, crudService::findAll);
+    public Iterable<E> getAll(Pageable pageable, @Auth EmployeeAuthDetails authDetails) {
+        return wrapServiceCall(logger, () -> crudService.findAll(pageable));
     }
 
     @Override

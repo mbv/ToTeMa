@@ -75,8 +75,7 @@ CREATE TABLE `office` (
   `ADDRESS` varchar(200) DEFAULT NULL,
   `FAX` varchar(45) DEFAULT NULL,
   `PHONE` varchar(45) DEFAULT NULL,
-  `POSTAL_CODE` varchar(45) DEFAULT NULL,
-  `STATUS` tinyint(4) NOT NULL DEFAULT '0'
+  `POSTAL_CODE` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `order`;
@@ -119,8 +118,7 @@ CREATE TABLE `product_type` (
   `GENDER` varchar(1) DEFAULT NULL,
   `AGE` varchar(45) DEFAULT NULL,
   `SEASON` varchar(45) DEFAULT NULL,
-  `TYPE` varchar(45) DEFAULT NULL,
-  `STATUS` tinyint(4) NOT NULL DEFAULT '0'
+  `TYPE` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
