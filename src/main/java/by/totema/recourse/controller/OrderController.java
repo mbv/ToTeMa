@@ -1,12 +1,13 @@
 package by.totema.recourse.controller;
 
+import by.totema.recourse.configuration.security.Auth;
+import by.totema.recourse.configuration.security.EmployeeAuthDetails;
+import by.totema.recourse.controller.exception.ControllerException;
+import by.totema.recourse.entity.dto.OrderDto;
 import by.totema.recourse.entity.model.Order;
 import by.totema.recourse.entity.model.ProductList;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,4 +18,10 @@ public interface OrderController extends CrudController<Order, Integer> {
     @GetMapping("{orderId}/product-lists")
     List<ProductList> getProductLists(
             @PathVariable("orderId") Integer orderId, Pageable pageable);
+
+    @PostMapping("dto")
+    Order create(@RequestBody OrderDto dto, @Auth EmployeeAuthDetails authDetails) throws ControllerException;
+
+    @PutMapping("{id}/dto")
+    Order update(@RequestBody OrderDto dto, @PathVariable("id") Integer id, @Auth EmployeeAuthDetails authDetails) throws ControllerException;
 }
