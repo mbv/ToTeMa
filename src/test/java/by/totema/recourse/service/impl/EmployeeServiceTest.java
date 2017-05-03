@@ -14,7 +14,7 @@ import org.junit.Test;
 import org.mockito.Matchers;
 import org.mockito.Mockito;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.util.Pair;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;
@@ -160,7 +160,7 @@ public class EmployeeServiceTest extends CrudServiceTest<Employee, Integer> {
     }
 
     @Override
-    protected CrudRepository<Employee, Integer> getCrudRepository() {
+    protected PagingAndSortingRepository<Employee, Integer> getCrudRepository() {
         return employeeRepository;
     }
 

@@ -8,7 +8,7 @@ import by.totema.recourse.service.CrudServiceTest;
 import by.totema.recourse.supplier.entity.model.EntitySupplier;
 import by.totema.recourse.supplier.entity.model.impl.CountrySupplier;
 import org.mockito.Mockito;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 public class CountryServiceTest extends CrudServiceTest<Country, Integer> {
     private CountryService countryService;
@@ -48,7 +48,7 @@ public class CountryServiceTest extends CrudServiceTest<Country, Integer> {
     }
 
     @Override
-    protected CrudRepository<Country, Integer> getCrudRepository() {
+    protected PagingAndSortingRepository<Country, Integer> getCrudRepository() {
         return countryRepository;
     }
 

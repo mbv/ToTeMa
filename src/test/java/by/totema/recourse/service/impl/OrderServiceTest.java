@@ -2,13 +2,13 @@ package by.totema.recourse.service.impl;
 
 import by.totema.recourse.entity.model.Order;
 import by.totema.recourse.repository.OrderRepository;
-import by.totema.recourse.service.OrderService;
 import by.totema.recourse.service.CrudService;
 import by.totema.recourse.service.CrudServiceTest;
+import by.totema.recourse.service.OrderService;
 import by.totema.recourse.supplier.entity.model.EntitySupplier;
 import by.totema.recourse.supplier.entity.model.impl.OrderSupplier;
 import org.mockito.Mockito;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 public class OrderServiceTest extends CrudServiceTest<Order, Integer> {
     private OrderService orderService;
@@ -48,7 +48,7 @@ public class OrderServiceTest extends CrudServiceTest<Order, Integer> {
     }
 
     @Override
-    protected CrudRepository<Order, Integer> getCrudRepository() {
+    protected PagingAndSortingRepository<Order, Integer> getCrudRepository() {
         return orderRepository;
     }
 

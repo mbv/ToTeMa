@@ -8,7 +8,7 @@ import by.totema.recourse.service.CrudServiceTest;
 import by.totema.recourse.supplier.entity.model.EntitySupplier;
 import by.totema.recourse.supplier.entity.model.impl.ConversionRateSupplier;
 import org.mockito.Mockito;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 public class ConversionRateServiceTest extends CrudServiceTest<ConversionRate, Integer> {
     private ConversionRateService conversionRateService;
@@ -48,7 +48,7 @@ public class ConversionRateServiceTest extends CrudServiceTest<ConversionRate, I
     }
 
     @Override
-    protected CrudRepository<ConversionRate, Integer> getCrudRepository() {
+    protected PagingAndSortingRepository<ConversionRate, Integer> getCrudRepository() {
         return conversionRateRepository;
     }
 

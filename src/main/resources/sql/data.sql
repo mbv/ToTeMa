@@ -9,7 +9,7 @@ USE `totema`;
 
 INSERT INTO `conversion_rate` (`ID`, `COUNTRY_KEY`, `PERIOD_KEY`, `CONVERSION_TO_LOCAL`) VALUES
   (1, 1, 2, 3),
-  (2, 1, 21, 12);
+  (2, 1, 3, 12);
 
 INSERT INTO `country` (`ID`, `NAME`, `ISO_THREE_LETTER_CODE`, `ISO_TWO_LETTER_CODE`, `ISO_THREE_DIGIT_CODE`, `CURRENCY_NAME`) VALUES
   (1, 'United States', 'USA', 'US', 840, 'American dollar'),
