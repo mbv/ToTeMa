@@ -1,9 +1,9 @@
-<div class="container" ng-controller="OrdersListController as self">
+<div class="container" ng-controller="OrderListController as self">
     <div class="col-xs-12">
         <div class="panel panel-default" style="margin-top: 30px;">
             <div class="panel-heading">
                 <span style="line-height: 34px;">Orders</span>
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#order-modal" ng-click="self.addEntity()" style="float: right;">
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#order-modal" ng-click="self.addOrder()" style="float: right;">
                     <span class="glyphicon glyphicon-plus"></span>
                 </button>
             </div>
@@ -20,18 +20,18 @@
                     <th>Gross Margin</th>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="order in self.entities">
+                    <tr ng-repeat="order in self.orders">
                         <td class="col-xs-1">{{order.id}}</td>
-                        <td class="col-xs-1">{{order.officeKey}}</td>
-                        <td class="col-xs-1">{{order.employeeKey}}</td>
-                        <td class="col-xs-1">{{order.dateKey}}</td>
+                        <td class="col-xs-1">{{order.office.city}}, {{order.office.address}}</td>
+                        <td class="col-xs-1">{{order.employee.name}}</td>
+                        <td class="col-xs-1">{{order.date.day}} {{order.date.monthName}} {{order.date.year}}</td>
                         <td class="col-xs-1">{{order.quantity}}</td>
                         <td class="col-xs-1">{{order.cost}}</td>
                         <td class="col-xs-1">{{order.price}}</td>
-                        <td class="col-xs-1">{{order.grossMatgin}}</td>
+                        <td class="col-xs-1">{{order.grossMargin}}</td>
                         <td class="col-xs-3">
-                            <button class="btn btn-xs btn-info" ng-click="self.editEntity(order)">Edit</button>
-                            <button class="btn btn-xs btn-danger" ng-click="self.deleteEntity(order)">Delete</button>
+                            <button class="btn btn-xs btn-info" ng-click="self.editOrder(order)">Edit</button>
+                            <button class="btn btn-xs btn-danger" ng-click="self.deleteOrder(order)">Delete</button>
                         </td>
                     </tr>
                     </tbody>

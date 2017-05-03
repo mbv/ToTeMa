@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Entity
-@Table(name = "product_list")
+@Table(name = "`product_list`")
 public class ProductList extends  BaseEntity<Integer>  {
 
     @NotNull

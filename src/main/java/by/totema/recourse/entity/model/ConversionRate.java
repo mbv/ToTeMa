@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Entity
-@Table(name = "conversion_rate")
+@Table(name = "`conversion_rate`")
 public class ConversionRate extends BaseEntity<Integer> {
 
     @NotNull

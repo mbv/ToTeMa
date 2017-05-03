@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
-@Table(name = "product_type")
+@Table(name = "`product_type`")
 public class ProductType extends  BaseEntity<Integer>  {
 
     @NotNull

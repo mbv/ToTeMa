@@ -8,39 +8,39 @@
         <div class="modal-body">
             <div class="input-group" style="margin-bottom: 20px;">
                 <span class="input-group-addon">Username</span>
-                <input type="text" class="form-control" ng-model="self.entity.username">
+                <input type="text" class="form-control" ng-model="self.employee.username">
             </div>
             <div class="input-group" style="margin-bottom: 20px;">
                 <span class="input-group-addon">Name</span>
-                <input type="text" class="form-control" ng-model="self.entity.name">
+                <input type="text" class="form-control" ng-model="self.employee.name">
             </div>
             <div class="input-group" style="margin-bottom: 20px;">
                 <span class="input-group-addon">Hire Date</span>
                 <datepicker date-format="dd.MM.yyyy">
-                    <input type="text" class="form-control" ng-model="self.entity.hireDate">
+                    <input type="text" class="form-control" ng-model="self.employee.hireDate">
                 </datepicker>
             </div>
             <div class="input-group" style="margin-bottom: 20px;">
                 <span class="input-group-addon">Office Key</span>
-                <input type="text" class="form-control" ng-model="self.entity.officeKey">
+                <input type="text" class="form-control" ng-model="self.employee.officeKey">
             </div>
             <div class="input-group" style="margin-bottom: 20px;">
                 <span class="input-group-addon">Title</span>
-                <input type="text" class="form-control" ng-model="self.entity.title">
+                <input type="text" class="form-control" ng-model="self.employee.title">
             </div>
             <div class="input-group" style="margin-bottom: 20px;">
                 <span class="input-group-addon">Contract Till</span>
                 <datepicker date-format="dd.MM.yyyy">
-                    <input type="text" class="form-control" ng-model="self.entity.contractTill">
+                    <input type="text" class="form-control" ng-model="self.employee.contractTill">
                 </datepicker>
             </div>
             <div class="input-group" style="margin-bottom: 20px;">
                 <span class="input-group-addon">Reports To</span>
-                <input type="text" class="form-control" ng-model="self.entity.reportsTo">
+                <input type="text" class="form-control" ng-model="self.employee.reportsTo">
             </div>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary" type="button" ng-click="self.saveEntity()">Save</button>
+            <button class="btn btn-primary" type="button" ng-click="self.saveEmployee()">Save</button>
             <button class="btn btn-default" type="button" ng-click="self.cancel()">Cancel</button>
         </div>
     </div>

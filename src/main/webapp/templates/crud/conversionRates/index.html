@@ -1,0 +1,35 @@
+
+<div class="container" ng-controller="ConversionRateListController as self">
+    <div class="col-xs-12">
+        <div class="panel panel-default" style="margin-top: 30px;">
+            <div class="panel-heading">
+                <span style="line-height: 34px;">Conversion Rates</span>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#conversation-modal" ng-click="self.addConversionRate()" style="float: right;">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <thead>
+                    <th>#</th>
+                    <th>Country</th>
+                    <th>Period</th>
+                    <th>Conversion To Local</th>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="conversionRate in self.conversionRates">
+                        <td class="col-xs-1">{{conversionRate.id}}</td>
+                        <td class="col-xs-1">{{conversionRate.country.name}}</td>
+                        <td class="col-xs-1">{{conversionRate.period.day}} {{conversionRate.period.monthName}} {{conversionRate.period.year}}</td>
+                        <td class="col-xs-1">{{conversionRate.conversionToLocal}}</td>
+                        <td class="col-xs-3">
+                            <button class="btn btn-xs btn-info" ng-click="self.editConversionRate(conversionRate)">Edit</button>
+                            <button class="btn btn-xs btn-danger" ng-click="self.deleteConversionRate(conversionRate)">Delete</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
-@Table(name = "employee")
+@Table(name = "`employee`")
 public class Employee extends BaseEntity<Integer> {
     @NotNull
     @SafeHtml

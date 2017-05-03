@@ -14,10 +14,10 @@ function AppStates($stateProvider, $urlRouterProvider) {
             templateUrl: 'templates/sign_in.html'
         },
         {
-            name: 'employees',
-            url: '/employees',
-            controller: 'EmployeeListController as self',
-            templateUrl: 'templates/crud/employees/index.html'
+            name: 'conversionRates',
+            url: '/conversion-rates',
+            controller: 'ConversionRateListController as self',
+            templateUrl: 'templates/crud/conversionRates/index.html'
         },
         {
             name: 'countries',
@@ -26,10 +26,28 @@ function AppStates($stateProvider, $urlRouterProvider) {
             templateUrl: 'templates/crud/countries/index.html'
         },
         {
+            name: 'employees',
+            url: '/employees',
+            controller: 'EmployeeListController as self',
+            templateUrl: 'templates/crud/employees/index.html'
+        },
+        {
             name: 'offices',
             url: '/offices',
             controller: 'OfficeListController as self',
             templateUrl: 'templates/crud/offices/index.html'
+        },
+        {
+            name: 'orders',
+            url: '/orders',
+            controller: 'OrderListController as self',
+            templateUrl: 'templates/crud/orders/index.html'
+        },
+        {
+            name: 'products',
+            url: '/products',
+            controller: 'ProductListController as self',
+            templateUrl: 'templates/crud/products/index.html'
         },
         {
             name: 'productTypes',

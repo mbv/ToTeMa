@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
-@Table(name = "office")
+@Table(name = "`office`")
 public class Office extends BaseEntity<Integer> {
     @NotNull
     @SafeHtml

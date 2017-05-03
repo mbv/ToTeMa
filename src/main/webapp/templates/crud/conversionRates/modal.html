@@ -8,19 +8,19 @@
         <div class="modal-body">
             <div class="input-group" style="margin-bottom: 20px;">
                 <span class="input-group-addon">Country Key</span>
-                <input type="text" class="form-control" ng-model="self.entity.countryKey">
+                <input type="text" class="form-control" ng-model="self.conversionRate.countryKey">
             </div>
             <div class="input-group" style="margin-bottom: 20px;">
                 <span class="input-group-addon">Period Key</span>
-                <input type="text" class="form-control" ng-model="self.entity.periodKey">
+                <input type="text" class="form-control" ng-model="self.conversionRate.periodKey">
             </div>
             <div class="input-group" style="margin-bottom: 20px;">
-                <span class="input-group-addon">Convertion</span>
-                <input type="text" class="form-control" ng-model="self.entity.convertion">
+                <span class="input-group-addon">Conversion To Local</span>
+                <input type="text" class="form-control" ng-model="self.conversionRate.conversionToLocal">
             </div>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary" type="button" ng-click="self.saveEntity()">Save</button>
+            <button class="btn btn-primary" type="button" ng-click="self.saveConversionRate()">Save</button>
             <button class="btn btn-default" type="button" ng-click="self.cancel()">Cancel</button>
         </div>
     </div>

@@ -10,7 +10,7 @@ import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
-@Table(name = "date")
+@Table(name = "`date`")
 public class Date extends BaseEntity<Integer> {
 
     @Past
