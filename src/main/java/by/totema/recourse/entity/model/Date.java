@@ -7,10 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.*;
 import java.sql.Timestamp;
+import java.util.Objects;
 
 @Entity
 @Table(name = "date")
-public class Date extends  BaseEntity<Integer>  {
+public class Date extends BaseEntity<Integer> {
 
     @Past
     @Column(columnDefinition = "TIMESTAMP")
@@ -106,26 +107,20 @@ public class Date extends  BaseEntity<Integer>  {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Date)) return false;
+        if (!super.equals(o)) return false;
 
-        Date date= (Date) o;
+        Date date = (Date) o;
 
-        return (getId() != date.getId());
-}
-    @Override
-    public int hashCode() {
-        int result = (int) (getId() ^ (getId() >>> 32));
-        return result;
+        return Objects.equals(timeStamp, date.timeStamp) &&
+                Objects.equals(monthName, date.monthName) &&
+                (year == date.year) &&
+                (quarter == date.quarter) &&
+                (monthInt == date.monthInt) &&
+                (week == date.week) &&
+                (day == date.day);
     }
 
-    @Override
-    public String toString() {
-        return "Date{" +
-                "id=" + getId() +
-                ", year='" + year + '\'' +
-                ", quarter='" + quarter + '\'' +
-                ", monthInt='" + monthInt + '\'' +
-                ", week='" + week + '\'' +
-                ", day='" + day + '\'' +
-                '}';
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), timeStamp, year, quarter, monthInt, week, day, monthName);
     }
 }

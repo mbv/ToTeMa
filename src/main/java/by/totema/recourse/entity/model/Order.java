@@ -5,10 +5,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 @Entity
 @Table(name = "order")
-public class Order extends  BaseEntity<Integer>  {
+public class Order extends BaseEntity<Integer> {
 
     @NotNull
     private int quantity;
@@ -97,39 +98,21 @@ public class Order extends  BaseEntity<Integer>  {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Order)) return false;
+        if (!super.equals(o)) return false;
 
-        Order order= (Order) o;
+        Order order = (Order) o;
 
-        if (getId() != order.getId()) return false;
-        if (price != order.price)  return false;
-        if (cost != order.cost)  return false;
-        if (quantity != order.quantity)  return false;
-        if (!employee.equals(order.getEmployee())) return false;
-        if (!date.equals(order.getDate())) return false;
-        if (!office.equals(order.getOffice())) return false;
-        return  (grossMargin != order.grossMargin);
+        return Objects.equals(grossMargin, order.grossMargin) &&
+                Objects.equals(employee, order.employee) &&
+                Objects.equals(office, order.office) &&
+                (quantity == order.quantity) &&
+                (cost == order.cost) &&
+                (price == order.price);
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (getId() ^ (getId() >>> 32));
-        result = 31 * result + (int) (quantity ^ (quantity >>> 32));
-        result = 31 * result + (int) (cost ^ (cost >>> 32));
-        result = 31 * result + (int) (price ^ (price >>> 32));
-        return result;
+        return Objects.hash(super.hashCode(), quantity, cost, price, grossMargin, employee, office);
     }
 
-    @Override
-    public String toString() {
-        return "Ordere{" +
-                "id=" + getId() +
-                ", employee='" + employee.getName() + '\'' +
-                ", office key='" + office.getId() + '\'' +
-                ", date key='" + date.getId() + '\'' +
-                ", quantity='" + quantity + '\'' +
-                ", price='" + price + '\'' +
-                ", cost='" + cost + '\'' +
-                ", grossMargin='" + grossMargin + '\'' +
-                '}';
-    }
 }

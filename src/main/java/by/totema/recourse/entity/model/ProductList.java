@@ -6,6 +6,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
+
 @Entity
 @Table(name = "product_list")
 public class ProductList extends  BaseEntity<Integer>  {
@@ -84,37 +86,22 @@ public class ProductList extends  BaseEntity<Integer>  {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof ProductList)) return false;
+        if (!super.equals(o)) return false;
 
-        ProductList productList= (ProductList) o;
+        ProductList productList = (ProductList) o;
 
-        if (getId() != productList.getId()) return false;
-        if (unitPrice != productList.unitPrice)  return false;
-        if (unitCost != productList.unitCost)  return false;
-        if (quantity != productList.quantity)  return false;
-        if (!product.equals(productList.getProduct())) return false;
-        return  (grossMargin != productList.grossMargin);
+        return Objects.equals(product, productList.product) &&
+                Objects.equals(order, productList.order) &&
+                (quantity == productList.quantity) &&
+                (unitCost == productList.unitCost) &&
+                (unitPrice == productList.unitPrice) &&
+                (grossMargin == productList.grossMargin);
+
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (getId() ^ (getId() >>> 32));
-        result = 31 * result + (int) (quantity ^ (quantity >>> 32));
-        result = 31 * result + (int) (unitCost ^ (unitCost >>> 32));
-        result = 31 * result + (int) (unitPrice ^ (unitPrice >>> 32));
-        return result;
+        return Objects.hash(super.hashCode(), quantity, unitCost, unitPrice, grossMargin, product, order);
     }
-
-    @Override
-    public String toString() {
-        return "Product type{" +
-                "id=" + getId() +
-                ", product='" + product.getName() + '\'' +
-                ", quantity='" + quantity + '\'' +
-                ", unitPrice='" + unitPrice + '\'' +
-                ", unitCost='" + unitCost + '\'' +
-                ", grossMargin='" + grossMargin + '\'' +
-                '}';
-    }
-
 
 }

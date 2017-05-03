@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 @Entity
 @Table(name = "conversion_rate")
@@ -50,38 +51,22 @@ public class ConversionRate extends BaseEntity<Integer> {
         this.conversionToLocal = conversionToLocal;
     }
 
-    public ConversionRate(){}
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof ConversionRate)) return false;
+        if (!super.equals(o)) return false;
 
         ConversionRate conversionRate = (ConversionRate) o;
 
-        if (getId() != conversionRate.getId()) return false;
-        if (!country.equals(conversionRate.getCountry())) return false;
-        if (!period.equals(conversionRate.getPeriod())) return false;
-        return  (conversionToLocal == conversionRate.conversionToLocal);
-
+        return Objects.equals(country, conversionRate.country) &&
+                Objects.equals(period, conversionRate.period) &&
+                (conversionToLocal == conversionRate.conversionToLocal);
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (getId() ^ (getId() >>> 32));
-        result = 31 * result + (int) (country.getId() ^ (country.getId() >>> 32));
-        result = 31 * result + (int) (period.getId() ^ (period.getId() >>> 32));
-        result = 31 * result + (int) (conversionToLocal ^ (conversionToLocal >>> 32));
-        return result;
+        return Objects.hash(super.hashCode(), country, period, conversionToLocal);
     }
 
-    @Override
-    public String toString() {
-        return "Conversion rate{" +
-                "id=" + getId() +
-                ", Country='" + country.getName() + '\'' +
-                ", Period key='" + period.getId() + '\'' +
-                ", Convertion ='" + conversionToLocal + '\'' +
-                '}';
-    }
 }

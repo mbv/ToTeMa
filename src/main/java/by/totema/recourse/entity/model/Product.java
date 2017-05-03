@@ -5,10 +5,11 @@ import org.hibernate.validator.constraints.SafeHtml;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Objects;
 
 @Entity
 @Table(name = "product")
-public class Product extends  BaseEntity<Integer>  {
+public class Product extends BaseEntity<Integer> {
 
     @NotNull
     private int code;
@@ -80,31 +81,21 @@ public class Product extends  BaseEntity<Integer>  {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Product)) return false;
+        if (!super.equals(o)) return false;
 
-        Product product= (Product) o;
+        Product product = (Product) o;
 
-        if (getId() != product.getId()) return false;
-        if (size != null ? !size.equals(product.size) : product.size != null) return false;
-        if (color != null ? !color.equals(product.color) : product.color != null) return false;
-        return name != null ? !name.equals(product.name) : product.name != null;
+        return Objects.equals(type, product.type) &&
+                Objects.equals(name, product.name) &&
+                Objects.equals(size, product.size) &&
+                Objects.equals(color, product.color) &&
+                (code == product.code);
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (getId() ^ (getId() >>> 32));
-        result = 31 * result + (size != null ? size.hashCode() : 0);
-        result = 31 * result + (color != null ? color.hashCode() : 0);
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        return result;
+        return Objects.hash(super.hashCode(), code, type, name, size, color);
     }
 
-    @Override
-    public String toString() {
-        return "Product type{" +
-                "id=" + getId() +
-                ", size='" + size + '\'' +
-                ", name='" + name + '\'' +
-                ", color='" + color + '\'' +
-                '}';
-    }
 }
+
