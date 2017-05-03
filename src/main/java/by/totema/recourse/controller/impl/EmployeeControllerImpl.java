@@ -78,9 +78,9 @@ public class EmployeeControllerImpl extends AbstractCrudController<Employee, Int
     }
 
     @Override
-    public Iterable<Employee> getAll(@Auth EmployeeAuthDetails authDetails) {
+    public Iterable<Employee> getAll(Pageable pageable, @Auth EmployeeAuthDetails authDetails) {
         checkAuthority(null, authDetails, this::hasAuthorityToRead);
-        return super.getAll(authDetails);
+        return super.getAll(pageable, authDetails);
     }
 
     @Override
