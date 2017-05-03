@@ -38,8 +38,8 @@ public class ControllerConfiguration {
     }
 
     @Bean
-    public OrderController orderController(OrderService orderService) {
-        return new OrderControllerImpl(orderService);
+    public OrderController orderController(OrderService orderService, ProductListService productListService) {
+        return new OrderControllerImpl(orderService, productListService);
     }
 
     @Bean

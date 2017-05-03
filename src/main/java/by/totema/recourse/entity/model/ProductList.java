@@ -1,10 +1,7 @@
 package by.totema.recourse.entity.model;
 
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
@@ -29,10 +26,9 @@ public class ProductList extends  BaseEntity<Integer>  {
     @JoinColumn(name = "productKey")
     private Product product;
 
-    @NotNull
-    @ManyToOne(targetEntity = Order.class)
-    @JoinColumn(name = "orderKey")
-    private Order order;
+    @NotNull(message = "Order ID is not specified")
+    @Column(columnDefinition = "INT(11)", nullable = false)
+    private Integer orderKey;
 
     public int getQuantity() {
         return quantity;
@@ -74,12 +70,12 @@ public class ProductList extends  BaseEntity<Integer>  {
         this.product = product;
     }
 
-    public Order getOrder() {
-        return order;
+    public Integer getOrderKey() {
+        return orderKey;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setOrderKey(Integer orderKey) {
+        this.orderKey = orderKey;
     }
 
     @Override
@@ -91,7 +87,7 @@ public class ProductList extends  BaseEntity<Integer>  {
         ProductList productList = (ProductList) o;
 
         return Objects.equals(product, productList.product) &&
-                Objects.equals(order, productList.order) &&
+                Objects.equals(orderKey, productList.orderKey) &&
                 (quantity == productList.quantity) &&
                 (unitCost == productList.unitCost) &&
                 (unitPrice == productList.unitPrice) &&
@@ -101,7 +97,7 @@ public class ProductList extends  BaseEntity<Integer>  {
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), quantity, unitCost, unitPrice, grossMargin, product, order);
+        return Objects.hash(super.hashCode(), quantity, unitCost, unitPrice, grossMargin, product, orderKey);
     }
 
 }

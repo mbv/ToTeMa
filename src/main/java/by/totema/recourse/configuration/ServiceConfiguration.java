@@ -55,8 +55,8 @@ public class ServiceConfiguration {
     }
 
     @Bean
-    public ProductListService productListService(ProductListRepository productListRepository) {
-        return new ProductListServiceImpl(productListRepository);
+    public ProductListService productListService(ProductListRepository productListRepository, OrderRepository orderRepository) {
+        return new ProductListServiceImpl(productListRepository, orderRepository);
     }
 
     @Bean
