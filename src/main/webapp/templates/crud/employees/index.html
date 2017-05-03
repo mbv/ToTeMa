@@ -14,11 +14,10 @@
                     <th>Username</th>
                     <th>Name</th>
                     <th>Hire Date</th>
-                    <th>Office Key</th>
+                    <th>Office</th>
                     <th>Title</th>
                     <th>Year Salary</th>
                     <th>Contract Till</th>
-                    <th>Reports To</th>
                     <th>Actions</th>
                     </thead>
                     <tbody>
@@ -26,12 +25,11 @@
                         <td class="col-xs-1">{{employee.id}}</td>
                         <td class="col-xs-1">{{employee.username}}</td>
                         <td class="col-xs-1">{{employee.name}}</td>
-                        <td class="col-xs-1">{{(employee.hireDate | date : 'dd/MM/yyyy') || 'N/A' }}</td>
-                        <td class="col-xs-1">{{employee.officeKey}}</td>
+                        <td class="col-xs-1">{{(employee.hireDate | date : 'dd.MM.yyyy') || 'N/A' }}</td>
+                        <td class="col-xs-1">{{employee.office.city}}, {{employee.office.address}}</td>
                         <td class="col-xs-1">{{employee.title}}</td>
                         <td class="col-xs-1">{{employee.yearSalary}}</td>
-                        <td class="col-xs-1">{{(employee.contractTill | date : 'dd/MM/yyyy') || 'N/A' }}</td>
-                        <td class="col-xs-1">{{employee.reportsTo}}</td>
+                        <td class="col-xs-1">{{(employee.contractTill | date : 'dd.MM.yyyy') || 'N/A' }}</td>
                         <td class="col-xs-3">
                             <button class="btn btn-xs btn-info" ng-click="self.editEmployee(employee)">Edit</button>
                             <button class="btn btn-xs btn-danger" ng-click="self.deleteEmployee(employee)">Delete</button>

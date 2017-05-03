@@ -17,12 +17,14 @@
             <div class="input-group" style="margin-bottom: 20px;">
                 <span class="input-group-addon">Hire Date</span>
                 <datepicker date-format="dd.MM.yyyy">
-                    <input type="text" class="form-control" ng-model="self.employee.hireDate">
+                    <input type="text" class="form-control" ng-model="self.employee.hireDate" ng-value="(self.employee.hireDate | date : 'dd.MM.yyyy')">
                 </datepicker>
             </div>
             <div class="input-group" style="margin-bottom: 20px;">
-                <span class="input-group-addon">Office Key</span>
-                <input type="text" class="form-control" ng-model="self.employee.officeKey">
+                <span class="input-group-addon">Office</span>
+                <select ui-select2 ng-model="temporaryOffice" data-placeholder="Pick a Office">
+                    <option ng-repeat="office in self.offices" value="{{office.id}}">{{office.city}}, {{office.address}}</option>
+                </select>
             </div>
             <div class="input-group" style="margin-bottom: 20px;">
                 <span class="input-group-addon">Title</span>
@@ -31,12 +33,8 @@
             <div class="input-group" style="margin-bottom: 20px;">
                 <span class="input-group-addon">Contract Till</span>
                 <datepicker date-format="dd.MM.yyyy">
-                    <input type="text" class="form-control" ng-model="self.employee.contractTill">
+                    <input type="text" class="form-control" ng-model="self.employee.contractTill" ng-value="(self.employee.contractTill | date : 'dd.MM.yyyy')">
                 </datepicker>
-            </div>
-            <div class="input-group" style="margin-bottom: 20px;">
-                <span class="input-group-addon">Reports To</span>
-                <input type="text" class="form-control" ng-model="self.employee.reportsTo">
             </div>
         </div>
         <div class="modal-footer">

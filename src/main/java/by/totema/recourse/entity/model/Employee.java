@@ -32,7 +32,9 @@ public class Employee extends BaseEntity<Integer> {
     private Timestamp hireDate;
 
     @NotNull
-    private int officeKey;
+    @ManyToOne(targetEntity = Office.class)
+    @JoinColumn(name = "officeKey")
+    private Office office;
 
     @NotNull
     @SafeHtml
@@ -63,7 +65,7 @@ public class Employee extends BaseEntity<Integer> {
         passwordHash = employee.passwordHash;
         name = employee.name;
         hireDate = employee.hireDate;
-        officeKey = employee.officeKey;
+        office = employee.office;
         title = employee.title;
         yearSalary = employee.yearSalary;
         contractTill = employee.contractTill;
@@ -105,12 +107,12 @@ public class Employee extends BaseEntity<Integer> {
         this.hireDate = hireDate;
     }
 
-    public int getOfficeKey() {
-        return officeKey;
+    public Office getOffice() {
+        return office;
     }
 
-    public void setOfficeKey(int officeKey) {
-        this.officeKey = officeKey;
+    public void setOffice(Office office) {
+        this.office = office;
     }
 
     public Timestamp getContractTill() {
@@ -162,23 +164,23 @@ public class Employee extends BaseEntity<Integer> {
 
         Employee employee = (Employee) o;
 
-        return officeKey == employee.officeKey &&
+        return Objects.equals(username, employee.username) &&
+                Objects.equals(passwordHash, employee.passwordHash) &&
+                Objects.equals(name, employee.name) &&
+                Objects.equals(office, employee.office) &&
+                Objects.equals(hireDate, employee.hireDate) &&
+                Objects.equals(title, employee.title) &&
+                Objects.equals(contractTill, employee.contractTill) &&
                 yearSalary == employee.yearSalary &&
                 reportsTo == employee.reportsTo &&
-                role == employee.role &&
-                username.equals(employee.getUsername()) &&
-                passwordHash.equals(employee.getPasswordHash()) &&
-                name.equals(employee.getName()) &&
-                hireDate.equals(employee.getHireDate()) &&
-                title.equals(employee.getTitle()) &&
-                contractTill.equals(employee.getContractTill());
+                role == employee.role;
 
     }
 
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), username, passwordHash, name, hireDate, officeKey, title, yearSalary, contractTill, reportsTo);
+        return Objects.hash(super.hashCode(), username, passwordHash, name, hireDate, office, title, yearSalary, contractTill, reportsTo);
     }
 
     public enum Role {

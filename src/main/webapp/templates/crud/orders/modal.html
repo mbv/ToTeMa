@@ -7,12 +7,16 @@
         </div>
         <div class="modal-body">
             <div class="input-group" style="margin-bottom: 20px;">
-                <span class="input-group-addon">Office Key</span>
-                <input type="text" class="form-control" ng-model="self.order.officeKey">
+                <span class="input-group-addon">Office</span>
+                <select ui-select2 ng-model="temporaryOffice" data-placeholder="Pick a Office">
+                    <option ng-repeat="office in self.offices" value="{{office.id}}">{{office.city}}, {{office.address}}</option>
+                </select>
             </div>
             <div class="input-group" style="margin-bottom: 20px;">
-                <span class="input-group-addon">Employee Key</span>
-                <input type="text" class="form-control" ng-model="self.order.employeeKey">
+                <span class="input-group-addon">Employee</span>
+                <select ui-select2 ng-model="temporaryEmployee" data-placeholder="Pick a Employee">
+                    <option ng-repeat="employee in self.employees" value="{{employee.id}}">{{employee.name}}</option>
+                </select>
             </div>
             <div class="input-group" style="margin-bottom: 20px;">
                 <span class="input-group-addon">Date Key</span>

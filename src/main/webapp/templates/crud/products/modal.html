@@ -15,8 +15,10 @@
                 <input type="text" class="form-control" ng-model="self.product.size">
             </div>
             <div class="input-group" style="margin-bottom: 20px;">
-                <span class="input-group-addon">Type Key</span>
-                <input type="text" class="form-control" ng-model="self.product.typeKey">
+                <span class="input-group-addon">Type</span>
+                <select ui-select2 ng-model="temporaryProductType" data-placeholder="Pick a Type">
+                    <option ng-repeat="productType in self.productTypes" value="{{productType.id}}">{{productType.age}} {{productType.season}} {{productType.type}} (Gender: {{productType.gender}})</option>
+                </select>
             </div>
             <div class="input-group" style="margin-bottom: 20px;">
                 <span class="input-group-addon">Color</span>
