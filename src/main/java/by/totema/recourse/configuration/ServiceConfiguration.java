@@ -15,6 +15,11 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 public class ServiceConfiguration {
 
     @Bean
+    public ConversionRateService conversionRateService(ConversionRateRepository conversionRateRepository) {
+        return new ConversionRateServiceImpl(conversionRateRepository);
+    }
+
+    @Bean
     public CountryService countryService(CountryRepository countryRepository) {
         return new CountryServiceImpl(countryRepository);
     }
@@ -37,6 +42,21 @@ public class ServiceConfiguration {
     @Bean
     public OfficeService officeService(OfficeRepository officeRepository) {
         return new OfficeServiceImpl(officeRepository);
+    }
+
+    @Bean
+    public OrderService orderService(OrderRepository orderRepository) {
+        return new OrderServiceImpl(orderRepository);
+    }
+
+    @Bean
+    public ProductService productService(ProductRepository productRepository) {
+        return new ProductServiceImpl(productRepository);
+    }
+
+    @Bean
+    public ProductListService productListService(ProductListRepository productListRepository) {
+        return new ProductListServiceImpl(productListRepository);
     }
 
     @Bean
