@@ -20,27 +20,6 @@ public class ProductTypeServiceTest extends CrudServiceTest<ProductType, Integer
         productTypeService = new ProductTypeServiceImpl(productTypeRepository);
         productTypeSupplier = new ProductTypeSupplier();
     }
-/*
-    @Test
-    public void findByExistingSolutionIdTest() throws Exception {
-        when(productTypeRepository.findBySolutionId(any())).thenReturn(productTypeSupplier.getValidEntityWithId());
-
-        Optional<Country> result = productTypeService.findBySolutionId(productTypeSupplier.getAnyId());
-
-        verify(productTypeRepository, times(1)).findBySolutionId(any());
-        Assert.assertTrue(result.isPresent());
-    }
-
-    @Test
-    public void findByNotExistingSolutionIdTest() throws Exception {
-        when(productTypeRepository.findBySolutionId(any())).thenReturn(null);
-
-        Optional<Country> result = productTypeService.findBySolutionId(productTypeSupplier.getAnyId());
-
-        verify(productTypeRepository, times(1)).findBySolutionId(any());
-        Assert.assertFalse(result.isPresent());
-    }
-*/
 
     @Override
     protected CrudService<ProductType, Integer> getCrudService() {

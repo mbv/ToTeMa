@@ -13,34 +13,13 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 public class ProductServiceTest extends CrudServiceTest<Product, Integer> {
     private ProductService productService;
     private ProductRepository productRepository;
-    private ProductSupplier countrySupplier;
+    private ProductSupplier productSupplier;
 
     public ProductServiceTest() {
         productRepository = Mockito.mock(ProductRepository.class);
         productService = new ProductServiceImpl(productRepository);
-        countrySupplier = new ProductSupplier();
+        productSupplier = new ProductSupplier();
     }
-/*
-    @Test
-    public void findByExistingSolutionIdTest() throws Exception {
-        when(productRepository.findBySolutionId(any())).thenReturn(countrySupplier.getValidEntityWithId());
-
-        Optional<Country> result = productService.findBySolutionId(countrySupplier.getAnyId());
-
-        verify(productRepository, times(1)).findBySolutionId(any());
-        Assert.assertTrue(result.isPresent());
-    }
-
-    @Test
-    public void findByNotExistingSolutionIdTest() throws Exception {
-        when(productRepository.findBySolutionId(any())).thenReturn(null);
-
-        Optional<Country> result = productService.findBySolutionId(countrySupplier.getAnyId());
-
-        verify(productRepository, times(1)).findBySolutionId(any());
-        Assert.assertFalse(result.isPresent());
-    }
-*/
 
     @Override
     protected CrudService<Product, Integer> getCrudService() {
@@ -54,7 +33,7 @@ public class ProductServiceTest extends CrudServiceTest<Product, Integer> {
 
     @Override
     protected EntitySupplier<Product, Integer> getEntitySupplier() {
-        return countrySupplier;
+        return productSupplier;
     }
 
     @Override

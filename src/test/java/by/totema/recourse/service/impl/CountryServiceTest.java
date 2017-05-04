@@ -20,27 +20,6 @@ public class CountryServiceTest extends CrudServiceTest<Country, Integer> {
         countryService = new CountryServiceImpl(countryRepository);
         countrySupplier = new CountrySupplier();
     }
-/*
-    @Test
-    public void findByExistingSolutionIdTest() throws Exception {
-        when(countryRepository.findBySolutionId(any())).thenReturn(countrySupplier.getValidEntityWithId());
-
-        Optional<Country> result = countryService.findBySolutionId(countrySupplier.getAnyId());
-
-        verify(countryRepository, times(1)).findBySolutionId(any());
-        Assert.assertTrue(result.isPresent());
-    }
-
-    @Test
-    public void findByNotExistingSolutionIdTest() throws Exception {
-        when(countryRepository.findBySolutionId(any())).thenReturn(null);
-
-        Optional<Country> result = countryService.findBySolutionId(countrySupplier.getAnyId());
-
-        verify(countryRepository, times(1)).findBySolutionId(any());
-        Assert.assertFalse(result.isPresent());
-    }
-*/
 
     @Override
     protected CrudService<Country, Integer> getCrudService() {

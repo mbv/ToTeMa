@@ -20,27 +20,6 @@ public class OfficeServiceTest extends CrudServiceTest<Office, Integer> {
         officeService = new OfficeServiceImpl(officeRepository);
         officeSupplier = new OfficeSupplier();
     }
-/*
-    @Test
-    public void findByExistingSolutionIdTest() throws Exception {
-        when(officeRepository.findBySolutionId(any())).thenReturn(officeSupplier.getValidEntityWithId());
-
-        Optional<Country> result = officeService.findBySolutionId(officeSupplier.getAnyId());
-
-        verify(officeRepository, times(1)).findBySolutionId(any());
-        Assert.assertTrue(result.isPresent());
-    }
-
-    @Test
-    public void findByNotExistingSolutionIdTest() throws Exception {
-        when(officeRepository.findBySolutionId(any())).thenReturn(null);
-
-        Optional<Country> result = officeService.findBySolutionId(officeSupplier.getAnyId());
-
-        verify(officeRepository, times(1)).findBySolutionId(any());
-        Assert.assertFalse(result.isPresent());
-    }
-*/
 
     @Override
     protected CrudService<Office, Integer> getCrudService() {

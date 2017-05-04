@@ -23,27 +23,6 @@ public class OrderServiceTest extends CrudServiceTest<Order, Integer> {
         orderService = new OrderServiceImpl(orderRepository, dateService);
         orderSupplier = new OrderSupplier();
     }
-/*
-    @Test
-    public void findByExistingSolutionIdTest() throws Exception {
-        when(orderRepository.findBySolutionId(any())).thenReturn(orderSupplier.getValidEntityWithId());
-
-        Optional<Country> result = orderService.findBySolutionId(orderSupplier.getAnyId());
-
-        verify(orderRepository, times(1)).findBySolutionId(any());
-        Assert.assertTrue(result.isPresent());
-    }
-
-    @Test
-    public void findByNotExistingSolutionIdTest() throws Exception {
-        when(orderRepository.findBySolutionId(any())).thenReturn(null);
-
-        Optional<Country> result = orderService.findBySolutionId(orderSupplier.getAnyId());
-
-        verify(orderRepository, times(1)).findBySolutionId(any());
-        Assert.assertFalse(result.isPresent());
-    }
-*/
 
     @Override
     protected CrudService<Order, Integer> getCrudService() {
