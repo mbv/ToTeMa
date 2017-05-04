@@ -318,3 +318,5 @@ END IF;
 END$$
 DELIMITER ;
 
+GRANT SELECT ON `mysql`.`proc` TO 'totema_admin'@'localhost';
+GRANT EXECUTE ON PROCEDURE totema.getOrCreateDate TO 'totema_admin'@'localhost';

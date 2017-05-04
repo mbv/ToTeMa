@@ -12,6 +12,6 @@ import java.sql.Timestamp;
 public interface DateRepository extends PagingAndSortingRepository<Date, Integer> {
     Date findByTimeStamp(Timestamp timestamp);
 
-    @Procedure(name = "getOrCreate")
+    @Procedure(name = "getOrCreateDate")
     Integer getOrCreate(@Param("inTimestamp") Timestamp inTimestamp);
 }

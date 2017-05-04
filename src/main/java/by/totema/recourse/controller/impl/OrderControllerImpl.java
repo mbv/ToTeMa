@@ -1,5 +1,6 @@
 package by.totema.recourse.controller.impl;
 
+import by.totema.recourse.configuration.security.Auth;
 import by.totema.recourse.configuration.security.EmployeeAuthDetails;
 import by.totema.recourse.controller.OrderController;
 import by.totema.recourse.controller.exception.AccessDeniedException;
@@ -14,7 +15,10 @@ import by.totema.recourse.service.ProductListService;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.BiFunction;
@@ -62,7 +66,7 @@ public class OrderControllerImpl extends AbstractCrudController<Order, Integer> 
     }
 
     @Override
-    public Order create(OrderDto dto, EmployeeAuthDetails authDetails) throws ControllerException {
+    public Order create(@Valid @RequestBody OrderDto dto, @Auth EmployeeAuthDetails authDetails) throws ControllerException {
         checkAuthority(dto, authDetails, this::hasAuthorityToEdit);
         return wrapServiceCall(logger, () -> {
             Optional<Order> callResult = orderService.add(dto);
@@ -71,7 +75,7 @@ public class OrderControllerImpl extends AbstractCrudController<Order, Integer> 
     }
 
     @Override
-    public Order update(OrderDto dto, Integer orderId, EmployeeAuthDetails authDetails) throws ControllerException {
+    public Order update(@Valid @RequestBody OrderDto dto, @PathVariable("orderId") Integer orderId, @Auth EmployeeAuthDetails authDetails) throws ControllerException {
         checkAuthority(dto, authDetails, this::hasAuthorityToEdit);
         return wrapServiceCall(logger, () -> {
             Optional<Order> callResult = orderService.update(dto, orderId);

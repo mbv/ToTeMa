@@ -16,6 +16,11 @@ function OrderModalController($scope, $uibModalInstance, OrderFactory, OfficeFac
 
     OfficeFactory.query().$promise.then(function (result) {
         self.offices = result;
+        if (!self.order && (self.offices.length > 0)) {
+            self.order = {};
+            self.order.office = self.offices[0];
+            $scope.temporaryOffice = self.order.office.id;
+        }
         $scope.$watch('temporaryOffice', function (newValue, oldValue) {
             if (newValue) {
                 angular.forEach(self.offices, function (office) {
@@ -29,6 +34,11 @@ function OrderModalController($scope, $uibModalInstance, OrderFactory, OfficeFac
 
     EmployeeFactory.query().$promise.then(function (result) {
         self.employees = result;
+        if (!self.order && (self.employees.length > 0)) {
+            self.order = {};
+            self.order.employee = self.employees[0];
+            $scope.temporaryEmployee = self.order.employee.id;
+        }
         $scope.$watch('temporaryEmployee', function (newValue, oldValue) {
             if (newValue) {
                 angular.forEach(self.employees, function (employee) {

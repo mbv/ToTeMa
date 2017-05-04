@@ -2,6 +2,7 @@ package by.totema.recourse.entity.dto;
 
 import by.totema.recourse.entity.model.Employee;
 import by.totema.recourse.entity.model.Office;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
 
@@ -25,6 +26,7 @@ public class OrderDto {
     private Employee employee;
 
     @NotNull
+    @DateTimeFormat(pattern="yyyy/MM/dd")
     private String date;
 
     @NotNull

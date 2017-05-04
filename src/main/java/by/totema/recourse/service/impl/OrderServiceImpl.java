@@ -1,17 +1,16 @@
 package by.totema.recourse.service.impl;
 
+import by.totema.recourse.entity.dto.ErrorMessage;
 import by.totema.recourse.entity.dto.OrderDto;
 import by.totema.recourse.entity.model.Date;
 import by.totema.recourse.entity.model.Order;
-import by.totema.recourse.repository.DateRepository;
 import by.totema.recourse.repository.OrderRepository;
+import by.totema.recourse.service.DateService;
 import by.totema.recourse.service.OrderService;
 import by.totema.recourse.service.exception.ServiceException;
+import by.totema.recourse.validation.exception.ServiceBadRequestException;
 import org.springframework.validation.Validator;
 
-import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -20,12 +19,12 @@ import static by.totema.recourse.util.RepositoryCallWrapper.wrapJPACallToOptiona
 
 public class OrderServiceImpl extends AbstractCrudService<Order, Integer> implements OrderService {
     private OrderRepository orderRepository;
-    private DateRepository dateRepository;
+    private DateService dateService;
 
-    public OrderServiceImpl(OrderRepository orderRepository, DateRepository dateRepository) {
+    public OrderServiceImpl(OrderRepository orderRepository, DateService dateService) {
         super(orderRepository);
         this.orderRepository = orderRepository;
-        this.dateRepository = dateRepository;
+        this.dateService = dateService;
     }
 
     @Override
@@ -51,10 +50,20 @@ public class OrderServiceImpl extends AbstractCrudService<Order, Integer> implem
 
     @Override
     public Optional<Order> update(OrderDto dto, Integer id) throws ServiceException {
-        return null;
+        Optional<Order> result;
+        Optional<Order> databaseOrderOptional = wrapJPACallToOptional(() -> orderRepository.findOne(id));
+        if (databaseOrderOptional.isPresent()) {
+            Order databaseOrder = databaseOrderOptional.get();
+            mapDtoToEntity(databaseOrder, dto);
+
+            result = wrapJPACallToOptional(() -> orderRepository.save(databaseOrder));
+        } else {
+            result = Optional.empty();
+        }
+        return result;
     }
 
-    private void mapDtoToEntity(Order order, OrderDto dto) {
+    private void mapDtoToEntity(Order order, OrderDto dto) throws ServiceException {
         order.setQuantity(dto.getQuantity());
         order.setCost(dto.getCost());
         order.setPrice(dto.getPrice());
@@ -63,27 +72,13 @@ public class OrderServiceImpl extends AbstractCrudService<Order, Integer> implem
         order.setOffice(dto.getOffice());
 
         order.setDate(processDate(dto));
-
     }
 
     private Date processDate(OrderDto dto) throws ServiceException {
-        try {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            java.util.Date parsedDate = dateFormat.parse(dto.getDate());
-            Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
-            Optional<Integer> dateId = wrapJPACallToOptional(() -> dateRepository.getOrCreate(timestamp));
-            if (!dateId.isPresent()) {
-                throw new ServiceException("Bad fsdnfsdnklfs");
-            } else {
-                Optional<Date> date = wrapJPACallToOptional(() -> dateRepository.findOne(dateId.get()));
-                if (!date.isPresent()) {
-                    throw new ServiceException("Bad id");
-                } else {
-                    return date.get();
-                }
-            }
-        } catch (ParseException e) {
-            throw new ServiceException(e);
+        Optional<Date> date = dateService.getOrCreate(dto.getDate());
+        if (!date.isPresent()) {
+            throw new ServiceBadRequestException(new ErrorMessage("date", "Bad date"));
         }
+        return date.get();
     }
 }

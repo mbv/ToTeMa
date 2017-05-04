@@ -9,6 +9,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 
+import javax.validation.ConstraintViolationException;
 import java.util.Optional;
 
 public class RepositoryCallWrapper {
@@ -36,7 +37,7 @@ public class RepositoryCallWrapper {
                 result = Optional.ofNullable(function.call());
             } catch (EmptyResultDataAccessException e) {
                 result = Optional.empty();
-            } catch (DataIntegrityViolationException e) {
+            } catch (DataIntegrityViolationException | ConstraintViolationException e) {
                 throw new ServiceConstraintViolationException(new ErrorMessage("Invalid entity", "Invalid entity references"));
             }
             return result;

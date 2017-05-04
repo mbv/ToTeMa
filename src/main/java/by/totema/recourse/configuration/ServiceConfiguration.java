@@ -15,6 +15,10 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 public class ServiceConfiguration {
 
     @Bean
+    public DateService dateService(DateRepository dateRepository) {
+        return new DateServiceImpl(dateRepository);
+    }
+    @Bean
     public ConversionRateService conversionRateService(ConversionRateRepository conversionRateRepository) {
         return new ConversionRateServiceImpl(conversionRateRepository);
     }
@@ -45,8 +49,8 @@ public class ServiceConfiguration {
     }
 
     @Bean
-    public OrderService orderService(OrderRepository orderRepository, DateRepository dateRepository) {
-        return new OrderServiceImpl(orderRepository, dateRepository);
+    public OrderService orderService(OrderRepository orderRepository, DateService dateService) {
+        return new OrderServiceImpl(orderRepository, dateService);
     }
 
     @Bean
