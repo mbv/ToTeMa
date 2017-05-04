@@ -42,7 +42,9 @@ function ProductListListController($uibModal, ProductListFactory, OrderFactory, 
                 productList: function () {
                     return angular.copy(productList);
                 },
-                orderId: self.orderId
+                orderId: function () {
+                    return self.orderId;
+                }
             }
         });
         modalInstance.result.then(refresh);

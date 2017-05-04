@@ -7,24 +7,30 @@
         </div>
         <div class="modal-body">
             <div class="input-group" style="margin-bottom: 20px;">
-                <span class="input-group-addon">Gender</span>
-                <input type="text" class="form-control" ng-model="self.productType.gender">
+                <span class="input-group-addon">Product</span>
+                <select ui-select2 ng-model="temporaryProduct" data-placeholder="Pick a Product">
+                    <option ng-repeat="product in self.products" value="{{product.id}}">{{product.name}} {{product.size}} {{product.color}}</option>
+                </select>
             </div>
             <div class="input-group" style="margin-bottom: 20px;">
-                <span class="input-group-addon">Age</span>
-                <input type="text" class="form-control" ng-model="self.productType.age">
+                <span class="input-group-addon">Quantity</span>
+                <input type="text" class="form-control" ng-model="self.productList.quantity">
             </div>
             <div class="input-group" style="margin-bottom: 20px;">
-                <span class="input-group-addon">Season</span>
-                <input type="text" class="form-control" ng-model="self.productType.season">
+                <span class="input-group-addon">Unit Cost</span>
+                <input type="text" class="form-control" ng-model="self.productList.unitCost">
             </div>
             <div class="input-group" style="margin-bottom: 20px;">
-                <span class="input-group-addon">Type</span>
-                <input type="text" class="form-control" ng-model="self.productType.type">
+                <span class="input-group-addon">Unit Price</span>
+                <input type="text" class="form-control" ng-model="self.productList.unitPrice">
+            </div>
+            <div class="input-group" style="margin-bottom: 20px;">
+                <span class="input-group-addon">Gross Margin</span>
+                <input type="text" class="form-control" ng-model="self.productList.grossMargin">
             </div>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary" type="button" ng-click="self.saveProductType()">Save</button>
+            <button class="btn btn-primary" type="button" ng-click="self.saveProductList()">Save</button>
             <button class="btn btn-default" type="button" ng-click="self.cancel()">Cancel</button>
         </div>
     </div>
