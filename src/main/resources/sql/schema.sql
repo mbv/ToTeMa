@@ -246,3 +246,69 @@ INSERT INTO `oauth_client_details` VALUES (
                NULL
 );
 
+
+DELIMITER $$
+CREATE PROCEDURE `Add_Date`(t TIMESTAMP)
+BEGIN
+DECLARE y integer;
+DECLARE q integer;
+DECLARE m integer;
+DECLARE w integer;
+DECLARE d integer;
+DECLARE i integer;
+DECLARE ct timestamp;
+DECLARE mn char(20);
+
+SET @ct = t;
+SET @y = YEAR(t);
+SET @q = QUARTER(t);
+SET @m = Month(t);
+SET @w = WEEK(t);
+SET @d = DAY(t);
+SET @i = 0;
+
+CASE @m
+    WHEN 1 THEN SET @mn='January';
+    WHEN 2 THEN SET @mn='February';
+    WHEN 3 THEN SET @mn='March';
+    WHEN 4 THEN SET @mn='April';
+    WHEN 5 THEN SET @mn='May';
+    WHEN 6 THEN SET @mn='June';
+    WHEN 7 THEN SET @mn='July';
+    WHEN 8 THEN SET @mn='August';
+    WHEN 9 THEN SET @mn='September';
+    WHEN 10 THEN SET @mn='October';
+    WHEN 11 THEN SET @mn='Novamber';
+    WHEN 12 THEN SET @mn='December';
+    ELSE SET @mn='';
+END CASE;
+
+SELECT dt.ID INTO @i FROM `date` dt WHERE
+dt.YEAR = @y AND
+dt.MONTH_INT = @m AND
+dt.DAY = @d;
+
+if @i = 0 then
+INSERT INTO `date`
+(
+`TIME_STAMP`,
+`YEAR`,
+`QUARTER`,
+`MONTH_NAME`,
+`MONTH_INT`,
+`WEEK`,
+`DAY`)
+VALUES
+(
+@ct,
+@y,
+@q,
+@mn,
+@m,
+@w,
+@d);
+
+END IF;
+END$$
+DELIMITER ;
+
