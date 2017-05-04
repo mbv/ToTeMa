@@ -19,8 +19,10 @@
                 </select>
             </div>
             <div class="input-group" style="margin-bottom: 20px;">
-                <span class="input-group-addon">Date Key</span>
-                <input type="text" class="form-control" ng-model="self.order.dateKey">
+                <span class="input-group-addon">Date</span>
+                <datepicker date-format="yyyy-MM-dd" date-set="{{(self.order.date.timeStamp | date : 'yyyy-MM-dd')}}">
+                    <input type="text" class="form-control" ng-model="self.order.date">
+                </datepicker>
             </div>
             <div class="input-group" style="margin-bottom: 20px;">
                 <span class="input-group-addon">Quantity</span>

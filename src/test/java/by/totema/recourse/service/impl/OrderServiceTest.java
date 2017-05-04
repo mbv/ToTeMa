@@ -1,6 +1,7 @@
 package by.totema.recourse.service.impl;
 
 import by.totema.recourse.entity.model.Order;
+import by.totema.recourse.repository.DateRepository;
 import by.totema.recourse.repository.OrderRepository;
 import by.totema.recourse.service.CrudService;
 import by.totema.recourse.service.CrudServiceTest;
@@ -13,11 +14,13 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 public class OrderServiceTest extends CrudServiceTest<Order, Integer> {
     private OrderService orderService;
     private OrderRepository orderRepository;
+    private DateRepository dateRepository;
     private OrderSupplier orderSupplier;
 
     public OrderServiceTest() {
         orderRepository = Mockito.mock(OrderRepository.class);
-        orderService = new OrderServiceImpl(orderRepository);
+        dateRepository = Mockito.mock(DateRepository.class);
+        orderService = new OrderServiceImpl(orderRepository, dateRepository);
         orderSupplier = new OrderSupplier();
     }
 /*

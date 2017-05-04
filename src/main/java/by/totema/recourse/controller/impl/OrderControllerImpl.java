@@ -71,10 +71,10 @@ public class OrderControllerImpl extends AbstractCrudController<Order, Integer> 
     }
 
     @Override
-    public Order update(OrderDto dto, Integer id, EmployeeAuthDetails authDetails) throws ControllerException {
+    public Order update(OrderDto dto, Integer orderId, EmployeeAuthDetails authDetails) throws ControllerException {
         checkAuthority(dto, authDetails, this::hasAuthorityToEdit);
         return wrapServiceCall(logger, () -> {
-            Optional<Order> callResult = orderService.update(dto, id);
+            Optional<Order> callResult = orderService.update(dto, orderId);
             return callResult.orElseThrow(NotFoundException::new);
         });
     }

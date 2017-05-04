@@ -18,14 +18,14 @@ INSERT INTO `country` (`ID`, `NAME`, `ISO_THREE_LETTER_CODE`, `ISO_TWO_LETTER_CO
 
 
 INSERT INTO `date` (`ID`, `TIME_STAMP`, `YEAR`, `QUARTER`, `MONTH_NAME`, `MONTH_INT`, `WEEK`, `DAY`) VALUES
-  (1, NULL, 2017, 1, 'January', 1, 1, 10),
-  (2, NULL, 2017, 1, 'January', 1, 1, 13),
-  (3, NULL, 2017, 1, 'January', 1, 1, 15),
-  (4, NULL, 2017, 1, 'January', 1, 1, 16),
-  (5, NULL, 2017, 1, 'January', 1, 1, 17),
-  (6, NULL, 2017, 1, 'January', 1, 1, 18),
-  (7, NULL, 2017, 1, 'January', 1, 1, 20),
-  (8, NULL, 2017, 1, 'January', 1, 1, 21);
+  (1, '2017-01-10 00:00:00', 2017, 1, 'January', 1, 1, 10),
+  (2, '2017-01-13 00:00:00', 2017, 1, 'January', 1, 1, 13),
+  (3, '2017-01-15 00:00:00', 2017, 1, 'January', 1, 1, 15),
+  (4, '2017-01-16 00:00:00', 2017, 1, 'January', 1, 1, 16),
+  (5, '2017-01-17 00:00:00', 2017, 1, 'January', 1, 1, 17),
+  (6, '2017-01-18 00:00:00', 2017, 1, 'January', 1, 1, 18),
+  (7, '2017-01-20 00:00:00', 2017, 1, 'January', 1, 1, 20),
+  (8, '2017-01-21 00:00:00', 2017, 1, 'January', 1, 1, 21);
 
 
 INSERT INTO `employee` (`ID`, `USERNAME`, `PASSWORD_HASH`, `NAME`, `HIRE_DATE`, `OFFICE_KEY`, `TITLE`, `YEAR_SALARY`, `CONTRACT_TILL`, `REPORTS_TO`, `ROLE`) VALUES

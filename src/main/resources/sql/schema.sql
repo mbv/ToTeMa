@@ -248,7 +248,12 @@ INSERT INTO `oauth_client_details` VALUES (
 
 
 DELIMITER $$
-CREATE PROCEDURE `Add_Date`(t TIMESTAMP)
+
+DROP PROCEDURE IF EXISTS `getOrCreateDate` $$
+CREATE PROCEDURE `getOrCreateDate`(
+  IN t TIMESTAMP,
+  OUT id INT
+)
 BEGIN
 DECLARE y integer;
 DECLARE q integer;
@@ -278,7 +283,7 @@ CASE @m
     WHEN 8 THEN SET @mn='August';
     WHEN 9 THEN SET @mn='September';
     WHEN 10 THEN SET @mn='October';
-    WHEN 11 THEN SET @mn='Novamber';
+    WHEN 11 THEN SET @mn='November';
     WHEN 12 THEN SET @mn='December';
     ELSE SET @mn='';
 END CASE;
@@ -307,8 +312,9 @@ VALUES
 @m,
 @w,
 @d);
-
+  SET @i = LAST_INSERT_ID();
 END IF;
+  SET id = @i;
 END$$
 DELIMITER ;
 

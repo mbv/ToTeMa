@@ -4,7 +4,14 @@ angular
 
 function OrderFactory($resource) {
     return $resource('api/orders/:id', {id: '@id'}, {
-        update: {method: 'PUT'},
+        save: {
+            method: 'POST',
+            url: 'api/orders/dto'
+        },
+        update: {
+            method: 'PUT',
+            url: 'api/orders/:id/dto'
+        },
         delete: {method: 'DELETE'},
         getProductLists: {
             method: 'GET',

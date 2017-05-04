@@ -45,8 +45,8 @@ public class ServiceConfiguration {
     }
 
     @Bean
-    public OrderService orderService(OrderRepository orderRepository) {
-        return new OrderServiceImpl(orderRepository);
+    public OrderService orderService(OrderRepository orderRepository, DateRepository dateRepository) {
+        return new OrderServiceImpl(orderRepository, dateRepository);
     }
 
     @Bean

@@ -2,15 +2,22 @@ package by.totema.recourse.entity.model;
 
 import org.hibernate.validator.constraints.SafeHtml;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
 @Table(name = "`date`")
+@NamedStoredProcedureQueries({
+        @NamedStoredProcedureQuery(name = "getOrCreateDate",
+                procedureName = "getOrCreateDate",
+                parameters = {
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "inTimestamp", type = Timestamp.class),
+                        @StoredProcedureParameter(mode = ParameterMode.OUT, name = "outId", type = Integer.class)
+
+                }),
+})
 public class Date extends BaseEntity<Integer> {
 
     @Past

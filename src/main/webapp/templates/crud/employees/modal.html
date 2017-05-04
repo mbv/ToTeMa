@@ -16,8 +16,8 @@
             </div>
             <div class="input-group" style="margin-bottom: 20px;">
                 <span class="input-group-addon">Hire Date</span>
-                <datepicker date-format="dd.MM.yyyy">
-                    <input type="text" class="form-control" ng-model="self.employee.hireDate" ng-value="(self.employee.hireDate | date : 'dd.MM.yyyy')">
+                <datepicker date-format="yyyy-MM-dd" date-set="{{(self.employee.hireDate | date : 'yyyy-MM-dd')}}>
+                    <input type="text" class="form-control" ng-model="self.employee.hireDate">
                 </datepicker>
             </div>
             <div class="input-group" style="margin-bottom: 20px;">
@@ -32,8 +32,8 @@
             </div>
             <div class="input-group" style="margin-bottom: 20px;">
                 <span class="input-group-addon">Contract Till</span>
-                <datepicker date-format="dd.MM.yyyy">
-                    <input type="text" class="form-control" ng-model="self.employee.contractTill" ng-value="(self.employee.contractTill | date : 'dd.MM.yyyy')">
+                <datepicker date-format="yyyy-MM-dd" date-set="{{(self.employee.contractTill | date : 'yyyy-MM-dd')}}>
+                    <input type="text" class="form-control" ng-model="self.employee.contractTill">
                 </datepicker>
             </div>
         </div>

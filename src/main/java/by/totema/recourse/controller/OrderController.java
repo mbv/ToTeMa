@@ -22,6 +22,6 @@ public interface OrderController extends CrudController<Order, Integer> {
     @PostMapping("dto")
     Order create(@RequestBody OrderDto dto, @Auth EmployeeAuthDetails authDetails) throws ControllerException;
 
-    @PutMapping("{id}/dto")
-    Order update(@RequestBody OrderDto dto, @PathVariable("id") Integer id, @Auth EmployeeAuthDetails authDetails) throws ControllerException;
+    @PutMapping("{orderId}/dto")
+    Order update(@RequestBody OrderDto dto, @PathVariable("orderId") Integer orderId, @Auth EmployeeAuthDetails authDetails) throws ControllerException;
 }
