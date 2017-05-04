@@ -1,0 +1,40 @@
+<div class="container" ng-controller="ProductListListController as self">
+    <div class="col-xs-12">
+        <div class="panel panel-default" style="margin-top: 30px;">
+            <div class="panel-heading">
+                <span style="line-height: 34px;">Product List</span>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#productLists-modal" ng-click="self.addProductList()" style="float: right;">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <thead>
+                    <th>#</th>
+                    <th>Product</th>
+                    <th>Product Type</th>
+                    <th>Quantity</th>
+                    <th>Unit Cost</th>
+                    <th>Unit Price</th>
+                    <th>Gross Margin</th>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="productList in self.productLists">
+                        <td class="col-xs-1">{{productList.id}}</td>
+                        <td class="col-xs-1">{{productList.product.name}} {{productList.product.size}} {{productList.product.color}}</td>
+                        <td class="col-xs-1">{{productList.product.type.age}} {{productList.product.type.season}} {{productList.product.type.type}} (Gender: {{productList.product.type.gender}})</td>
+                        <td class="col-xs-1">{{productList.quantity}}</td>
+                        <td class="col-xs-1">{{productList.unitCost}}</td>
+                        <td class="col-xs-1">{{productList.unitPrice}}</td>
+                        <td class="col-xs-1">{{productList.grossMargin}}</td>
+                        <td class="col-xs-3">
+                            <button class="btn btn-xs btn-info" ng-click="self.editProductList(productList)">Edit</button>
+                            <button class="btn btn-xs btn-danger" ng-click="self.deleteProductList(productList)">Delete</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -44,6 +44,13 @@ function AppStates($stateProvider, $urlRouterProvider) {
             templateUrl: 'templates/crud/orders/index.html'
         },
         {
+            name: 'productLists',
+            url: '/product-list?order',
+            controller: 'ProductListListController as self',
+            templateUrl: 'templates/crud/productLists/index.html'
+        },
+
+        {
             name: 'products',
             url: '/products',
             controller: 'ProductListController as self',

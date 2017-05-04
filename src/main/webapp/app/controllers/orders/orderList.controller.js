@@ -12,6 +12,7 @@ function OrderListController($uibModal, OrderFactory, $state) {
     self.addOrder = addOrder;
     self.deleteOrder = deleteOrder;
     self.editOrder = editOrder;
+    self.showProductLists = showProductLists;
 
     refresh();
 
@@ -32,6 +33,11 @@ function OrderListController($uibModal, OrderFactory, $state) {
     function editOrder(order) {
         openModal(order);
     }
+
+    function showProductLists(order) {
+        $state.go('productLists', { order: order.id });
+    }
+
 
     function openModal(order) {
         var modalInstance = $uibModal.open({

@@ -40,7 +40,9 @@ public class OrderControllerImpl extends AbstractCrudController<Order, Integer> 
         this.productListService = productListService;
     }
 
-    protected  boolean hasAuthorityToEdit(OrderDto dto, EmployeeAuthDetails authDetails) {return true;}
+    protected boolean hasAuthorityToEdit(OrderDto dto, EmployeeAuthDetails authDetails) {
+        return true;
+    }
 
     protected boolean hasAuthorityToRead(OrderDto dto, EmployeeAuthDetails authDetails) {
         return true;
@@ -58,7 +60,7 @@ public class OrderControllerImpl extends AbstractCrudController<Order, Integer> 
     }
 
     @Override
-    public List<ProductList> getProductLists(Integer orderId, Pageable pageable) {
+    public List<ProductList> getProductLists(@PathVariable("orderId") Integer orderId, Pageable pageable) throws ControllerException {
         return wrapServiceCall(logger, () -> {
             Optional<List<ProductList>> productLists = productListService.findByOrderId(orderId, pageable);
             return productLists.orElseThrow(NotFoundException::new);

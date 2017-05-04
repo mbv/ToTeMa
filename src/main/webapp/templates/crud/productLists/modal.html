@@ -1,0 +1,31 @@
+<div>
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="self.cancel()"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" ng-if="self.updateMode">Update Product Type</h4>
+            <h4 class="modal-title" ng-if="!self.updateMode">Create Product Type</h4>
+        </div>
+        <div class="modal-body">
+            <div class="input-group" style="margin-bottom: 20px;">
+                <span class="input-group-addon">Gender</span>
+                <input type="text" class="form-control" ng-model="self.productType.gender">
+            </div>
+            <div class="input-group" style="margin-bottom: 20px;">
+                <span class="input-group-addon">Age</span>
+                <input type="text" class="form-control" ng-model="self.productType.age">
+            </div>
+            <div class="input-group" style="margin-bottom: 20px;">
+                <span class="input-group-addon">Season</span>
+                <input type="text" class="form-control" ng-model="self.productType.season">
+            </div>
+            <div class="input-group" style="margin-bottom: 20px;">
+                <span class="input-group-addon">Type</span>
+                <input type="text" class="form-control" ng-model="self.productType.type">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="self.saveProductType()">Save</button>
+            <button class="btn btn-default" type="button" ng-click="self.cancel()">Cancel</button>
+        </div>
+    </div>
+</div>

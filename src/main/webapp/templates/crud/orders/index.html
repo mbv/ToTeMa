@@ -30,6 +30,7 @@
                         <td class="col-xs-1">{{order.price}}</td>
                         <td class="col-xs-1">{{order.grossMargin}}</td>
                         <td class="col-xs-3">
+                            <button class="btn btn-xs btn-info" ng-click="self.showProductLists(order)">PL</button>
                             <button class="btn btn-xs btn-info" ng-click="self.editOrder(order)">Edit</button>
                             <button class="btn btn-xs btn-danger" ng-click="self.deleteOrder(order)">Delete</button>
                         </td>

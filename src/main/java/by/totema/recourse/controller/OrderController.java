@@ -16,8 +16,7 @@ import java.util.List;
 @RequestMapping("api/orders")
 public interface OrderController extends CrudController<Order, Integer> {
     @GetMapping("{orderId}/product-lists")
-    List<ProductList> getProductLists(
-            @PathVariable("orderId") Integer orderId, Pageable pageable);
+    List<ProductList> getProductLists(@PathVariable("orderId") Integer orderId, Pageable pageable) throws ControllerException;
 
     @PostMapping("dto")
     Order create(@RequestBody OrderDto dto, @Auth EmployeeAuthDetails authDetails) throws ControllerException;
