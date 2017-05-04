@@ -15,6 +15,11 @@ function ProductModalController($scope, $uibModalInstance, ProductFactory, Produ
 
     ProductTypeFactory.query().$promise.then(function (result) {
         self.productTypes = result;
+        if (!self.product && (self.productTypes.length > 0)) {
+            self.product = {};
+            self.product.type = self.productTypes[0];
+            $scope.temporaryProductType = self.product.type.id;
+        }
         $scope.$watch('temporaryProductType', function (newValue, oldValue) {
             if (newValue) {
                 angular.forEach(self.productTypes, function (productType) {

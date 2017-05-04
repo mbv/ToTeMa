@@ -15,6 +15,11 @@ function EmployeeModalController($scope, $uibModalInstance, EmployeeFactory, Off
 
     OfficeFactory.query().$promise.then(function (result) {
         self.offices = result;
+        if (!self.employee && (self.offices.length > 0)) {
+            self.employee = {};
+            self.employee.office = self.offices[0];
+            $scope.temporaryOffice = self.employee.office.id;
+        }
         $scope.$watch('temporaryOffice', function (newValue, oldValue) {
             if (newValue) {
                 angular.forEach(self.offices, function (office) {
