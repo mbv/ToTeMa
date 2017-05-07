@@ -2,9 +2,8 @@ package by.totema.recourse.service.impl;
 
 import by.totema.recourse.entity.model.BaseEntity;
 import by.totema.recourse.service.CrudService;
-import by.totema.recourse.validation.exception.ServiceBadRequestException;
+import by.totema.recourse.service.exception.ServiceBadRequestException;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.BindingResult;

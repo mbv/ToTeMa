@@ -5,9 +5,8 @@ import by.totema.recourse.entity.dto.PasswordChanging;
 import by.totema.recourse.entity.model.Employee;
 import by.totema.recourse.repository.EmployeeRepository;
 import by.totema.recourse.service.EmployeeService;
+import by.totema.recourse.service.exception.ServiceBadRequestException;
 import by.totema.recourse.service.exception.ServiceException;
-import by.totema.recourse.validation.exception.ServiceAccessDeniedException;
-import by.totema.recourse.validation.exception.ServiceBadRequestException;
 import by.totema.recourse.validation.validator.PasswordChangingValidator;
 import org.slf4j.Logger;
 import org.springframework.data.domain.Pageable;
@@ -178,7 +177,7 @@ public class EmployeeServiceImpl extends AbstractCrudService<Employee, Integer> 
     }
 
     private void denyRoleChanging(String message) {
-        throw new ServiceAccessDeniedException(new ErrorMessage("role", message));
+        throw new ServiceBadRequestException(new ErrorMessage("role", message));
     }
 
     private void forceLogoutEmployee(Employee employee) {

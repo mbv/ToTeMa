@@ -1,4 +1,4 @@
-package by.totema.recourse.validation.exception;
+package by.totema.recourse.service.exception;
 
 import by.totema.recourse.entity.dto.ErrorMessage;
 import org.springframework.http.HttpStatus;

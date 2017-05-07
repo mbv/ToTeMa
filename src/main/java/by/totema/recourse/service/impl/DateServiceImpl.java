@@ -4,7 +4,7 @@ import by.totema.recourse.entity.dto.ErrorMessage;
 import by.totema.recourse.entity.model.Date;
 import by.totema.recourse.repository.DateRepository;
 import by.totema.recourse.service.DateService;
-import by.totema.recourse.validation.exception.ServiceBadRequestException;
+import by.totema.recourse.service.exception.ServiceBadRequestException;
 
 import java.sql.Timestamp;
 import java.text.ParseException;

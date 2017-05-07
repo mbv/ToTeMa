@@ -7,8 +7,8 @@ import by.totema.recourse.entity.model.Order;
 import by.totema.recourse.repository.OrderRepository;
 import by.totema.recourse.service.DateService;
 import by.totema.recourse.service.OrderService;
+import by.totema.recourse.service.exception.ServiceBadRequestException;
 import by.totema.recourse.service.exception.ServiceException;
-import by.totema.recourse.validation.exception.ServiceBadRequestException;
 import org.springframework.validation.Validator;
 
 import java.util.Collections;

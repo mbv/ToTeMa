@@ -1,7 +1,6 @@
-package by.totema.recourse.validation.exception;
+package by.totema.recourse.service.exception;
 
 import by.totema.recourse.entity.dto.ErrorMessage;
-import by.totema.recourse.service.exception.ServiceException;
 import org.springframework.http.HttpStatus;
 
 import java.util.Arrays;
