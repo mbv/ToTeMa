@@ -14,7 +14,7 @@
         <nav class="navbar navbar-default navbar-fixed-top" ng-controller="NavigationController as self">
             <div class="container-fluid">
                 <ul class="nav navbar-nav">
-                    <li ng-class="{ active: self.isActive('/') }"><a href='#!/'>Home</a></li>
+                    <li ng-class="{ active: self.isActive('/') }"><a ui-sref="home">Home</a></li>
                     <li ng-class="{ active: self.isActive('/users') }"><a  ui-sref="employees">Employees</a></li>
                     <li ng-class="{ active: self.isActive('/conversion-rates') }"><a ui-sref="conversionRates">Conversion Rates</a></li>
                     <li ng-class="{ active: self.isActive('/countries') }"><a ui-sref="countries">Countries</a></li>
@@ -22,7 +22,8 @@
                     <li ng-class="{ active: self.isActive('/orders') }"><a ui-sref="orders">Orders</a></li>
                     <li ng-class="{ active: self.isActive('/products') }"><a ui-sref="products">Products</a></li>
                     <li ng-class="{ active: self.isActive('/types') }"><a ui-sref="productTypes">Products Types</a></li>
-                    <li ng-class="{ active: self.isActive('/about') }"><a href="#!/about">About</a></li>
+                    <li ng-class="{ active: self.isActive('/about') }"><a ui-sref="reports">Reports</a></li>
+                    <li ng-class="{ active: self.isActive('/about') }"><a ui-sref="about">About</a></li>
                 </ul>
             </div>
         </nav>
@@ -65,6 +66,7 @@
 
     <script type="text/javascript" src="app/services/auth.service.js"></script>
     <script type="text/javascript" src="app/services/errors.service.js"></script>
+    <script type="text/javascript" src="app/services/documentDownloader.service.js"></script>
 
     <script type="text/javascript" src="app/factories/user.factory.js"></script>
     <script type="text/javascript" src="app/factories/conversionRate.factory.js"></script>
@@ -76,6 +78,8 @@
     <script type="text/javascript" src="app/factories/productType.factory.js"></script>
     <script type="text/javascript" src="app/factories/productList.factory.js"></script>
 
+
+    <script type="text/javascript" src="app/controllers/reports.controller.js"></script>
 
     <script type="text/javascript" src="app/controllers/conversionRates/conversionRateList.controller.js"></script>
     <script type="text/javascript" src="app/controllers/conversionRates/conversionRateModal.controller.js"></script>

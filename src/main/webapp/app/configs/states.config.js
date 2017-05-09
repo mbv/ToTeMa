@@ -4,7 +4,7 @@ angular
 
 function AppStates($stateProvider, $urlRouterProvider) {
     [
-        { name: 'root', url: '/', redirectTo: 'home' },
+        { name: 'root', url: '/', templateUrl: 'templates/home.html', redirectTo: 'home' },
         { name: 'home', url: '/home', templateUrl: 'templates/home.html' },
         { name: 'about', url: '/about', templateUrl: 'templates/about.html' },
         {
@@ -61,6 +61,12 @@ function AppStates($stateProvider, $urlRouterProvider) {
             url: '/product-types',
             controller: 'ProductTypeListController as self',
             templateUrl: 'templates/crud/productTypes/index.html'
+        },
+        {
+            name: 'reports',
+            url: '/reports',
+            controller: 'ReportsController as self',
+            templateUrl: 'templates/reports.html'
         },
         { name: 'otherwise', url: '/otherwise', template: '<h1>404</h1>' }
     ].forEach(function(state) { $stateProvider.state(state) });

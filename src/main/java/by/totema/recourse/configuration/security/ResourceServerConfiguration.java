@@ -40,25 +40,9 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
     public void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-
-                .antMatchers(HttpMethod.GET, "/api/countries/**").permitAll()
-                .antMatchers(HttpMethod.PUT, "/api/countries/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/employees/**").permitAll()
-                .antMatchers(HttpMethod.PUT, "/api/employees/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/offices/**").permitAll()
-                .antMatchers(HttpMethod.PUT, "/api/offices/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/product-types/**").permitAll()
-                .antMatchers(HttpMethod.PUT, "/api/product-types/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/reports/**").permitAll()
-
-                .antMatchers(HttpMethod.PUT, "/api/orders/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/reports/**").authenticated()
 
                 .antMatchers("/api/employees/logout", "/api/employees/password/change").authenticated()
-                .antMatchers("/api/countries/**").permitAll()
-                .antMatchers("/api/employees/**").permitAll()
-                .antMatchers("/api/offices/**").permitAll()
-                .antMatchers("/api/product-types/**").permitAll()
-
 
                 .antMatchers("/api/**").authenticated()
                 .anyRequest().permitAll();
