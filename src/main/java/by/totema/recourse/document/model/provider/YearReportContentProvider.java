@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class EmployeeReportContentProvider implements ContentProvider<Object, OrderReportDto> {
+public class YearReportContentProvider implements ContentProvider<Object, OrderReportDto> {
     @Override
     public String createTitle(Object object) {
         return "";
@@ -18,7 +18,7 @@ public class EmployeeReportContentProvider implements ContentProvider<Object, Or
 
     @Override
     public String createFilename(Object object) {
-        return "employeesReport";
+        return "yearReport";
     }
 
     @Override
@@ -28,7 +28,7 @@ public class EmployeeReportContentProvider implements ContentProvider<Object, Or
 
     @Override
     public List<String> getHeaders() {
-        return Arrays.asList("Employee", "Office", "Country", "Quantity", "Total Price", "Total Cost", "Total Gross Margin", "Currency");
+        return Arrays.asList("Year", "Quantity", "Total Price", "Total Cost", "Total Gross Margin", "Currency");
     }
 
     @Override
@@ -39,7 +39,7 @@ public class EmployeeReportContentProvider implements ContentProvider<Object, Or
     @Override
     public List<List<String>> createRows(Collection<OrderReportDto> orderReportDtos) {
         return orderReportDtos.stream()
-                .map(dto -> Arrays.asList(dto.getEmployee(), dto.getOffice(), dto.getCountry(), dto.getQuantity().toString(), dto.getTotalPrice().toString(), dto.getTotalCost().toString(), dto.getTotalGrossMargin().toString(), dto.getCurrency()))
+                .map(dto -> Arrays.asList(dto.getYear().toString(), dto.getQuantity().toString(), dto.getTotalPrice().toString(), dto.getTotalCost().toString(), dto.getTotalGrossMargin().toString(), dto.getCurrency()))
                 .collect(Collectors.toList());
     }
 }

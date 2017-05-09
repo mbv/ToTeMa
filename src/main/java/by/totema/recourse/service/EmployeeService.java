@@ -1,6 +1,6 @@
 package by.totema.recourse.service;
 
-import by.totema.recourse.entity.dto.EmployeeOrderReportDto;
+import by.totema.recourse.entity.dto.OrderReportDto;
 import by.totema.recourse.entity.dto.PasswordChanging;
 import by.totema.recourse.entity.model.Employee;
 import by.totema.recourse.service.exception.ServiceException;
@@ -19,5 +19,5 @@ public interface EmployeeService extends CrudService<Employee, Integer> {
 
     Optional<Boolean> changePassword(Integer employeeId, PasswordChanging passwordChanging) throws ServiceException;
 
-    Optional<List<EmployeeOrderReportDto>> getOrderReport();
+    Optional<List<OrderReportDto>> getOrderReport() throws ServiceException;
 }

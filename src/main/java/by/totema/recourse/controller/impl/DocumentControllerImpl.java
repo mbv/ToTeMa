@@ -4,14 +4,10 @@ import by.totema.recourse.controller.DocumentController;
 import by.totema.recourse.controller.exception.NotFoundException;
 import by.totema.recourse.document.DocumentType;
 import by.totema.recourse.document.generator.DocumentGenerator;
-import by.totema.recourse.document.model.provider.ContentProvider;
-import by.totema.recourse.document.model.provider.CountryReportContentProvider;
-import by.totema.recourse.document.model.provider.EmployeeReportContentProvider;
-import by.totema.recourse.entity.dto.CountryOrderReportDto;
-import by.totema.recourse.entity.dto.EmployeeOrderReportDto;
+import by.totema.recourse.document.model.provider.*;
+import by.totema.recourse.entity.dto.OrderReportDto;
 import by.totema.recourse.entity.support.DocumentTypeEnumConverter;
-import by.totema.recourse.service.CountryService;
-import by.totema.recourse.service.EmployeeService;
+import by.totema.recourse.service.*;
 import by.totema.recourse.util.DocumentGeneratorCallWrapper;
 import org.slf4j.Logger;
 import org.springframework.web.bind.WebDataBinder;
@@ -32,10 +28,16 @@ public class DocumentControllerImpl implements DocumentController {
     private static final Logger logger = getLogger(DocumentControllerImpl.class);
     private EmployeeService employeeService;
     private CountryService countryService;
+    private OfficeService officeService;
+    private DateService dateService;
+    private ProductService productService;
 
-    public DocumentControllerImpl(EmployeeService employeeService, CountryService countryService) {
+    public DocumentControllerImpl(EmployeeService employeeService, CountryService countryService, OfficeService officeService,  DateService dateService, ProductService productService) {
         this.employeeService = employeeService;
         this.countryService = countryService;
+        this.officeService = officeService;
+        this.dateService = dateService;
+        this.productService = productService;
     }
 
     @InitBinder
@@ -46,10 +48,34 @@ public class DocumentControllerImpl implements DocumentController {
 
     @Override
     public void generateCountryOrderReport(@RequestParam("type") DocumentType documentType, HttpServletResponse response) {
-        Optional<List<CountryOrderReportDto>> countryOrderReportDtoList = countryService.getOrderReport();
-        if (countryOrderReportDtoList.isPresent()) {
-            List<CountryOrderReportDto> existingCountryOrderReportDtoList = countryOrderReportDtoList.get();
-            dispatchDocumentRequest(response, documentType, null, existingCountryOrderReportDtoList, new CountryReportContentProvider());
+        Optional<List<OrderReportDto>> orderReportDtoList = countryService.getOrderReport();
+        if (orderReportDtoList.isPresent()) {
+            List<OrderReportDto> existingOrderReportDtoList = orderReportDtoList.get();
+            dispatchDocumentRequest(response, documentType, null, existingOrderReportDtoList, new CountryReportContentProvider());
+        }else {
+            throw new NotFoundException();
+        }
+
+    }
+
+    @Override
+    public void generateYearOrderReport(@RequestParam("type") DocumentType documentType, HttpServletResponse response) {
+        Optional<List<OrderReportDto>> orderReportDtoList = dateService.getOrderReport();
+        if (orderReportDtoList.isPresent()) {
+            List<OrderReportDto> existingOrderReportDtoList = orderReportDtoList.get();
+            dispatchDocumentRequest(response, documentType, null, existingOrderReportDtoList, new YearReportContentProvider());
+        }else {
+            throw new NotFoundException();
+        }
+
+    }
+
+    @Override
+    public void generateOfficeOrderReport(@RequestParam("type") DocumentType documentType, HttpServletResponse response) {
+        Optional<List<OrderReportDto>> orderReportDtoList = officeService.getOrderReport();
+        if (orderReportDtoList.isPresent()) {
+            List<OrderReportDto> existingOrderReportDtoList = orderReportDtoList.get();
+            dispatchDocumentRequest(response, documentType, null, existingOrderReportDtoList, new OfficeReportContentProvider());
         }else {
             throw new NotFoundException();
         }
@@ -58,10 +84,34 @@ public class DocumentControllerImpl implements DocumentController {
 
     @Override
     public void generateEmployeeOrderReport(@RequestParam("type") DocumentType documentType, HttpServletResponse response) {
-        Optional<List<EmployeeOrderReportDto>> employeeOrderReportDtoList = employeeService.getOrderReport();
-        if (employeeOrderReportDtoList.isPresent()) {
-            List<EmployeeOrderReportDto> existingEmployeeOrderReportDtoList = employeeOrderReportDtoList.get();
-            dispatchDocumentRequest(response, documentType, null, existingEmployeeOrderReportDtoList, new EmployeeReportContentProvider());
+        Optional<List<OrderReportDto>> orderReportDtoList = employeeService.getOrderReport();
+        if (orderReportDtoList.isPresent()) {
+            List<OrderReportDto> existingOrderReportDtoList = orderReportDtoList.get();
+            dispatchDocumentRequest(response, documentType, null, existingOrderReportDtoList, new EmployeeReportContentProvider());
+        }else {
+            throw new NotFoundException();
+        }
+
+    }
+
+    @Override
+    public void generateProductOrderReport(@RequestParam("type") DocumentType documentType, HttpServletResponse response) {
+        Optional<List<OrderReportDto>> orderReportDtoList = productService.getOrderReport();
+        if (orderReportDtoList.isPresent()) {
+            List<OrderReportDto> existingOrderReportDtoList = orderReportDtoList.get();
+            dispatchDocumentRequest(response, documentType, null, existingOrderReportDtoList, new ProductReportContentProvider());
+        }else {
+            throw new NotFoundException();
+        }
+
+    }
+
+    @Override
+    public void generateProductDetailedOrderReport(@RequestParam("type") DocumentType documentType, HttpServletResponse response) {
+        Optional<List<OrderReportDto>> orderReportDtoList = productService.getDetailedOrderReport();
+        if (orderReportDtoList.isPresent()) {
+            List<OrderReportDto> existingOrderReportDtoList = orderReportDtoList.get();
+            dispatchDocumentRequest(response, documentType, null, existingOrderReportDtoList, new ProductDetailedReportContentProvider());
         }else {
             throw new NotFoundException();
         }

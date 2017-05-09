@@ -1,6 +1,7 @@
 package by.totema.recourse.service.impl;
 
 import by.totema.recourse.entity.dto.ErrorMessage;
+import by.totema.recourse.entity.dto.OrderReportDto;
 import by.totema.recourse.entity.model.Date;
 import by.totema.recourse.repository.DateRepository;
 import by.totema.recourse.service.DateService;
@@ -9,6 +10,7 @@ import by.totema.recourse.service.exception.ServiceBadRequestException;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.Optional;
 
 import static by.totema.recourse.util.RepositoryCallWrapper.wrapJPACallToOptional;
@@ -36,5 +38,11 @@ public class DateServiceImpl implements DateService {
         } catch (ParseException e) {
             throw new ServiceBadRequestException(new ErrorMessage("date", "Bad date"));
         }
+    }
+
+
+    @Override
+    public Optional<List<OrderReportDto>> getOrderReport() {
+        return wrapJPACallToOptional(() -> dateRepository.getOrderReport());
     }
 }

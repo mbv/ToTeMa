@@ -1,6 +1,6 @@
 package by.totema.recourse.service.impl;
 
-import by.totema.recourse.entity.dto.CountryOrderReportDto;
+import by.totema.recourse.entity.dto.OrderReportDto;
 import by.totema.recourse.entity.model.Country;
 import by.totema.recourse.repository.CountryRepository;
 import by.totema.recourse.service.CountryService;
@@ -31,7 +31,7 @@ public class CountryServiceImpl extends AbstractCrudService<Country, Integer> im
     }
 
     @Override
-    public Optional<List<CountryOrderReportDto>> getOrderReport() {
+    public Optional<List<OrderReportDto>> getOrderReport() {
         return wrapJPACallToOptional(() -> countryRepository.getOrderReport());
     }
 }

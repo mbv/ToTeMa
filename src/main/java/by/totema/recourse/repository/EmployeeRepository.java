@@ -1,6 +1,6 @@
 package by.totema.recourse.repository;
 
-import by.totema.recourse.entity.dto.EmployeeOrderReportDto;
+import by.totema.recourse.entity.dto.OrderReportDto;
 import by.totema.recourse.entity.model.Employee;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -15,6 +15,6 @@ public interface EmployeeRepository extends PagingAndSortingRepository<Employee,
 
     List<Employee> findByRole(Employee.Role role, Pageable pageable);
 
-    List<EmployeeOrderReportDto> getOrderReport();
+    List<OrderReportDto> getOrderReport();
 
 }

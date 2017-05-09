@@ -1,13 +1,13 @@
 package by.totema.recourse.document.model.provider;
 
 
-import by.totema.recourse.entity.dto.CountryOrderReportDto;
+import by.totema.recourse.entity.dto.OrderReportDto;
 import org.springframework.data.util.Pair;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class CountryReportContentProvider implements ContentProvider<Object, CountryOrderReportDto> {
+public class CountryReportContentProvider implements ContentProvider<Object, OrderReportDto> {
     @Override
     public String createTitle(Object object) {
         return "";
@@ -29,12 +29,12 @@ public class CountryReportContentProvider implements ContentProvider<Object, Cou
     }
 
     @Override
-    public String createTableTitle(Object object, Collection<CountryOrderReportDto> courses) {
+    public String createTableTitle(Object object, Collection<OrderReportDto> courses) {
         return "Orders";
     }
 
     @Override
-    public List<List<String>> createRows(Collection<CountryOrderReportDto> countryOrderReportDtos) {
+    public List<List<String>> createRows(Collection<OrderReportDto> countryOrderReportDtos) {
         return countryOrderReportDtos.stream()
                 .map(countryOrderReportDto -> Arrays.asList(countryOrderReportDto.getCountry(), countryOrderReportDto.getQuantity().toString(), countryOrderReportDto.getTotalPrice().toString(), countryOrderReportDto.getTotalCost().toString(), countryOrderReportDto.getTotalGrossMargin().toString(), countryOrderReportDto.getCurrency()))
                 .collect(Collectors.toList());

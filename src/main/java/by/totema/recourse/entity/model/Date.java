@@ -1,5 +1,6 @@
 package by.totema.recourse.entity.model;
 
+import by.totema.recourse.entity.dto.OrderReportDto;
 import org.hibernate.validator.constraints.SafeHtml;
 
 import javax.persistence.*;
@@ -17,6 +18,47 @@ import java.util.Objects;
                         @StoredProcedureParameter(mode = ParameterMode.OUT, name = "outId", type = Integer.class)
 
                 }),
+})
+@SqlResultSetMapping(
+        name = "YearOrderMapping",
+        classes = @ConstructorResult(
+                targetClass = OrderReportDto.class,
+                columns = {
+                        @ColumnResult(name = "year", type = Integer.class),
+                        @ColumnResult(name = "quantity", type = Integer.class),
+                        @ColumnResult(name = "totalPrice", type = Double.class),
+                        @ColumnResult(name = "totalCost", type = Double.class),
+                        @ColumnResult(name = "totalGrossMargin", type = Double.class),
+                        @ColumnResult(name = "currency", type = String.class)
+                }
+        )
+)
+@NamedNativeQueries({
+        @NamedNativeQuery(
+                name = "Date.getOrderReport",
+                query = "SELECT \n" +
+                        "D.YEAR AS year,\n" +
+                        "SUM(O.QUANTITY) AS quantity,\n" +
+                        "TRUNCATE(SUM(O.PRICE*CR.CONVERSION_TO_LOCAL/100), 2) AS totalPrice,\n" +
+                        "TRUNCATE(SUM(O.COST*CR.CONVERSION_TO_LOCAL/100), 2) AS totalCost,\n" +
+                        "TRUNCATE(SUM(O.GROSS_MARGIN*CR.CONVERSION_TO_LOCAL/100), 2) AS totalGrossMargin,\n" +
+                        "C.CURRENCY_NAME AS currency\n" +
+                        "FROM `totema`.date D\n" +
+                        "LEFT JOIN `totema`.ORDER O \n" +
+                        "ON D.ID = O.DATE_KEY\n" +
+                        "LEFT JOIN `totema`.office OF \n" +
+                        "ON O.OFFICE_KEY = OF.ID\n" +
+                        "LEFT JOIN `totema`.country C\n" +
+                        "ON OF.COUNTRY_KEY = C.ID\n" +
+                        "LEFT JOIN `totema`.conversion_rate CR\n" +
+                        "ON OF.COUNTRY_KEY = CR.COUNTRY_KEY\n" +
+                        "AND O.DATE_KEY = CR.PERIOD_KEY\n" +
+                        "GROUP BY D.YEAR, C.ID\n" +
+                        "ORDER BY D.YEAR;",
+                resultSetMapping = "YearOrderMapping"
+
+        ),
+
 })
 public class Date extends BaseEntity<Integer> {
 

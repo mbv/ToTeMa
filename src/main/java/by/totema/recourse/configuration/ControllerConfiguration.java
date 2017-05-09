@@ -19,8 +19,8 @@ public class ControllerConfiguration {
     }
 
     @Bean
-	    public DocumentController documentController(EmployeeService employeeService, CountryService countryService) {
-        return new DocumentControllerImpl(employeeService, countryService);
+	    public DocumentController documentController(EmployeeService employeeService, CountryService countryService, OfficeService officeService, DateService dateService, ProductService productService) {
+        return new DocumentControllerImpl(employeeService, countryService, officeService, dateService, productService);
     }
 
     @Bean

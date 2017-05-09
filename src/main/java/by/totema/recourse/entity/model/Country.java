@@ -1,6 +1,6 @@
 package by.totema.recourse.entity.model;
 
-import by.totema.recourse.entity.dto.CountryOrderReportDto;
+import by.totema.recourse.entity.dto.OrderReportDto;
 import org.hibernate.validator.constraints.SafeHtml;
 
 import javax.persistence.*;
@@ -13,13 +13,13 @@ import java.util.Objects;
 @SqlResultSetMapping(
         name = "CountryOrderMapping",
         classes = @ConstructorResult(
-                targetClass = CountryOrderReportDto.class,
+                targetClass = OrderReportDto.class,
                 columns = {
                         @ColumnResult(name = "country", type = String.class),
                         @ColumnResult(name = "quantity", type = Integer.class),
-                        @ColumnResult(name = "totalPrice", type = Integer.class),
-                        @ColumnResult(name = "totalCost", type = Integer.class),
-                        @ColumnResult(name = "totalGrossMargin", type = Integer.class),
+                        @ColumnResult(name = "totalPrice", type = Double.class),
+                        @ColumnResult(name = "totalCost", type = Double.class),
+                        @ColumnResult(name = "totalGrossMargin", type = Double.class),
                         @ColumnResult(name = "currency", type = String.class)
                 }
         )
@@ -34,12 +34,12 @@ import java.util.Objects;
                         "TRUNCATE(SUM(O.COST*CR.CONVERSION_TO_LOCAL/100), 2) AS totalCost,\n" +
                         "TRUNCATE(SUM(O.GROSS_MARGIN*CR.CONVERSION_TO_LOCAL/100), 2) AS totalGrossMargin,\n" +
                         "C.CURRENCY_NAME AS currency\n" +
-                        "FROM `totema`.ORDER O \n" +
-                        "JOIN `totema`.office OF \n" +
-                        "ON O.OFFICE_KEY = OF.ID\n" +
-                        "JOIN `totema`.country C\n" +
+                        "FROM `totema`.country C\n" +
+                        "LEFT JOIN `totema`.office OF \n" +
                         "ON OF.COUNTRY_KEY = C.ID\n" +
-                        "JOIN `totema`.conversion_rate CR\n" +
+                        "LEFT JOIN `totema`.ORDER O \n" +
+                        "ON O.OFFICE_KEY = OF.ID\n" +
+                        "LEFT JOIN `totema`.conversion_rate CR\n" +
                         "ON OF.COUNTRY_KEY = CR.COUNTRY_KEY\n" +
                         "AND O.DATE_KEY = CR.PERIOD_KEY\n" +
                         "GROUP BY C.ID;",

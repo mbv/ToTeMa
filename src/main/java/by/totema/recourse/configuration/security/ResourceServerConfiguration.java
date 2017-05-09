@@ -49,7 +49,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
                 .antMatchers(HttpMethod.PUT, "/api/offices/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/product-types/**").permitAll()
                 .antMatchers(HttpMethod.PUT, "/api/product-types/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/users/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/reports/**").permitAll()
 
                 .antMatchers(HttpMethod.PUT, "/api/orders/**").permitAll()
 

@@ -6,15 +6,15 @@ public class CountryOrderReportDto {
 
     private Integer quantity;
 
-    private Integer totalPrice;
+    private Double totalPrice;
 
-    private Integer totalCost;
+    private Double totalCost;
 
-    private Integer totalGrossMargin;
+    private Double totalGrossMargin;
 
     private String currency;
 
-    public CountryOrderReportDto(String country, Integer quantity, Integer totalPrice, Integer totalCost, Integer totalGrossMargin, String currency) {
+    public CountryOrderReportDto(String country, Integer quantity, Double totalPrice, Double totalCost, Double totalGrossMargin, String currency) {
         this.country = country;
         this.quantity = quantity;
         this.totalPrice = totalPrice;
@@ -32,34 +32,34 @@ public class CountryOrderReportDto {
     }
 
     public Integer getQuantity() {
-        return quantity;
+        return (quantity == null) ? 0 : quantity;
     }
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
-    public Integer getTotalPrice() {
-        return totalPrice;
+    public Double getTotalPrice() {
+        return (totalPrice == null) ? 0 : totalPrice;
     }
 
-    public void setTotalPrice(Integer totalPrice) {
+    public void setTotalPrice(Double totalPrice) {
         this.totalPrice = totalPrice;
     }
 
-    public Integer getTotalCost() {
-        return totalCost;
+    public Double getTotalCost() {
+        return (totalCost == null) ? 0 : totalCost;
     }
 
-    public void setTotalCost(Integer totalCost) {
+    public void setTotalCost(Double totalCost) {
         this.totalCost = totalCost;
     }
 
-    public Integer getTotalGrossMargin() {
-        return totalGrossMargin;
+    public Double getTotalGrossMargin() {
+        return (totalGrossMargin == null) ? 0 : totalGrossMargin;
     }
 
-    public void setTotalGrossMargin(Integer totalGrossMargin) {
+    public void setTotalGrossMargin(Double totalGrossMargin) {
         this.totalGrossMargin = totalGrossMargin;
     }
 

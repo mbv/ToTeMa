@@ -1,6 +1,6 @@
 package by.totema.recourse.entity.model;
 
-import by.totema.recourse.entity.dto.EmployeeOrderReportDto;
+import by.totema.recourse.entity.dto.OrderReportDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.SafeHtml;
 
@@ -16,13 +16,15 @@ import java.util.Objects;
 @SqlResultSetMapping(
         name = "EmployeeOrderMapping",
         classes = @ConstructorResult(
-                targetClass = EmployeeOrderReportDto.class,
+                targetClass = OrderReportDto.class,
                 columns = {
                         @ColumnResult(name = "employee", type = String.class),
+                        @ColumnResult(name = "office", type = String.class),
+                        @ColumnResult(name = "country", type = String.class),
                         @ColumnResult(name = "quantity", type = Integer.class),
-                        @ColumnResult(name = "totalPrice", type = Integer.class),
-                        @ColumnResult(name = "totalCost", type = Integer.class),
-                        @ColumnResult(name = "totalGrossMargin", type = Integer.class),
+                        @ColumnResult(name = "totalPrice", type = Double.class),
+                        @ColumnResult(name = "totalCost", type = Double.class),
+                        @ColumnResult(name = "totalGrossMargin", type = Double.class),
                         @ColumnResult(name = "currency", type = String.class)
                 }
         )
@@ -32,22 +34,24 @@ import java.util.Objects;
                 name = "Employee.getOrderReport",
                 query = "SELECT \n" +
                         "E.NAME AS employee,\n" +
+                        "CONCAT(OF.CITY, ', ', OF.ADDRESS) AS office,\n" +
+                        "C.NAME AS country,\n" +
                         "SUM(O.QUANTITY) AS quantity,\n" +
                         "TRUNCATE(SUM(O.PRICE*CR.CONVERSION_TO_LOCAL/100), 2) AS totalPrice,\n" +
                         "TRUNCATE(SUM(O.COST*CR.CONVERSION_TO_LOCAL/100), 2) AS totalCost,\n" +
                         "TRUNCATE(SUM(O.GROSS_MARGIN*CR.CONVERSION_TO_LOCAL/100), 2) AS totalGrossMargin,\n" +
                         "C.CURRENCY_NAME AS currency\n" +
-                        "FROM `totema`.ORDER O \n" +
-                        "JOIN `totema`.office OF \n" +
-                        "ON O.OFFICE_KEY = OF.ID\n" +
-                        "JOIN `totema`.country C\n" +
+                        "FROM `totema`.employee E\n" +
+                        "LEFT JOIN `totema`.ORDER O \n" +
+                        "ON E.ID = O.EMPLOYEE_KEY\n" +
+                        "LEFT JOIN `totema`.office OF \n" +
+                        "ON E.OFFICE_KEY = OF.ID\n" +
+                        "LEFT JOIN `totema`.country C\n" +
                         "ON OF.COUNTRY_KEY = C.ID\n" +
-                        "JOIN `totema`.conversion_rate CR\n" +
+                        "LEFT JOIN `totema`.conversion_rate CR\n" +
                         "ON OF.COUNTRY_KEY = CR.COUNTRY_KEY\n" +
                         "AND O.DATE_KEY = CR.PERIOD_KEY\n" +
-                        "JOIN `totema`.employee E\n" +
-                        "ON E.ID = O.EMPLOYEE_KEY\n" +
-                        "GROUP BY E.ID, C.ID;",
+                        "GROUP BY E.ID, C.ID, OF.ID;",
                 resultSetMapping = "EmployeeOrderMapping"
 
         ),

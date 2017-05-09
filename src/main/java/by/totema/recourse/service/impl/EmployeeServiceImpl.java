@@ -1,6 +1,6 @@
 package by.totema.recourse.service.impl;
 
-import by.totema.recourse.entity.dto.EmployeeOrderReportDto;
+import by.totema.recourse.entity.dto.OrderReportDto;
 import by.totema.recourse.entity.dto.ErrorMessage;
 import by.totema.recourse.entity.dto.PasswordChanging;
 import by.totema.recourse.entity.model.Employee;
@@ -153,7 +153,7 @@ public class EmployeeServiceImpl extends AbstractCrudService<Employee, Integer> 
 
 
     @Override
-    public Optional<List<EmployeeOrderReportDto>> getOrderReport() {
+    public Optional<List<OrderReportDto>> getOrderReport() {
         return wrapJPACallToOptional(() -> employeeRepository.getOrderReport());
     }
 
