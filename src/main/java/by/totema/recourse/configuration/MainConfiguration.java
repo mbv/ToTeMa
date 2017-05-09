@@ -20,8 +20,7 @@ import static by.totema.recourse.util.Util.allItemsPage;
         ServiceConfiguration.class,
         ControllerConfiguration.class,
         SecurityConfiguration.class,
-        PageRequestConfiguration.class,
-        GeneratorConfiguration.class
+        PageRequestConfiguration.class
 })
 @EnableAutoConfiguration(exclude = {
         org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration.class,

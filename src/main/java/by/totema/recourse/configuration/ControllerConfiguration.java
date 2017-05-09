@@ -19,6 +19,11 @@ public class ControllerConfiguration {
     }
 
     @Bean
+	    public DocumentController documentController(EmployeeService employeeService, CountryService countryService) {
+        return new DocumentControllerImpl(employeeService, countryService);
+    }
+
+    @Bean
     public ConversionRateController conversionRateController(ConversionRateService conversionRateService) {
         return new ConversionRateControllerImpl(conversionRateService);
     }

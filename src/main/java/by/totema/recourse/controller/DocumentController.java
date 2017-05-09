@@ -1,9 +1,7 @@
 package by.totema.recourse.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import by.totema.recourse.document.DocumentType;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,9 +9,14 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/api")
 public interface DocumentController {
 
-    @GetMapping("/users/{id}/profile")
-    void generateStudentProfile(
-            @PathVariable("id") Integer id,
+    @GetMapping("/users/country")
+    void generateCountryOrderReport(
+            @RequestParam("type") DocumentType documentType,
+            HttpServletResponse response);
+
+    @GetMapping("/users/employee")
+    void generateEmployeeOrderReport(
+            @RequestParam("type") DocumentType documentType,
             HttpServletResponse response);
 
 }

@@ -320,5 +320,70 @@ END IF;
 END$$
 DELIMITER ;
 
+CREATE DEFINER=`totema_admin`@`localhost` TRIGGER `totema`.`product_list_BEFORE_INSERT` BEFORE INSERT ON `product_list` FOR EACH ROW
+  BEGIN
+    SET @RATE = (SELECT CR.CONVERSION_TO_LOCAL FROM `totema`.order O
+      JOIN `totema`.office OF
+        ON OF.ID = O.OFFICE_KEY
+      JOIN `totema`.conversion_rate CR
+        ON CR.COUNTRY_KEY = CR.COUNTRY_KEY
+    WHERE O.ID = NEW.ORDER_KEY
+          AND CR.COUNTRY_KEY = OF.COUNTRY_KEY
+          AND CR.PERIOD_KEY = O.DATE_KEY);
+
+    SET NEW.UNIT_COST = TRUNCATE(NEW.UNIT_COST / @RATE, 2) * 100;
+    SET NEW.UNIT_PRICE = TRUNCATE(NEW.UNIT_PRICE / @RATE, 2) * 100;
+
+    SET NEW.GROSS_MARGIN = NEW.UNIT_PRICE - NEW.UNIT_COST;
+
+  END;
+
+CREATE DEFINER=`totema_admin`@`localhost` TRIGGER `totema`.`product_list_AFTER_INSERT` AFTER INSERT ON `product_list` FOR EACH ROW
+  BEGIN
+    UPDATE `totema`.`order`
+    SET
+      `QUANTITY` = `QUANTITY` + NEW.QUANTITY,
+      `PRICE` = `PRICE` + NEW.UNIT_PRICE * NEW.QUANTITY,
+      `COST` = `COST` + NEW.UNIT_COST * NEW.QUANTITY,
+      `GROSS_MARGIN` = `PRICE` - `COST`
+    WHERE `ID` = NEW.ORDER_KEY;
+  END;
+
+CREATE DEFINER=`totema_admin`@`localhost` TRIGGER `totema`.`product_list_BEFORE_UPDATE` BEFORE UPDATE ON `product_list` FOR EACH ROW
+  BEGIN
+    SET @RATE = (SELECT CR.CONVERSION_TO_LOCAL FROM `totema`.`order` O
+      JOIN `totema`.office OF
+        ON OF.ID = O.OFFICE_KEY
+      JOIN `totema`.conversion_rate CR
+        ON CR.COUNTRY_KEY = CR.COUNTRY_KEY
+    WHERE O.ID = NEW.ORDER_KEY
+          AND CR.COUNTRY_KEY = OF.COUNTRY_KEY
+          AND CR.PERIOD_KEY = O.DATE_KEY);
+
+    SET NEW.UNIT_COST = TRUNCATE(NEW.UNIT_COST / @RATE, 2) * 100;
+    SET NEW.UNIT_PRICE = TRUNCATE(NEW.UNIT_PRICE / @RATE, 2) * 100;
+
+    SET NEW.GROSS_MARGIN = NEW.UNIT_PRICE - NEW.UNIT_COST;
+
+    UPDATE `totema`.`order`
+    SET
+      `QUANTITY` = `QUANTITY` + NEW.QUANTITY,
+      `PRICE` = `PRICE` + NEW.UNIT_PRICE * NEW.QUANTITY,
+      `COST` = `COST` + NEW.UNIT_COST * NEW.QUANTITY,
+      `GROSS_MARGIN` = `PRICE` - `COST`
+    WHERE `ID` = NEW.ORDER_KEY;
+  END;
+
+CREATE DEFINER=`totema_admin`@`localhost` TRIGGER `totema`.`product_list_AFTER_DELETE` AFTER DELETE ON `product_list` FOR EACH ROW
+  BEGIN
+    UPDATE `totema`.`order`
+    SET
+      `QUANTITY` = `QUANTITY` - OLD.QUANTITY,
+      `PRICE` = `PRICE` - OLD.UNIT_PRICE * OLD.QUANTITY,
+      `COST` = `COST` - OLD.UNIT_COST * OLD.QUANTITY,
+      `GROSS_MARGIN` = `COST` - `PRICE`
+    WHERE `ID` = OLD.ORDER_KEY;
+  END;
+
 GRANT SELECT ON `mysql`.`proc` TO 'totema_admin'@'localhost';
 GRANT EXECUTE ON PROCEDURE totema.getOrCreateDate TO 'totema_admin'@'localhost';
