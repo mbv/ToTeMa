@@ -57,11 +57,11 @@ VALUES
       'Systems Manager', 100000, '2017-08-31', 1, 'DISABLED'),
   (4, 'www', '$2a$12$5EeGW2rSJVdrg4g8bp9g0exNjaGsjHNAq0BkR6UTU5baFr8Y3i522', 'Joan Callins', '2012-09-01', 1,
       'Sales Manager', 200000, '2017-08-31', 1, 'ANALYST'),
-  (5, 'qwerty', '$2a$12$5EeGW2rSJVdrg4g8bp9g0exNjaGsjHNAq0BkR6UTU5baFr8Y3i522', 'Justien Bieber', '2013-09-02', 2,
+  (5, 'qwerty', '$2a$12$5EeGW2rSJVdrg4g8bp9g0exNjaGsjHNAq0BkR6UTU5baFr8Y3i522', 'Justien Bieber', '2013-09-02', 3,
       'Sales Representative', 180000, '2014-08-31', 1, 'SALESMAN'),
-  (6, 'sir5', '$2a$12$5EeGW2rSJVdrg4g8bp9g0exNjaGsjHNAq0BkR6UTU5baFr8Y3i522', 'Hulio Zdadim', '2013-09-02', 3,
+  (6, 'sir5', '$2a$12$5EeGW2rSJVdrg4g8bp9g0exNjaGsjHNAq0BkR6UTU5baFr8Y3i522', 'Hulio Zdadim', '2013-09-02', 4,
       'Sales Manager', 150000, '2014-08-31', 1, 'SALESMAN'),
-  (7, 'chika1', '$2a$12$5EeGW2rSJVdrg4g8bp9g0exNjaGsjHNAq0BkR6UTU5baFr8Y3i522', 'Carla Espinosa', '2013-09-02', 3,
+  (7, 'chika1', '$2a$12$5EeGW2rSJVdrg4g8bp9g0exNjaGsjHNAq0BkR6UTU5baFr8Y3i522', 'Carla Espinosa', '2013-09-02', 4,
       'Sales Representative', 120000, '2014-08-31', 6, 'SALESMAN');
 
 
